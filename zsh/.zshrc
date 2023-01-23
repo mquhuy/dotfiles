@@ -112,14 +112,16 @@ plugins=(git zsh-syntax-highlighting)
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export GOPATH=$HOME/gopath
 export PATH=$GOPATH:$GOPATH/bin:$PATH
-export VIMPATH=/usr/local/nvim
 DOOM_PATH=~/.emacs.d
-BIN_PATH=~/Github/bash-settings/elx/bin
+BIN_PATH=~/.local/bin
 COMMON_BIN_PATH=~/Github/bash-settings/common/bin
-export PATH=$BIN_PATH:$COMMON_BIN_PATH:$VIMPATH/bin:/usr/local/go/bin:$DOOM_PATH/bin:$PATH
+export PATH=$BIN_PATH:$COMMON_BIN_PATH:/usr/local/go/bin:$DOOM_PATH/bin:$PATH
 export EDITOR=nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

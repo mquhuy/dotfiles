@@ -4,23 +4,24 @@
   tasks:
   - name: Install localhost
     become: yes
-    become_user: root
+    become_user : root
     ansible.builtin.apt:
       pkg: 
       - zsh 
       - git
       - fzf
       - silversearcher-ag
+      - gcc
+      - curl
       update_cache: yes
       cache_valid_time: 3600
 
-- name: Change default sh
-   become_user: root
-   ansible.builtin.command: chsh -s /usr/bin/zsh root && chsh -s /usr/bin/zsh huy
+  # - name: Change default sh
+  #   become_user: root
+  #   ansible.builtin.command: chsh -s /usr/bin/zsh huy
 
 - name: Install and configure nvim
   hosts: localhost
-
   tasks:
   - name: Check if nvim exists
     ansible.builtin.command: which nvim
@@ -33,56 +34,76 @@
       dest: /tmp/nvim.tar.gz
       mode: '0440'
     when: nvim_exists is failed
+    ignore_errors: true
 
   - name: Make dir
     ansible.builtin.command: mkdir -p /home/huy/Programs/nvim
     when: nvim_exists is failed
+    ignore_errors: true
 
   - name: Extract nvim
     ansible.builtin.command: tar xzvf /tmp/nvim.tar.gz -C /home/huy/Programs/nvim
     when: nvim_exists is failed
+    ignore_errors: true
 
   - name: Chmod
     ansible.builtin.command: chmod +x /home/huy/Programs/nvim/nvim-linux64/bin/nvim
     when: nvim_exists is failed
+    ignore_errors: true
 
   - name: Add nvim to PATH
     ansible.builtin.command: ln -s /home/huy/Programs/nvim/nvim-linux64/bin/nvim /home/huy/.local/bin
     when: nvim_exists is failed
+    ignore_errors: true
 
   - name: Make .config dir
     ansible.builtin.command: mkdir -p /home/huy/.config
+    ignore_errors: true
 
   - name: Create nvim config dir
     ansible.builtin.command: ln -s $PWD/../nvim /home/huy/.config/
-# 
- - name: Install oh-my-zsh
-   hosts: localhost
-   become: yes
-# 
+    ignore_errors: true
+
+- name: Install oh-my-zsh
+  hosts: localhost
+  become: yes
   tasks:
-  - name: Check if .oh-my-zsh exists
-    ansible.builtin.command: ls /home/huy/.oh-my-zsh
-    register: omz_exists
+
+  # - name: rm oh-my-zsh
+  #   ansible.builtin.command: rm -rf /home/huy/.oh-my-zsh
+  #
+  # - name: rm oh-my-zsh
+  #   ansible.builtin.command: rm -rf /root/.oh-my-zsh
+  #   become_user: root
 
   - name: Download oh-my-zsh installation
     ansible.builtin.get_url:
       url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-      dest: /tmp/install.sh
+      dest: /home/huy/Programs/omz_install.sh
       mode: '0700'
-    when: omz_exists is failed
-
+    ignore_errors: true
+      
   - name: oh-my-zsh installation
-    ansible.builtin.command: sh -c /tmp/install.sh
-    when: omz_exists is failed
+    ansible.builtin.command: sh -c /home/huy/Programs/omz_install.sh
+    ignore_errors: true
+
+  - name: rm oh-my-zsh config
+    ansible.builtin.command: rm -f /home/huy/.zshrc 
 
   - name: Install oh-my-zsh config
-    ansible.builtin.command: rm -f /home/huy/.zshrc && ln -s $PWD/../zsh/.zshrc /home/huy/.zshrc
+    ansible.builtin.command: ln -s $PWD/../zsh/.zshrc /home/huy/.zshrc
+    ignore_errors: true
+
+  - name: Remove zsh aliases
+    ansible.builtin.command: rm -f /home/huy/.oh-my-zsh/.zsh_aliases
 
   - name: Install zsh aliases
-    ansible.builtin.command: ln -s $PWD/zsh/.zsh_aliases /home/huy/.oh-my-zsh/.zsh_aliases
+    ansible.builtin.command: ln -s $PWD/../zsh/.zsh_aliases /home/huy/.oh-my-zsh/.zsh_aliases
 
-  - name: Install zsh aliases
+  - name: Remove zsh vi
+    ansible.builtin.command: rm -f /home/huy/.oh-my-zsh/.zsh_vi.zsh
+
+  - name: Install zsh vi
     ansible.builtin.command: ln -s $PWD/zsh/.zsh_vi.zsh /home/huy/.oh-my-zsh/.zsh_vi.zsh
 
   - name: Install oh-my-zsh custom-zsh-syntax-highlighting
