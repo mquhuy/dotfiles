@@ -1,0 +1,105 @@
+---
+# - name: instlocalhost packages
+  # hosts: localhost
+  # tasks:
+  # - name: Instlocalhost localhost
+    # become: yes
+    # become_user: root
+    # ansible.builtin.apt:
+      # pkg: 
+      # - zsh 
+      # - git
+      # - fzf
+      # - silversearcher-ag
+      # update_cache: yes
+      # cache_valid_time: 3600
+
+ #- name: Change default sh
+    #become_user: root
+    #ansible.builtin.command: chsh -s /usr/bin/zsh root && chsh -s /usr/bin/zsh huy
+
+- name: instlocalhost and configure nvim
+  hosts: localhost
+
+  vars:
+
+  tasks:
+  - name: Check if nvim exists
+    ansible.builtin.command: which nvim
+    register: nvim_exists
+    ignore_errors: true
+
+  - name: Download nvim
+    ansible.builtin.get_url:
+      url: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+      dest: /tmp/nvim.tar.gz
+      mode: '0440'
+    when: nvim_exists is failed
+
+  - name: Make dir
+    ansible.builtin.command: mkdir -p /home/huy/Programs/nvim
+    when: nvim_exists is failed
+
+  - name: Extract nvim
+    ansible.builtin.command: tar xzvf /tmp/nvim.tar.gz -C /home/huy/Programs/nvim
+    when: nvim_exists is failed
+
+  - name: Chmod
+    ansible.builtin.command: chmod +x /home/huy/Programs/nvim/nvim-linux64/bin/nvim
+    when: nvim_exists is failed
+
+  - name: Add nvim to PATH
+    ansible.builtin.command: ln -s /home/huy/Programs/nvim/nvim-linux64/bin/nvim /home/huy/.local/bin
+    when: nvim_exists is failed
+
+  - name: Make .config dir
+    ansible.builtin.command: mkdir -p /home/huy/.config
+# 
+# - name: Instlocalhost oh-my-zsh
+  # hosts: localhost
+  # become: yes
+# 
+  # tasks:
+  # - name: Check if .oh-my-zsh exists
+    # ansible.builtin.command: ls /home/huy/.oh-my-zsh
+    # register: omz_exists
+# 
+  # - name: Download oh-my-zsh instlocalhostation
+    # ansible.builtin.get_url:
+      # url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/instlocalhost.sh
+      # dest: /tmp/instlocalhost.sh
+      # mode: '0700'
+    # when: omz_exists is failed
+# 
+  # - name: oh-my-zsh instlocalhostation
+    # ansible.builtin.command: sh -c /tmp/instlocalhost.sh
+    # when: omz_exists is failed
+# 
+  # - name: Instlocalhost oh-my-zsh config
+    # ansible.builtin.copy:
+      # src: /home/huy/.zshrc
+      # dest: /home/huy/.zshrc
+    # ignore_errors: true
+# 
+  # - name: Instlocalhost zsh aliases
+    # ansible.builtin.copy:
+      # src: /home/huy/.oh-my-zsh/.zsh_aliases
+      # dest: /home/huy/.oh-my-zsh/.zsh_aliases
+# 
+  # - name: Instlocalhost zsh vi
+    # ansible.builtin.copy:
+      # src: /home/huy/.oh-my-zsh/.zsh_vi.zsh
+      # dest: /home/huy/.oh-my-zsh/.zsh_vi.zsh
+# 
+  # - name: Instlocalhost oh-my-zsh custom-zsh-syntax-highlighting
+    # ansible.builtin.git:
+      # repo: https://github.com/zsh-users/zsh-syntax-highlighting
+      # dest: /home/huy/.oh-my-zsh/plugins/zsh-syntax-highlighting
+    # ignore_errors: true
+# 
+  # - name: Instlocalhost oh-my-zsh custom-powerlevel10k
+    # ansible.builtin.git:
+      # repo: https://github.com/romkatv/powerlevel10k.git
+      # dest: /home/huy/.oh-my-zsh/themes/zsh-syntax-highlighting
+    # ignore_errors: true
+# 
