@@ -2,7 +2,7 @@
 - name: instlocalhost packages
   hosts: localhost
   tasks:
-  - name: Instlocalhost localhost
+  - name: Install localhost
     become: yes
     become_user: root
     ansible.builtin.apt:
@@ -20,8 +20,6 @@
 
 - name: Install and configure nvim
   hosts: localhost
-
-  vars:
 
   tasks:
   - name: Check if nvim exists
@@ -67,40 +65,33 @@
     ansible.builtin.command: ls /home/huy/.oh-my-zsh
     register: omz_exists
 
-  - name: Download oh-my-zsh instlocalhostation
+  - name: Download oh-my-zsh installation
     ansible.builtin.get_url:
-      url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/instlocalhost.sh
-      dest: /tmp/instlocalhost.sh
+      url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: /tmp/install.sh
       mode: '0700'
     when: omz_exists is failed
 
-  - name: oh-my-zsh instlocalhostation
-    ansible.builtin.command: sh -c /tmp/instlocalhost.sh
+  - name: oh-my-zsh installation
+    ansible.builtin.command: sh -c /tmp/install.sh
     when: omz_exists is failed
 
-  - name: Instlocalhost oh-my-zsh config
-    ansible.builtin.copy:
-      src: /home/huy/.zshrc
-      dest: /home/huy/.zshrc
-    ignore_errors: true
+  - name: Install oh-my-zsh config
+    ansible.builtin.command: rm -f /home/huy/.zshrc && ln -s $PWD/../zsh/.zshrc /home/huy/.zshrc
 
-  - name: Instlocalhost zsh aliases
-    ansible.builtin.copy:
-      src: /home/huy/.oh-my-zsh/.zsh_aliases
-      dest: /home/huy/.oh-my-zsh/.zsh_aliases
+  - name: Install zsh aliases
+    ansible.builtin.command: ln -s $PWD/zsh/.zsh_aliases /home/huy/.oh-my-zsh/.zsh_aliases
 
-  - name: Instlocalhost zsh vi
-    ansible.builtin.copy:
-      src: /home/huy/.oh-my-zsh/.zsh_vi.zsh
-      dest: /home/huy/.oh-my-zsh/.zsh_vi.zsh
+  - name: Install zsh aliases
+    ansible.builtin.command: ln -s $PWD/zsh/.zsh_vi.zsh /home/huy/.oh-my-zsh/.zsh_vi.zsh
 
-  - name: Instlocalhost oh-my-zsh custom-zsh-syntax-highlighting
+  - name: Install oh-my-zsh custom-zsh-syntax-highlighting
     ansible.builtin.git:
       repo: https://github.com/zsh-users/zsh-syntax-highlighting
       dest: /home/huy/.oh-my-zsh/plugins/zsh-syntax-highlighting
     ignore_errors: true
 
-  - name: Instlocalhost oh-my-zsh custom-powerlevel10k
+  - name: Install oh-my-zsh custom-powerlevel10k
     ansible.builtin.git:
       repo: https://github.com/romkatv/powerlevel10k.git
       dest: /home/huy/.oh-my-zsh/themes/zsh-syntax-highlighting
