@@ -13,6 +13,8 @@
       - silversearcher-ag
       - gcc
       - curl
+      - g++
+      - make
       update_cache: yes
       cache_valid_time: 3600
 
@@ -62,6 +64,17 @@
 
   - name: Create nvim config dir
     ansible.builtin.command: ln -s $PWD/../nvim /home/huy/.config/
+    ignore_errors: true
+
+- name: Install and configure
+  hosts: localhost
+  tasks:
+  - name: Install firefox
+    ansible.builtin.command: $PWD/install_firefox.sh
+    ignore_errors: true
+  - name: Remove go
+    ansible.builtin.command: rm -rf /usr/local/go
+    become_user: root
     ignore_errors: true
 
 - name: Install oh-my-zsh
