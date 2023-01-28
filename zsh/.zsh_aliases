@@ -12,7 +12,7 @@ alias i3bc="nvim ~/.config/i3/i3blocks/primary.conf"
 alias i3autoxrand="nvim ~/.config/i3/autoxrandr"
 
 # Vim config
-alias vinit="nvim ~/.config/nvim/init.vim"
+alias vinit="nvim ~/.config/nvim/init.lua"
 alias vinitp="nvim ~/.config/nvim/plugins.vim"
 alias vinitb="nvim ~/.config/nvim/basic.vim"
 alias vinitc="nvim ~/.config/nvim/coc.vim"

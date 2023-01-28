@@ -112,8 +112,7 @@ plugins=(git zsh-syntax-highlighting)
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export GOPATH=$HOME/gopath
 export PATH=$GOPATH:$GOPATH/bin:$PATH
-DOOM_PATH=~/.emacs.d
-BIN_PATH=~/.local/bin
+BIN_PATH=$HOME/.local/bin
 COMMON_BIN_PATH=~/Github/bash-settings/common/bin
 export PATH=$BIN_PATH:$COMMON_BIN_PATH:/usr/local/go/bin:$DOOM_PATH/bin:$PATH
 export EDITOR=nvim
