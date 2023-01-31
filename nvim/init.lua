@@ -31,7 +31,7 @@ end
 map('v', '<C-c>', '"*y')
 
 -- <Leader>gg to toggle lazygit
-map("n", '<leader>gg', ":LazyGit<CR>", { silent = true })
+-- map("n", '<leader>gg', ":LazyGit<CR>", { silent = true })
 
 
 require('lazy').setup('plugins')
