@@ -30,6 +30,9 @@ end
 -- Press Ctrl+C to copy to clipboard
 map('v', '<C-c>', '"*y')
 
+-- <Leader>gg to toggle lazygit
+map("n", '<leader>gg', ":LazyGit<CR>", { silent = true })
+
 
 require('lazy').setup('plugins')
 
