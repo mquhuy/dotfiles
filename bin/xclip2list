@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cache_file=${1:$HOME/markdown.md}
+rm -rf $cache_file
+xclip -select clipboard -i /dev/null
+while true; do
+    clipboard=$(xclip -select clipboard -o)
+    if [[ $? != 0 ]]; then
+        cached_link="assets/images/$(date +'%Y-%m-%d-%H-%M-%S').png"
+        cache_image=$HOME/Sync/Dendron/vault/${cached_link}
+        echo "![](${cached_link})" >> $cache_file
+        xclip -select clipboard -t image/png -o > ${cache_image}
+        xclip -select clipboard -i /dev/null
+        continue
+    fi
+    if [[ ${clipboard} == "" ]]; then
+        sleep 1
+        continue
+    fi
+    echo $clipboard >> $cache_file
+    xclip -select clipboard -i /dev/null
+done

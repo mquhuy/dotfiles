@@ -1,0 +1,75 @@
+#!/bin/bash
+
+desired="alsa_input.usb-SteelSeries_Arctis_Pro_Wireless-00.analog-mono"
+#desired="alsa_input.usb-046d_HD_Pro_Webcam_C920_FAF7DAAF-02.analog-stereo"
+wrong1="alsa_input.usb-SteelSeries_Arctis_Pro_Wireless-00.analog-stereo"
+wrong2="alsa_input.usb-046d_HD_Pro_Webcam_C920_FAF7DAAF-02.analog-stereo"
+#wrong2="alsa_input.usb-SteelSeries_Arctis_Pro_Wireless-00.analog-mono"
+office_source="alsa_input.pci-0000_00_1f.3.analog-stereo"
+
+
+NAGBAR_FILE=$HOME/.config/nagbar
+display_nagbar() {
+    if [ -f $NAGBAR_FILE ]; then
+        process=$(cat $NAGBAR_FILE)
+        if [[ $(ps -p $process | tail -n +2) != "" ]]; then
+            return
+        fi
+    fi
+    i3-nagbar -m "Your Mic is on" -b "Turn Mic off" "mic toggle"&
+    echo $! > $NAGBAR_FILE
+}
+
+undisplay_nagbar() {
+    if [ -f $NAGBAR_FILE ]; then
+        process=$(cat $NAGBAR_FILE)
+        if [[ $(ps -p $process | tail -n +2) != "" ]]; then
+            kill -9 $process
+        fi
+        rm -f $NAGBAR_FILE
+    fi
+}
+
+get_sources() {
+    pactl list sources | grep Name: | awk -F: '{print $2}'
+}
+
+correct_default_source() {
+    correct_source=$1
+    sinks=$(get_sources)
+    current_source=$(pactl info | awk -F ":" '/Default Source/ {print $2}' | tr -d ' ')
+    if [[ ${sinks} == *${correct_source}* && $current_source != $correct_source ]]; then
+        notify-send -u low "Changing source to $correct_source"
+        pactl set-default-source $correct_source
+        pactl set-source-volume $correct_source 100%
+    fi
+}
+
+check_status() {
+    correct_default_source $desired
+    #correct_default_source $office_source
+    current_source=$(pactl info | awk -F ":" '/Default Source/ {print $2}' | tr -d ' ')
+    state=$(pactl list sources | sed -ze "s/.*Name: ${current_source}//;s/Volume: .*$//;" | awk -F ":" '/Mute/ {print $2}' | tr -d ' ')
+    if [ "${state}" = "yes" ]; then
+        icon="🔇Mic off"
+        undisplay_nagbar
+    else
+        icon="🎙️ Mic on"
+        display_nagbar
+    fi
+    echo $icon
+}
+
+toggle() {
+    current_source=$(pactl info | awk -F ":" '/Default Source/ {print $2}' | tr -d ' ')
+    pactl set-source-mute "${current_source}" toggle
+    #xdotool key Caps_Lock
+    check_status
+}
+
+if [[ ${BLOCK_BUTTON:-} == 1 || ${1:-} = "toggle" ]]; then
+    toggle
+    pkill -SIGRTMIN+13 i3blocks
+else
+    check_status
+fi

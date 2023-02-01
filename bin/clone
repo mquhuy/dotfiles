@@ -1,0 +1,9 @@
+#!/bin/bash
+
+repoName=${1:-}
+
+if [ $repoName == "" ]; then
+    exit 0
+fi
+
+git clone "git@github.com:Nordix/${repoName}.git"
