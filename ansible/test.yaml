@@ -17,6 +17,8 @@
       - make
       - meson
       - rofi
+      - xclip
+      - tmux
       update_cache: yes
       cache_valid_time: 3600
 
