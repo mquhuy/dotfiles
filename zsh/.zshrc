@@ -115,8 +115,8 @@ plugins=(git zsh-syntax-highlighting)
 export GOPATH=$HOME/gopath
 export PATH=$GOPATH:$GOPATH/bin:$PATH
 BIN_PATH=$HOME/.local/bin
-COMMON_BIN_PATH=~/Repos/dotfiles/bin
-export PATH=$BIN_PATH:$COMMON_BIN_PATH:/usr/local/go/bin:$DOOM_PATH/bin:$PATH
+COMMON_BIN_PATH=$DOTFILE/bin
+export PATH=$BIN_PATH:$COMMON_BIN_PATH:/usr/local/go/bin:$PATH
 export EDITOR=nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
