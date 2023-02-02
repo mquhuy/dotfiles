@@ -9,7 +9,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export $RCFILE=$HOME/.zshrc
+export RCFILE=$HOME/.zshrc
 export DOTFILE=$(realpath "$(dirname $(readlink $HOME/.zshrc))/..")
 export ZSH="$HOME/.oh-my-zsh"
 
