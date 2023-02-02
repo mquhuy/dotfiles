@@ -5,7 +5,9 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-export OSH='/home/cloud-user/.oh-my-bash'
+# export DOTFILE=$(realpath $(dirname $(readlink $0)))
+export DOTFILE=$(realpath "$(dirname $(readlink $HOME/.bashrc))/..")
+export OSH="${HOME}/.oh-my-bash"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -99,8 +101,8 @@ plugins=(
 #  fi
 
 source "$OSH"/oh-my-bash.sh
-
-source "$OSH"/.bash_aliases
+source "$DOTFILE/sh_aliases.sh"
+set -o vi
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -131,5 +133,4 @@ source "$OSH"/.bash_aliases
 # alias ohmybash="mate ~/.oh-my-bash"
 export PATH=${PATH}:$HOME/.local/bin
 export PATH=${PATH}:$HOME/go/bin
-export PATH=${PATH}:/home/cloud-user/.krew/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/cloud-user/.local/bin:/usr/local/go/bin
-export PATH=/home/cloud-user/.krew/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/cloud-user/.local/bin:/usr/local/go/bin
+export PATH=${PATH}:$HOME/.krew/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:/usr/local/go/bin

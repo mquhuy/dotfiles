@@ -1,7 +1,7 @@
 alias ap="apropos"
-alias eali="nvim $ZSH/.zsh_aliases"
+alias eali="nvim $DOTFILE/sh_aliases.sh"
 alias ebm="nvim ~/Computer-Sync/TxtLists/bookmarks.txt"
-alias seali="source ~/.zshrc"
+alias seali="source ~/.bashrc"
 alias v="nvim"
 alias wiki="cd ~/Sync/wiki && nvim index.md"
 

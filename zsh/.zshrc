@@ -9,6 +9,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export DOTFILE=$(realpath "$(dirname $(readlink $HOME/.zshrc))/..")
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -77,8 +78,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git zsh-syntax-highlighting)
 
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
-[ -f $ZSH/.zsh_aliases ] && source $ZSH/.zsh_aliases
-[ -f $ZSH/.zsh_vi.zsh ] && source $ZSH/.zsh_vi.zsh
+[ -f $DOTFILE/sh_aliases.sh ] && source $DOTFILE/sh_aliases.sh
+[ -f $DOTFILE/sh_vi ] && source $DOTFILE/sh_vi
 
 # User configuration
 
