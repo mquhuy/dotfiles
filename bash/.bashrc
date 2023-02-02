@@ -6,6 +6,7 @@ esac
 
 # Path to your oh-my-bash installation.
 # export DOTFILE=$(realpath $(dirname $(readlink $0)))
+export $RCFILE=$HOME/.bashrc
 export DOTFILE=$(realpath "$(dirname $(readlink $HOME/.bashrc))/..")
 export OSH="${HOME}/.oh-my-bash"
 
