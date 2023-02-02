@@ -1,3 +1,3 @@
 #!/bin/bash
 
-firefox -P youtube
+firefox -P personal
