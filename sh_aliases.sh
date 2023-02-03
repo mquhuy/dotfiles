@@ -6,8 +6,8 @@ alias v="nvim"
 alias wiki="cd ~/Sync/wiki && nvim index.md"
 
 # i3 config
-alias i3config="nvim ~/.config/sway/config"
-alias i3wsconf="nvim ~/.config/sway/ws.conf"
+alias i3config="nvim ~/.config/i3/config"
+alias i3wsconf="nvim ~/.config/i3/ws.conf"
 alias i3bc="nvim ~/.config/i3/i3blocks/primary.conf"
 alias i3autoxrand="nvim ~/.config/i3/autoxrandr"
 
