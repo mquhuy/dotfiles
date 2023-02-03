@@ -19,6 +19,11 @@
       - rofi
       - xclip
       - tmux
+      - pandoc
+      - texlive-latex-base
+      - texlive-latex-extra
+      - texlive-fonts-recommended
+      - texlive-fonts-extra
       update_cache: yes
       cache_valid_time: 3600
 
