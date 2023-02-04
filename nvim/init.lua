@@ -14,8 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- See `:help mapleader` NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -65,7 +64,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme carbonfox]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -95,34 +94,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 local function filePath()
   return vim.cmd("expand('%')")
 end
-
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'onedark',
-    component_separators = '|',
-    section_separators = '',
-  },
-  sections = {
-    lualine_a = {
-      {
-        'filename',
-        path = 3,
-      },
-    },
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {
-      {
-        'buffers',
-        show_filename_only = true,
-        max_length = vim.o.columns * 2 / 3,
-      }
-    },
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  }
-}
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -406,6 +377,7 @@ cmp.setup {
     { name = "codeium" },
   },
 }
+-- vim.cmd [[colorscheme onedark]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
