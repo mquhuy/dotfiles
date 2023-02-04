@@ -10,7 +10,7 @@
 
 # Path to your oh-my-zsh installation.
 export RCFILE=$HOME/.zshrc
-export DOTFILE=$(realpath "$(dirname $(readlink $HOME/.zshrc))/..")
+export DOTFILES_DIR=$(realpath "$(dirname $(readlink $HOME/.zshrc))/..")
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
