@@ -102,7 +102,7 @@ plugins=(
 #  fi
 
 source "$OSH"/oh-my-bash.sh
-source "$DOTFILE/sh_aliases.sh"
+source "$DOTFILES_DIR/sh_aliases.sh"
 set -o vi
 
 # User configuration
