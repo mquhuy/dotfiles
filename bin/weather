@@ -1,0 +1,7 @@
+#!/bin/bash
+
+weather=$(curl -Ss 'https://wttr.in/Espoo?format=+%c+%t')
+
+if [[ "${weather}"a != "Unknown"*a ]]; then
+    echo "${weather}"
+fi

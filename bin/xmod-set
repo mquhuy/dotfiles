@@ -1,0 +1,11 @@
+#!/bin/bash
+
+is_set=$(xmodmap -pke | grep '66 = Escape')
+if [ "$is_set" != "" ]; then
+    echo "⌨️ 👌"
+    exit 0
+fi
+echo "⌨️ ⁉️"
+xmodmap -e "keycode 9 = grave asciitilde"
+xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+xmodmap -e "clear Lock"

@@ -1,0 +1,62 @@
+#!/bin/sh
+
+song_info() {
+    info="$(playerctl metadata title)"
+    thumbnail=$(playerctl metadata mpris:artUrl | sed 's/file:\/\///')
+    notify-send -t 1500 -i ~/icons/youtube.svg "Playing" "${info}"
+    status
+}
+
+song_name() {
+    name=$(playerctl metadata title)
+    #echo $name | iconv -f latin-1
+    echo $name
+    #echo "$name" | iconv -f UTF-8
+}
+
+get_play() {
+    info=$(playerctl status)
+    case $info in
+        Playing) echo ⏸️;;
+        Paused) echo ▶️;;
+        *)
+    esac
+}
+
+trigger_i3blocks() {
+    pkill -SIGRTMIN+3 i3blocks
+}
+
+status() {
+    #echo "$(song_name | cut -c1-30) $(get_play)"
+    echo "🎶Browser $(get_play)"
+}
+
+play_pause() {
+    playerctl play-pause
+    trigger_i3blocks
+    status
+}
+
+non_click() {
+  if [ -z "${1}" ]; then
+    status
+  else
+    play_pause
+  fi
+}
+
+case ${BLOCK_BUTTON:-} in
+    1)
+      play_pause
+      ;;
+    3)
+      song_info
+      ;;
+    "")
+      non_click "${1:-}"
+      ;;
+    *)
+      status
+      ;;
+esac

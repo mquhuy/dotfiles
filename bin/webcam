@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+ffplay -f video4linux2 /dev/video2

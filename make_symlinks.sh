@@ -33,3 +33,7 @@ if [ ! -f $HOME/.tmux.conf ]; then
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+if [ ! -f $HOME/.config/systemd/user/syncthing.service ]; then
+	mkdir -p $HOME/.config/systemd/user
+	ln -s $__dir__/syncthing/syncthing.service $HOME/.config/systemd/user/syncthing.service
+fi
