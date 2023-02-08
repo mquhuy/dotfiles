@@ -36,6 +36,9 @@ fi
 if [ ! -f $HOME/.config/systemd/user/syncthing.service ]; then
 	mkdir -p $HOME/.config/systemd/user
 	ln -s $__dir__/syncthing/syncthing.service $HOME/.config/systemd/user/syncthing.service
-if [ ! -f $HOME/.profile ]; then
-	ln -s $__dir__/profile ~/.profile
 fi
+for f in $(ls $__dir__/bin); do
+	if [ ! -f $HOME/.local/bin/$f ]; then
+		ln -s $__dir__/bin/$f $HOME/.local/bin/$f
+	fi
+done
