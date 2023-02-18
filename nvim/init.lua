@@ -26,8 +26,8 @@ local function map(mode, lhs, rhs, opts)
   end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
--- Press Ctrl+C to copy to clipboard
-map('v', '<C-c>', '"*y')
+-- Press Y in 'v' mode to copy to clipboard
+map('v', 'Y', '"*y')
 
 -- <Leader>gg to toggle lazygit
 -- map("n", '<leader>gg', ":LazyGit<CR>", { silent = true })
@@ -78,7 +78,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- lsp signature
-vim.keymap.set({ 'n' }, '<C-b>', function()
+vim.keymap.set({ 'n' }, 'K', function()
   require('lsp_signature').toggle_float_win()
 end, { silent = true, noremap = true, desc = 'toggle signature' })
 
@@ -262,8 +262,8 @@ local on_attach = function(_, bufnr)
   end, '[S]ave')
 
   -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -347,6 +347,8 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
