@@ -18,6 +18,7 @@
       - g++
       - make
       - meson
+      - python3-pip
       - rofi
       - xclip
       - tmux
