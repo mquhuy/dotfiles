@@ -6,4 +6,12 @@ if [ $repoName == "" ]; then
     exit 0
 fi
 
+REPO_LIST=repos.txt
+source "${DOTFILES_DIR}/bin_lib/fzf_lib.sh"
+repoLink=$(choose $REPO_LIST $repoName)
+echo $repoLink
+if [[ $repoLink != "" ]]; then
+    git clone $repoLink
+    exit 0
+fi
 git clone "git@github.com:Nordix/${repoName}.git"
