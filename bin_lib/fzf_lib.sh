@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LIST_FILES_DIR=$HOME/Computer-Sync/TxtLists
+LIST_FILES_DIR="$DOTFILES_DIR/TxtLists"
 fzf_choose() {
     LIST_FILE=$1
     LIST_FILE="${LIST_FILES_DIR}/${LIST_FILE}"
