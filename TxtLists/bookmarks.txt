@@ -1,0 +1,44 @@
+Cluster API book;https://cluster-api.sigs.k8s.io
+cluster API book summary;https://github.com/kubernetes-sigs/cluster-api/blob/main/docs/book/src/SUMMARY.md
+Nordix github;https://github.com/orgs/Nordix/repositories
+Nordix wiki;https://wiki.nordix.org/display/DEV/Getting+Started
+Ericsson Acronyms terms;https://estab.sharepoint.com/:x:/r/_layouts/15/doc2.aspx?sourcedoc=%7B30768f8c-1e41-4ae8-bb39-10d3bad79538%7D&action=view&activeCell=%27Acronyms%20and%20Terms%27!A787&wdinitialsession=b8af4d53-953e-4322-a67f-f8bfad9a6d5e&wdrldsc=4&wdrldc=1&wdrldr=AccessTokenExpiredWarning%2CRefreshingExpiredAccessT&cid=8650a9ef-6250-414c-94f9-05d2321cda58
+metal3 tryit;https://metal3.io/try-it.html
+metal3 github;https://github.com/orgs/metal3-io/repositories
+ESJ4me EST ESJ local admin;https://estab.sharepoint.com/SitePages/ESJ-4-me.aspx
+Time reporting base template;https://estab.sharepoint.com/:x:/r/_layouts/15/Doc.aspx?sourcedoc=%7BCD50C249-A2E5-4689-B280-3978A993BFFC%7D&file=Template%20time%20report%20ESJ%20new.xlsx&action=default&mobileredirect=true&cid=7921dc1e-3d02-4498-82fd-1049bb3679c8
+Time Reporting own template;https://estab-my.sharepoint.com/:x:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7Bfe7bbdf6-f081-476b-b456-1941055b14da%7D&action=edit&wdPreviousSession=7a0fe437-1f56-4e81-a61c-a3a2f12f27f0
+Time Reporting Mar 3/23;https://estab-my.sharepoint.com/:x:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7B472a8589-ee46-4ddf-ab64-90d8063ccb82%7D&action=edit&wdPreviousSession=4eda0acf-b9de-4de8-b8ab-d6711a631e94
+Welcome slides materials;https://docs.google.com/presentation/d/1oWnqINuwyxdG6hBCMu2gZymKDXCrdxAvsxilW3T2AH8/edit#slide=id.gac1ea05132_0_65
+cleura city cloud;https://cleura.cloud/dashboard
+cleura api docs;https://apidoc.cleura.cloud/
+outlook email;https://outlook.office365.com/mail/
+howto onboarding guide newcomers;https://wiki.nordix.org/pages/viewpage.action?pageId=23324061
+Nordix jenkins;https://jenkins.nordix.org/
+Nordix jira;https://jira.nordix.org/secure/RapidBoard.jspa?rapidView=9&projectKey=KB&view=detail&selectedIssue=KB-850
+outlet gigantti macbook;https://www.gigantti.fi/outlet/outlet-tietotekniikka/outlet-kannettavat-tietokoneet?filter=31027%253AmacOS%20Big%20Sur&filter=31027%253AmacOS%20Monterey
+metal3 github workflow wow;https://github.com/Nordix/metal3-dev-tools/blob/main/wow/github-workflow.md
+metal3 devenv;https://github.com/metal3-io/metal3-dev-env
+kubernetes sample controller;https://github.com/kubernetes/sample-controller
+clusterAPI github;https://github.com/kubernetes-sigs/cluster-api
+kubebuilder book;https://book.kubebuilder.io/introduction.html
+github api docs;https://docs.github.com/en/rest/releases/releases#list-releases
+cluster api godev;https://pkg.go.dev/sigs.k8s.io/cluster-api@v1.2.2/api/v1beta1
+cluster api course;https://kube.academy/courses/cluster-api
+metal3 1password;https://metal3-io.1password.com
+Nordix artifactory;https://artifactory.nordix.org/ui/
+Nordix gerrit;https://gerrit.nordix.org/dashboard/self
+Metal3 ESJ Sharepoint shared;https://estab.sharepoint.com/sites/ESTFinland-ESJ/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=JDykBX&cid=941fd9ae%2D0798%2D4ffc%2Da26b%2Dee42c5bffc62&RootFolder=%2Fsites%2FESTFinland%2DESJ%2FShared%20Documents%2FPresentations&FolderCTID=0x012000FEA47FE87FE1AA48A6E9220FA855789D
+SuccessFactor Learning courses;https://ericsson.plateau.com/learning/user/nativelogin.do
+LinuxFoundation LF learning courses;https://trainingportal.linuxfoundation.org/learn/dashboard
+Note hackmd Markdown;https://hackmd.io/?nav=collab#all
+Flowscape booking seat office jorvas;https://internal.flowscape.ericsson.net/webapp/
+i3wm userguide;https://i3wm.org/docs/userguide.html
+Learn at EST;https://estab.sharepoint.com/SitePages/My-Learning.aspx
+Kubernetes for Developers (LFD259);https://training.linuxfoundation.org/training/kubernetes-for-developers/
+metal3 community meeting note;https://docs.google.com/document/d/1IkEIh-ffWY3DaNX3aFcAxGbttdEY_symo7WAGmzkWhU/edit#
+metal3 community meeting;https://zoom.us/j/97255696401?pwd=ZlJMckNFLzdxMDNZN2xvTW5oa2lCZz09
+metal3 docs repo;https://github.com/Nordix/metal3-clusterapi-docs
+huymai.fi zoneeditor;https://hotelli07.domainhotelli.fi:2083/cpsess9476831163/frontend/paper_lantern/zone_editor/index.html#/manage?domain=huymai.fi
+ansible doc;https://docs.ansible.com/ansible/latest/
+gomega;https://onsi.github.io/gomega/#adjusting-output
