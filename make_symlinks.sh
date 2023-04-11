@@ -7,10 +7,11 @@ ANSIBLE_DIR="${__dir__/ansible}"
 if [[ $SHELL =~ ".*bash" ]]; then
 	# if we're in a bash shell, we need to use the right shell
 	if [ ! -d $HOME/.oh-my-bash ]; then
-		bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-		rm -f $HOME/.bashrc
-		ln -s $__dir__/bash/bashrc $HOME/.bashrc
+		rm -rf $HOME/.oh-my-bash
 	fi
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+	rm -f $HOME/.bashrc
+	ln -s $__dir__/bash/bashrc $HOME/.bashrc
 fi
 if [[ $SHELL =~ ".*zsh" ]]; then
 	# if we're in a bash shell, we need to use the right shell

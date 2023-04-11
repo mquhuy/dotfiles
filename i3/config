@@ -47,7 +47,7 @@ client.background       #F8F8F2
 # End of Dracula theme colors
 #
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec gnome-terminal
 bindsym Mod4+Return exec gnome-terminal --profile SSH
 
 # kill focused window
