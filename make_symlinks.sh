@@ -4,7 +4,7 @@
 __dir__=$(realpath $(dirname $0))
 ANSIBLE_DIR="${__dir__/ansible}"
 
-if [[ $SHELL =~ ".*bash" ]]; then
+if [[ $SHELL =~ "bash" ]]; then
 	# if we're in a bash shell, we need to use the right shell
 	if [ ! -d $HOME/.oh-my-bash ]; then
 		rm -rf $HOME/.oh-my-bash
@@ -13,7 +13,7 @@ if [[ $SHELL =~ ".*bash" ]]; then
 	rm -f $HOME/.bashrc
 	ln -s $__dir__/bash/bashrc $HOME/.bashrc
 fi
-if [[ $SHELL =~ ".*zsh" ]]; then
+if [[ $SHELL =~ "zsh" ]]; then
 	# if we're in a bash shell, we need to use the right shell
 	#
 	if [ ! -d $HOME/.oh-my-zsh ]; then

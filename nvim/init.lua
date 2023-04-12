@@ -240,13 +240,13 @@ local on_attach = function(_, bufnr)
   -- nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-  -- nmap('<leader>gs', function()
-  --   local line=vim.api.nvim_win_get_cursor(0)[1]
-  --   local fileAbsPath=vim.api.nvim_buf_get_name(0)
-  --   local cmd='ghsource '..fileAbsPath.." "..line
-  --   local result=vim.fn.system(cmd)
-  --   vim.notify(result)
-  -- end, '[G]ithub [S]ource')
+  nmap('<leader>gs', function()
+    local line=vim.api.nvim_win_get_cursor(0)[1]
+    local fileAbsPath=vim.api.nvim_buf_get_name(0)
+    local cmd='ghsource '..fileAbsPath.." "..line
+    local result=vim.fn.system(cmd)
+    vim.notify(result)
+  end, '[G]ithub [S]ource')
 
   nmap('te', function()
     vim.cmd('tabedit %')
