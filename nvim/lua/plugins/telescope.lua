@@ -22,5 +22,6 @@ return {
         },
       },
     }
+    require("telescope").load_extension("diff")
   end
 }
