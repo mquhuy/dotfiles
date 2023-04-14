@@ -18,7 +18,7 @@ rm -f $HOME/Programs/$filename.tar.gz
 ln -s $HOME/Programs/nvim/bin/nvim $HOME/.local/bin/nvim
 
 __dir__=$(realpath $(dirname $0))
-NVIM=$(realpath ${__dir__/../nvim})
+NVIM=$(realpath ${__dir__}/../nvim)
 
 mkdir -p ~/.config
 rm -rf ~/.config/nvim
