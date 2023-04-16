@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # If ACPI was not installed, this probably is a battery-less computer.
-ACPI_RES=$(acpi -b)
+ACPI_RES=$(timeout 0.2s acpi -b)
 ACPI_CODE=$?
 if [ $ACPI_CODE -eq 0 ]
 then
