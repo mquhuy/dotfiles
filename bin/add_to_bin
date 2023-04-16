@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+source=$(readlink $0)
+if [[ ${source} == "" ]]; then
+	source=$0
+fi
+__dir__=$(realpath $(dirname $source))
+cd $__dir__
+bin_file=$(ls | fzf)
+ln -s $__dir__/$bin_file $HOME/.local/bin/
