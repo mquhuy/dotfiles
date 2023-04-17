@@ -2,7 +2,7 @@ alias ap="apropos"
 alias eali="nvim $DOTFILES_DIR/sh_aliases.sh"
 alias ebm="nvim ~/Computer-Sync/TxtLists/bookmarks.txt"
 alias seali="source $RCFILE"
-alias v="nvim"
+alias v="OPENAI_API_KEY=${OPENAI_API_KEY} nvim"
 alias wiki="cd ~/Sync/wiki && nvim index.md"
 
 # i3 config

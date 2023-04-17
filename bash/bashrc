@@ -103,6 +103,7 @@ plugins=(
 
 source "$OSH"/oh-my-bash.sh
 source "$DOTFILES_DIR/sh_aliases.sh"
+[ -f $HOME/.openai ] && source $HOME/.openai
 set -o vi
 
 # User configuration
