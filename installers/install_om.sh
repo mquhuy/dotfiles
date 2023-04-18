@@ -26,14 +26,6 @@ if [[ $SHELL =~ "zsh" ]]; then
 		ln -s $__dir__/zsh/p10k.zsh $HOME/.p10k.zsh
 	fi
 fi
-if [ ! -f $HOME/.tmux.conf ]; then
-	rm -f $HOME/.tmux.conf
-	ln -s $__dir__/tmux/tmux.conf $HOME/.tmux.conf
-	rm -rf $HOME/.tmux
-	mkdir -p $HOME/.tmux
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
 if [ ! -f $HOME/.config/systemd/user/syncthing.service ]; then
 	mkdir -p $HOME/.config/systemd/user
 	ln -s $__dir__/syncthing/syncthing.service $HOME/.config/systemd/user/syncthing.service
