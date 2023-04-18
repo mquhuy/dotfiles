@@ -104,6 +104,7 @@ plugins=(
 source "$OSH"/oh-my-bash.sh
 source "$DOTFILES_DIR/sh_aliases.sh"
 [ -f $HOME/.openai ] && source $HOME/.openai
+[ -f $HOME/.gh_token ] && source $HOME/.gh_token
 set -o vi
 
 # User configuration

@@ -82,6 +82,7 @@ plugins=(git zsh-syntax-highlighting)
 [ -f $DOTFILES_DIR/sh_aliases.sh ] && source $DOTFILES_DIR/sh_aliases.sh
 [ -f $DOTFILES_DIR/sh_vi ] && source $DOTFILES_DIR/sh_vi
 [ -f $HOME/.openai ] && source $HOME/.openai
+[ -f $HOME/.gh_token ] && source $HOME/.gh_token
 
 # User configuration
 
