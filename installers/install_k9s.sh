@@ -2,7 +2,8 @@
 #
 mkdir -p $HOME/Programs
 rm -rf $HOME/Programs/k9s $HOME/.local/bin/k9s
-source common_lib.sh
+__dir__=$(realpath $(dirname $0))
+source $__dir__/common_lib.sh
 org="derailed"
 repo="k9s"
 tag=$(get_latest_release $org $repo)
