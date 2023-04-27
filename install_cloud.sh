@@ -1,13 +1,16 @@
 #!/bin/bash
 
+mkdir -p $HOME/.local/bin
+mkdir -p $HOME/Programs
+
 __dir__=$(realpath $(dirname $0))
 installer_dir=$__dir__/installers
-cd $installer_dir
 
-./install_om.sh
-./install_tmux.sh
-./install_nvim.sh
-./install_go.sh
-./install_lazygit.sh
-./install_k9s.sh
+$installer_dir/install_om.sh
+$installer_dir/install_tmux.sh
+$installer_dir/install_nvim.sh
+$installer_dir/install_go.sh
+$installer_dir/install_lazygit.sh
+$installer_dir/install_k9s.sh
+
 ln -s $__dir__/bin/clone $HOME/.local/bin/
