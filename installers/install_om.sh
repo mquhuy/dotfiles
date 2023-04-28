@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # get bash script directory
-__dir__=$(realpath $(dirname $0))
+__dir__=$(realpath $(dirname $0)/..)
 ANSIBLE_DIR="${__dir__/ansible}"
 
 if [[ $SHELL =~ "bash" ]]; then

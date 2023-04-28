@@ -1,3 +1,4 @@
+__dir__=$(realpath $(dirname $0)/..)
 rm -rf $HOME/.tmux
 mkdir -p $HOME/.tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
