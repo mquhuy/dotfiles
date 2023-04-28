@@ -12,5 +12,6 @@ $installer_dir/install_nvim.sh
 $installer_dir/install_go.sh
 $installer_dir/install_lazygit.sh
 $installer_dir/install_k9s.sh
+$installer_dir/install_nvm.sh
 
 ln -s $__dir__/bin/clone $HOME/.local/bin/
