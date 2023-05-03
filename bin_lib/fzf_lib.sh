@@ -1,6 +1,10 @@
 #!/bin/bash
 
-LIST_FILES_DIR="$DOTFILES_DIR/TxtLists"
+__dir__=$(realpath $(dirname $0))
+if [[ -L $0 ]]; then
+    __dir__=$(realpath $(dirname $(readlink -f $0)))
+fi
+LIST_FILES_DIR="$__dir__/../TxtLists"
 choose() {
     LIST_FILE=$1
     LIST_FILE="${LIST_FILES_DIR}/${LIST_FILE}"
