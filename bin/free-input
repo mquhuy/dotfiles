@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+import tkinter as tk
+import sys
+
+class App(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.pack()
+
+        self.entrythingy = tk.Entry()
+        self.entrythingy.pack()
+        self.entrythingy.focus()
+
+        # Create the application variable.
+        self.contents = tk.StringVar()
+        # Tell the entry widget to watch this variable.
+        self.entrythingy["textvariable"] = self.contents
+
+        # Define a callback for when the user hits return.
+        # It prints the current value of the variable.
+        self.entrythingy.bind('<Key-Return>',
+                             self.print_contents)
+        self.entrythingy.bind('<Key-Escape>',
+                             self.exit)
+
+    def print_contents(self, event):
+        print(self.contents.get())
+        self.exit()
+
+    def exit(self, event=None):
+        sys.exit(0)
+
+root = tk.Tk()
+root.attributes('-type', 'dialog')
+myapp = App(root)
+myapp.mainloop()
