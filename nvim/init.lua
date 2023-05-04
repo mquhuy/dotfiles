@@ -152,6 +152,13 @@ vim.keymap.set('n', "<leader>sc", function()
   require("telescope").extensions.diff.diff_current({ hidden = true })
 end, { desc = "Compare file with current" })
 
+vim.keymap.set("n", "<leader>m", function()
+  require("telescope").extensions.monorepo.monorepo()
+end)
+vim.keymap.set("n", "<leader>n", function()
+  require("monorepo").toggle_project()
+end)
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- require('nvim-treesitter.configs').setup {
