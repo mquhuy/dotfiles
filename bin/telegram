@@ -1,0 +1,2 @@
+#!/bin/bash
+microsoft-edge-stable --app=http://web.telegram.org
