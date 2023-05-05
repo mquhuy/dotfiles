@@ -6,6 +6,7 @@ return {
   end,
   opts = {
     filetype = { 'markdown', 'telekasten' },
+    theme = 'light',
   },
   keys = {
     {"<leader>p", function()
