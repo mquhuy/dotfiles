@@ -117,7 +117,8 @@ plugins=(git zsh-syntax-highlighting)
 export GOPATH=$HOME/gopath
 export PATH=$GOPATH:$GOPATH/bin:$PATH
 BIN_PATH=$HOME/.local/bin
-export PATH=$BIN_PATH:/usr/local/go/bin:$PATH
+export DENO_INSTALL="$HOME/.deno"
+export PATH=$BIN_PATH:/usr/local/go/bin:$DENO_INSTALL/bin:$PATH
 export EDITOR=nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
