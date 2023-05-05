@@ -248,6 +248,7 @@ for_window [class=".*"] border pixel 0
 # Teams notification floating and move to current workspace
 for_window [title=".*Teams Notification"] floating enable, move container to workspace current
 no_focus [title=".*Teams Notification"]
+no_focus [title="^Peek preview$"]
 
 # Toggle the touch pad
 bindsym Mod4+Control+p exec touchpad-toggler.sh
