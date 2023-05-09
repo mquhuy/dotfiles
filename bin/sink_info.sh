@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-headphone="alsa_output.usb-SteelSeries_Arctis_Pro_Wireless-00.analog-mono"
-wrongheadphone="alsa_output.usb-SteelSeries_Arctis_Pro_Wireless-00.analog-stereo"
+headphone="alsa_output.usb-SteelSeries_Arctis_Pro_Wireless-00.mono-chat"
+wrongheadphone="alsa_output.usb-SteelSeries_Arctis_Pro_Wireless-00.stereo-game"
 loudspeaker="alsa_output.pci-0000_00_1f.3.analog-stereo"
 office_sink="alsa_output.usb-GN_Audio_A_S_Jabra_EVOLVE_30_II_00038BF4A11207-00.analog-stereo"
 JBL_sink="alsa_output.usb-JBL_Quantum_800-00.analog-stereo"
