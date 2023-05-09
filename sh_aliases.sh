@@ -1,6 +1,6 @@
 alias ap="apropos"
 alias eali="nvim $DOTFILES_DIR/sh_aliases.sh"
-alias ebm="nvim ~/Computer-Sync/TxtLists/bookmarks.txt"
+alias ebm="nvim $DOTFILES_DIR/TxtLists/bookmarks.txt"
 alias seali="source $RCFILE"
 alias v="OPENAI_API_KEY=${OPENAI_API_KEY} nvim"
 alias wiki="nvim -u ~/.config/telekasten/entry.lua"

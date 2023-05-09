@@ -42,3 +42,4 @@ metal3 docs repo;https://github.com/Nordix/metal3-clusterapi-docs
 huymai.fi zoneeditor;https://hotelli07.domainhotelli.fi:2083/cpsess9476831163/frontend/paper_lantern/zone_editor/index.html#/manage?domain=huymai.fi
 ansible doc;https://docs.ansible.com/ansible/latest/
 gomega;https://onsi.github.io/gomega/#adjusting-output
+esj cop excel;https://estab.sharepoint.com/:x:/r/sites/ESTFinland-ESJ/_layouts/15/Doc.aspx?sourcedoc=%7BEAD6AD01-6711-4C19-A0A2-1E224C0C9483%7D&file=ESJ%20Community%20of%20Practice.xlsx&action=default&mobileredirect=true
