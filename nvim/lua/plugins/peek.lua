@@ -16,7 +16,6 @@ return {
        peek.open()
      else
       peek.close()
-      vim.fn.system('i3-msg move left')
      end
     end
     },
