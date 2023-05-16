@@ -105,6 +105,13 @@ local function filePath()
   return vim.cmd("expand('%')")
 end
 
+vim.keymap.set({ 'n' }, '<Leader>dt', function()
+  local fileAbsPath=vim.api.nvim_buf_get_name(0)
+  local cmd='doctoc '..fileAbsPath
+  vim.fn.system(cmd)
+  vim.cmd(':e')
+end, { silent = true, noremap = true, desc = "run doctoc on current file" })
+
 -- Enable Comment.nvim
 require('Comment').setup()
 

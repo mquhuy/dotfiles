@@ -43,3 +43,5 @@ huymai.fi zoneeditor;https://hotelli07.domainhotelli.fi:2083/cpsess9476831163/fr
 ansible doc;https://docs.ansible.com/ansible/latest/
 gomega;https://onsi.github.io/gomega/#adjusting-output
 esj cop excel;https://estab.sharepoint.com/:x:/r/sites/ESTFinland-ESJ/_layouts/15/Doc.aspx?sourcedoc=%7BEAD6AD01-6711-4C19-A0A2-1E224C0C9483%7D&file=ESJ%20Community%20of%20Practice.xlsx&action=default&mobileredirect=true
+DAG;https://estab-my.sharepoint.com/:p:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7B686DA79E-6B50-4EBB-9F0D-5FD157BCD0DC%7D&file=230508%20Basics%20on%20DAGs%20for%20all%20BCSS.pptx&action=edit&mobileredirect=true
+DAG summary;https://estab-my.sharepoint.com/:p:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7B487634EB-564B-485A-8BE5-3AA3562DF2A5%7D&file=DAGs%20Executive%20Summaries.pptx&action=edit&mobileredirect=true
