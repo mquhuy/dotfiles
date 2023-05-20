@@ -16,7 +16,7 @@ return   {
       { "<leader>zc", "<cmd>Telekasten show_calendar<CR>" },
       { "<leader>zb", "<cmd>Telekasten show_backlinks<CR>" },
       { "<leader>zI", "<cmd>Telekasten insert_img_link<CR>" },
-      { "[[", "<cmd>Telekasten insert_link<CR>", mode = "i" },
+      { "<leader>[[", "<cmd>Telekasten insert_link<CR>" },
     },
     dependencies = {
       'nvim-telescope/telescope.nvim',

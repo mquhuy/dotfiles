@@ -29,7 +29,7 @@ metal3 1password;https://metal3-io.1password.com
 Nordix artifactory;https://artifactory.nordix.org/ui/
 Nordix gerrit;https://gerrit.nordix.org/dashboard/self
 Metal3 ESJ Sharepoint shared;https://estab.sharepoint.com/sites/ESTFinland-ESJ/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=JDykBX&cid=941fd9ae%2D0798%2D4ffc%2Da26b%2Dee42c5bffc62&RootFolder=%2Fsites%2FESTFinland%2DESJ%2FShared%20Documents%2FPresentations&FolderCTID=0x012000FEA47FE87FE1AA48A6E9220FA855789D
-SuccessFactor Learning courses;https://ericsson.plateau.com/learning/user/nativelogin.do
+SuccessFactor Learning courses ericsson degreed;https://ericsson.plateau.com/learning/user/nativelogin.do
 LinuxFoundation LF learning courses;https://trainingportal.linuxfoundation.org/learn/dashboard
 Note hackmd Markdown;https://hackmd.io/?nav=collab#all
 Flowscape booking seat office jorvas;https://internal.flowscape.ericsson.net/webapp/
