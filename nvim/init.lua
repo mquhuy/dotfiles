@@ -18,6 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.opt.clipboard = 'unnamedplus'
+
 -- Set clipboard
 local function map(mode, lhs, rhs, opts)
   local options = {noremap=true}
@@ -27,7 +29,7 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 -- Press Y in 'v' mode to copy to clipboard
-map('v', 'Y', '"*y')
+map('v', 'Y', '"+y')
 
 -- <Leader>gg to toggle lazygit
 -- map("n", '<leader>gg', ":LazyGit<CR>", { silent = true })
