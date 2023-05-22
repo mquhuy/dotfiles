@@ -13,4 +13,5 @@ return {
   --   })
   -- end
   'EdenEast/nightfox.nvim',
+  enable = false
 }
