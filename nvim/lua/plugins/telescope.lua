@@ -22,6 +22,8 @@ return {
         },
       },
     }
+-- Enable telescope fzf native, if installed
     require("telescope").load_extension("diff")
+    require('telescope').load_extension('fzf')
   end
 }
