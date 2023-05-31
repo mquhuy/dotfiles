@@ -144,7 +144,8 @@ include ~/.config/i3/ws.conf
 workspace_auto_back_and_forth yes
 
 # Rename
-bindsym Mod1+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+# bindsym Mod1+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+bindsym Mod1+n exec renameWs
 
 
 # resize window (you can also use the mouse for that)
