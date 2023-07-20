@@ -10,7 +10,7 @@ if [[ $SHELL =~ "bash" ]]; then
 		rm -rf $HOME/.oh-my-bash
 	fi
 	# bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-	./__dir__/installers/install_omb.sh
+	./$__dir__/installers/install_omb.sh
 	rm -f $HOME/.bashrc
 	ln -s $__dir__/bash/bashrc $HOME/.bashrc
 fi

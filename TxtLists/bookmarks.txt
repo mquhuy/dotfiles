@@ -7,8 +7,8 @@ metal3 tryit;https://metal3.io/try-it.html
 metal3 github;https://github.com/orgs/metal3-io/repositories
 ESJ4me EST ESJ local admin;https://estab.sharepoint.com/SitePages/ESJ-4-me.aspx
 Time reporting base template;https://estab.sharepoint.com/:x:/r/_layouts/15/Doc.aspx?sourcedoc=%7BCD50C249-A2E5-4689-B280-3978A993BFFC%7D&file=Template%20time%20report%20ESJ%20new.xlsx&action=default&mobileredirect=true&cid=7921dc1e-3d02-4498-82fd-1049bb3679c8
-Time Reporting own template;https://estab-my.sharepoint.com/:x:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7Bfe7bbdf6-f081-476b-b456-1941055b14da%7D&action=edit&wdPreviousSession=7a0fe437-1f56-4e81-a61c-a3a2f12f27f0
-Time Reporting Mar 3/23;https://estab-my.sharepoint.com/:x:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7B472a8589-ee46-4ddf-ab64-90d8063ccb82%7D&action=edit&wdPreviousSession=4eda0acf-b9de-4de8-b8ab-d6711a631e94
+Time Reporting own template;https://estab-my.sharepoint.com/:x:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7BE1B7632B-0E7A-4BC9-ACE5-1C9E354DAAF9%7D&file=Huy-Mai-time-report.xlsx&action=default&mobileredirect=true
+Time Reporting July 7/23;https://estab-my.sharepoint.com/:x:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7B636299fb-fb7e-4e0e-9ebc-3d30a26922f6%7D&action=edit&wdPreviousSession=0249a4b1-0628-46de-885b-5ff300424f53
 Welcome slides materials;https://docs.google.com/presentation/d/1oWnqINuwyxdG6hBCMu2gZymKDXCrdxAvsxilW3T2AH8/edit#slide=id.gac1ea05132_0_65
 cleura city cloud;https://cleura.cloud/dashboard
 cleura api docs;https://apidoc.cleura.cloud/
