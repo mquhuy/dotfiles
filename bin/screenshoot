@@ -1,5 +1,6 @@
 #!/bin/bash
 
 #scrot -u -z '%Y-%m-%d-%H-%M-%S_$wx$h_scrot.png' -e 'mv $f ~/screenshots/'
-#scrot -s '%Y-%m-%d-%H-%M-%S_$wx$h_scrot.png' -e 'mv $f ~/screenshots/'
-sleep 0.2; scrot -s '%Y-%m-%d-%H-%M-%S_$wx$h_scrot.png' -e 'cat $f | xclip -i -select clipboard && mv $f ~/screenshots/'
+scrot -s '%Y-%m-%d-%H-%M-%S_$wx$h_scrot.png' -e 'xclip -select clipboard -t image/png -i < ~/$f'
+# sleep 0.2; scrot -s '%Y-%m-%d-%H-%M-%S_$wx$h_scrot.png' -e 'xclip -select clipboard -t image/png -i < $f'
+# sleep 0.2; scrot -s '%Y-%m-%d-%H-%M-%S_$wx$h_scrot.png' -e 'xclip -select clipboard -t image/png -i < $f'
