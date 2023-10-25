@@ -260,9 +260,6 @@ bindsym Mod1+Control+j move workspace to output down
 bindsym Mod1+Control+k move workspace to output up
 bindsym Mod1+Control+l move workspace to output right
 
-bindsym Mod4+r exec init.sh
-bindsym Mod4+c exec info.sh
-bindsym Mod4+s exec credentials.sh
 bindsym Mod4+v exec "xclip -o"
 bindsym Control+Mod4+c exec "~/.local/bin/clipboard_manager.sh add"
 
@@ -446,3 +443,4 @@ bindsym Mod4+g exec "gopkg.sh"
 bindsym Control+Mod4+BackSpace exec "xdotool key Delete"
 
 bindsym Mod4+f exec "firefox"
+bindsym Mod4+n exec "nordix_choose.sh"
