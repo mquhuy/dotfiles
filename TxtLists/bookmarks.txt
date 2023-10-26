@@ -47,3 +47,4 @@ DAG;https://estab-my.sharepoint.com/:p:/r/personal/huy_mai_est_tech/_layouts/15/
 DAG summary;https://estab-my.sharepoint.com/:p:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7B487634EB-564B-485A-8BE5-3AA3562DF2A5%7D&file=DAGs%20Executive%20Summaries.pptx&action=edit&mobileredirect=true
 Citrix Workspace;https://ericsson.cloud.com/Citrix/StoreWeb/#/desktops/all
 10-minute-email temporary-email email;https://10minutemail.net/error-due.html
+metal3 wiki;https://wiki.nordix.org/display/CPI/Metal3.io

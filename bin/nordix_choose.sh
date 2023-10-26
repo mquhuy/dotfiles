@@ -8,8 +8,11 @@ get_repo_list() {
     if [ -f ${cache_file} ]; then
         age=$(($(date +%s) - $(date +%s -r "$cache_file")))
         if [[ ! age -gt 86400 ]]; then
-            cat ${cache_file}
-            return
+            data=$(cat ${cache_file})
+            if [[ "${data}" != "" ]]; then
+                echo "${data}"
+                return
+            fi
         fi
     fi
     gh repo list ${org} --limit 400 --json url | jq -r '.[].url' | tee ${cache_file}
@@ -19,5 +22,8 @@ repos=($(get_repo_list "nordix"))
 repos+=($(get_repo_list "metal3-io"))
 
 repo=$(printf "%s\n" "${repos[@]}" | rofi -dmenu -window-title $title -theme Adapta-Nokto)
+if [[ ${repo} == "" ]]; then
+    exit 0
+fi
 
 microsoft-edge-stable $repo
