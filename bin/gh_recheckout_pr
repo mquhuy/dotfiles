@@ -1,0 +1,12 @@
+#!/bin/bash
+
+current_pr_number=$(gh pr status --json number | jq '.currentBranch.number')
+if [[ $current_pr_number == "" ]]; then
+	echo "Not currently in a pr, or issues with gh client. Exiting"
+	exit 1
+fi
+
+current_branch=$(git branch --show-current)
+git checkout main
+git branch -D ${current_branch}
+gh pr checkout ${current_pr_number}
