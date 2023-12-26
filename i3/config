@@ -444,3 +444,6 @@ bindsym Control+Mod4+BackSpace exec "xdotool key Delete"
 
 bindsym Mod4+f exec "firefox"
 bindsym Mod4+n exec "nordix_choose.sh"
+
+bindsym Control+grave exec "dunstctl history-pop"
+bindsym Control+Shift+grave exec "dunstctl close-all"

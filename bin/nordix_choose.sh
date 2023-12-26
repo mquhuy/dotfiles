@@ -15,7 +15,9 @@ get_repo_list() {
             fi
         fi
     fi
-    gh repo list ${org} --limit 400 --json url | jq -r '.[].url' | tee ${cache_file}
+    repos=$(gh repo list ${org} --limit 400 --json url | jq -r '.[].url')
+    echo ${repos} >> ${cache_file}
+    echo ${repos}
 }
 
 repos=($(get_repo_list "nordix"))
