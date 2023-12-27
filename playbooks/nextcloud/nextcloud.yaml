@@ -1,0 +1,134 @@
+---
+- name: install packages
+  hosts: localhost
+  become: true
+  tasks:
+  - name: Install localhost
+    ansible.builtin.apt:
+      pkg: 
+        - software-properties-common
+        - mysql-server
+        - php8.1 # Change 8.1 to whatever newest version is
+        - php8.1-mysql
+        - php8.1-curl
+        - php8.1-gd
+        - php8.1-mbstring
+        - php8.1-dom 
+        - php8.1-xmlwriter
+        - php8.1-zip
+      update_cache: yes
+      cache_valid_time: 3600
+
+    - name: Configure mysql
+      expect:
+        command: mysql_secure_installation
+        responses:
+          'Enter current password for root': ''
+          'Set root password': 'n'
+          'Remove anonymous users': 'y'
+          'Disallow root login remotely': 'y'
+          'Remove test database': 'y'
+          'Reload privilege tables now': 'y'
+        timeout: 1
+      register: secure_mariadb
+      failed_when: "'... Failed!' in secure_mariadb.stdout_lines"
+
+    - name: Create a new database with name 'nextcloud'
+      community.mysql.mysql_db:
+        name: nextcloud
+        state: present
+        login_unix_socket: /run/mysqld/mysqld.sock
+
+    - name: Create database user with name 'nextcloud' and password '12345' with all database privileges
+      community.mysql.mysql_user:
+        name: nextcloud
+        password: 12345
+        priv: '*.*:ALL'
+        state: present
+
+  # - name: Change default sh
+  #   become_user: root
+  #   ansible.builtin.command: chsh -s /usr/bin/zsh huy
+
+- name: Install and configure nvim
+  hosts: localhost
+  tasks:
+  - name: Check if nvim exists
+    ansible.builtin.command: which nvim
+    register: nvim_exists
+    ignore_errors: true
+
+  - name: Download nvim
+    ansible.builtin.get_url:
+      url: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+      dest: /tmp/nvim.tar.gz
+      mode: '0440'
+    when: nvim_exists is failed
+    ignore_errors: true
+
+  - name: Make dir
+    ansible.builtin.command: mkdir -p /home/huy/Programs/nvim
+    when: nvim_exists is failed
+    ignore_errors: true
+
+  - name: Extract nvim
+    ansible.builtin.command: tar xzvf /tmp/nvim.tar.gz -C /home/huy/Programs/nvim
+    when: nvim_exists is failed
+    ignore_errors: true
+
+  - name: Chmod
+    ansible.builtin.command: chmod +x /home/huy/Programs/nvim/nvim-linux64/bin/nvim
+    when: nvim_exists is failed
+    ignore_errors: true
+      
+  - name: Make .local/bin dir
+    ansible.builtin.command: mkdir -p /home/huy/.local/bin
+    ignore_errors: true
+
+  - name: Add nvim to PATH
+    ansible.builtin.command: ln -s /home/huy/Programs/nvim/nvim-linux64/bin/nvim /home/huy/.local/bin/
+    when: nvim_exists is failed
+    ignore_errors: true
+
+  - name: Make .config dir
+    ansible.builtin.command: mkdir -p /home/huy/.config
+    ignore_errors: true
+
+  - name: Create nvim config dir
+    ansible.builtin.command: ln -s $PWD/../nvim /home/huy/.config/
+    ignore_errors: true
+
+- name: Install and configure
+  hosts: localhost
+  tasks:
+  - name: Install firefox
+    ansible.builtin.command: $PWD/install_firefox.sh
+    ignore_errors: true
+  - name: Remove go
+    ansible.builtin.command: rm -rf /usr/local/go
+    become_user: root
+    ignore_errors: true
+
+- name: Install oh-my-zsh
+  hosts: localhost
+  become: yes
+  tasks:
+
+  # - name: rm oh-my-zsh
+  #   ansible.builtin.command: rm -rf /home/huy/.oh-my-zsh
+  #
+  # - name: rm oh-my-zsh
+  #   ansible.builtin.command: rm -rf /root/.oh-my-zsh
+  #   become_user: root
+
+  - name: Download oh-my-zsh installation
+    ansible.builtin.get_url:
+      url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: /home/huy/Programs/omz_install.sh
+      mode: '0700'
+    ignore_errors: true
+      
+  - name: oh-my-zsh installation
+    ansible.builtin.command: sh -c /home/huy/Programs/omz_install.sh
+    ignore_errors: true
+# 
