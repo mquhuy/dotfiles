@@ -1,0 +1,27 @@
+- name: GitHub Cli install
+  hosts: all
+
+  tasks:
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: cli
+        repo: cli
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download Binary
+      ansible.builtin.unarchive:
+        src: https://github.com/cli/cli/releases/download/{{release.tag}}/gh_{{release.tag[1:]}}_linux_amd64.tar.gz
+        dest: /tmp
+        remote_src: true
+
+    - name: Install Binary
+      ansible.builtin.copy:
+        src: /tmp/gh_{{release.tag[1:]}}_linux_amd64/bin/gh
+        dest: "/usr/local/bin"
+        mode: a+x
+      become: true
