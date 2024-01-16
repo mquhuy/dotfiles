@@ -139,6 +139,7 @@ export PATH=${PATH}:$HOME/.local/bin
 export PATH=${PATH}:$HOME/go/bin
 export PATH=${PATH}:$HOME/.krew/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:/usr/local/go/bin
 export PATH=${PATH}:$DENO_INSTALL/bin
+export EDITOR=nvim
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
