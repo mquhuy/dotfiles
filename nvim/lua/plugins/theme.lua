@@ -12,6 +12,6 @@ return {
   --     dark_float = true
   --   })
   -- end
+  enabled = false,
   'EdenEast/nightfox.nvim',
-  enable = false
 }

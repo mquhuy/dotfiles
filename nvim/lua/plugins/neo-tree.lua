@@ -1,7 +1,8 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = false,
   cmd = "Neotree",
-  branch = "v2.x",
+  branch = "v3.x",
   keys = {
     { "<leader>ft", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
   },
@@ -11,10 +12,9 @@ return {
     "MunifTanjim/nui.nvim",
     "s1n7ax/nvim-window-picker",
   },
-  config = function ()
+  config = function()
     filesystem = {
       follow_current_file = true,
-      hijack_netrw_behavior = "open_current",
     }
   end
 }

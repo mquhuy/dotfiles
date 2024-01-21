@@ -1,5 +1,6 @@
 return {
   'toppair/peek.nvim',
+  enabled = false,
   lazy = true,
   build = function()
      os.execute("deno task build:fast")

@@ -1,4 +1,16 @@
 #!/bin/sh
 
-sleep 1
-xset dpms force off
+# sleep 1
+# xset dpms force off
+current_setup=$(xrandr --listmonitors | grep "Monitors" | awk -F":" '{print $2}' | xargs)
+
+echo $current_setup
+
+case $current_setup in
+0)
+    ~/.screenlayout/2-screen.sh
+    ;;
+*)
+    ~/.screenlayout/0-screen.sh
+    ;;
+esac

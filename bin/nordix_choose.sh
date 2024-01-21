@@ -7,7 +7,7 @@ get_repo_list() {
     cache_file="$HOME/.${org}.github"
     if [ -f ${cache_file} ]; then
         age=$(($(date +%s) - $(date +%s -r "$cache_file")))
-        if [[ ! age -gt 86400 ]]; then
+        if [[ ! age -gt 86400*7 ]]; then
             data=$(cat ${cache_file})
             if [[ "${data}" != "" ]]; then
                 echo "${data}"

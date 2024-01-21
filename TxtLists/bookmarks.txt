@@ -51,3 +51,5 @@ metal3 wiki;https://wiki.nordix.org/display/CPI/Metal3.io
 domainhotelli cpanel domain;https://hotelli07.domainhotelli.fi:2083/cpsess7551303822/frontend/jupiter/zone_editor/index.html#/manage?domain=huymai.fi
 obsidian format secondbrain;https://help.obsidian.md/Editing+and+formatting/Callouts
 toggl time reporting tracking;https://track.toggl.com/timer
+Metal3 diagrams sharepoint;https://estab.sharepoint.com/sites/ESTFinland-ESJ/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=PuKyt5&cid=b0a0b87b%2D88f4%2D478e%2Da659%2Da29b196ec330&FolderCTID=0x012000FEA47FE87FE1AA48A6E9220FA855789D&id=%2Fsites%2FESTFinland%2DESJ%2FShared%20Documents%2FGeneral%2FDiagrams&viewid=a11c6b7a%2D7e4a%2D4c80%2Db9ff%2Df32b347c66c2
+metal3 prow;https://prow.apps.test.metal3.io/

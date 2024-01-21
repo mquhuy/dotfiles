@@ -1,12 +1,16 @@
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
-    "--filter=blob:none",
+    -- "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    -- "--branch=stable", -- latest stable release
     lazypath,
   })
 end
@@ -33,6 +37,17 @@ end
 map('v', 'Y', '"+y')
 
 require('lazy').setup('plugins')
+
+-- empty setup nvim-tree using defaults
+require("nvim-tree").setup()
+
+vim.g.nvim_tree_respect_buf_cwd = 1,
+
+-- Keymap
+vim.keymap.set({ 'n' }, '<Leader>ft', function()
+  vim.cmd('NvimTreeToggle')
+end, { silent = true, noremap = true, desc = 'Run [G]ithub [Source]' })
+
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -77,14 +92,18 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+
 -- lsp signature
+local cfg = {} -- add your config here
+require "lsp_signature".setup(cfg)
+
 vim.keymap.set({ 'n' }, 'K', function()
   require('lsp_signature').toggle_float_win()
 end, { silent = true, noremap = true, desc = 'toggle signature' })
 
-vim.keymap.set({ 'n' }, '<Leader>k', function()
-  vim.lsp.buf.signature_help()
-end, { silent = true, noremap = true, desc = 'toggle signature' })
+-- vim.keymap.set({ 'n' }, '<Leader>k', function()
+-- vim.lsp.buf.signature_help()
+-- end, { silent = true, noremap = true, desc = 'toggle signature' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -105,13 +124,17 @@ vim.keymap.set({ 'n' }, '<Leader>dt', function()
   vim.cmd(':e')
 end, { silent = true, noremap = true, desc = "run doctoc on current file" })
 
-vim.keymap.set({ 'n' }, '<leader>gs', function()
-  local line = vim.api.nvim_win_get_cursor(0)[1]
-  local fileAbsPath = vim.api.nvim_buf_get_name(0)
-  local cmd = 'ghsource ' .. fileAbsPath .. " " .. line
-  local result = vim.fn.system(cmd)
-  vim.notify(result)
-end, { silent = true, noremap = true, desc = "Run [G]it [S]ource" })
+-- vim.keymap.set({ 'n' }, '<leader>gs', function()
+--   local line = vim.api.nvim_win_get_cursor(0)[1]
+--   local fileAbsPath = vim.api.nvim_buf_get_name(0)
+--   local cmd = 'ghsource ' .. fileAbsPath .. " " .. line
+--   local result = vim.fn.system(cmd)
+--   vim.notify(result)
+-- end, { silent = true, noremap = true, desc = "Run [G]it [S]ource" })
+
+vim.keymap.set({ 'n' }, '<Leader>gs', function()
+  vim.cmd('GBrowse')
+end, { silent = true, noremap = true, desc = 'Run [G]ithub [Source]' })
 
 vim.keymap.set({ 'n' }, '<Leader>te', function()
   vim.cmd('tabedit %')
@@ -200,6 +223,7 @@ vim.keymap.set("n", "<leader>n", function()
   require("monorepo").toggle_project()
 end)
 
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -207,98 +231,88 @@ end)
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  gopls = {},
-  pyright = {},
   bashls = {},
   -- rust_analyzer = {},
   tsserver = {},
 
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      diagnostics = {
-        globals = { 'vim' }
-      },
-    },
-  },
+  lua_ls = {},
 }
 
 -- Setup neovim lua configuration
-require('neodev').setup()
+-- require('neodev').setup()
 --
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup mason so it can manage external tooling
-require('mason').setup()
+-- require('mason').setup()
 
 -- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+-- local mason_lspconfig = require 'mason-lspconfig'
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
+-- mason_lspconfig.setup {
+-- ensure_installed = vim.tbl_keys(servers),
+-- }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-}
+-- mason_lspconfig.setup_handlers {
+-- function(server_name)
+-- require('lspconfig')[server_name].setup {
+-- capabilities = capabilities,
+-- on_attach = on_attach,
+-- settings = servers[server_name],
+-- }
+-- end,
+-- }
 
 -- Turn on lsp status information
-require('fidget').setup()
+-- require('fidget').setup()
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+-- local cmp = require 'cmp'
+-- local luasnip = require 'luasnip'
 
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    -- { name = "codeium" },
-  },
-}
+-- cmp.setup {
+--   snippet = {
+--     expand = function(args)
+--       luasnip.lsp_expand(args.body)
+--     end,
+--   },
+--   mapping = cmp.mapping.preset.insert {
+--     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+--     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+--     ['<C-Space>'] = cmp.mapping.complete(),
+--     ['<C-p>'] = cmp.mapping.select_prev_item(),
+--     ['<C-n>'] = cmp.mapping.select_next_item(),
+--     ['<CR>'] = cmp.mapping.confirm {
+--       behavior = cmp.ConfirmBehavior.Replace,
+--       select = true,
+--     },
+--     ['<Tab>'] = cmp.mapping(function(fallback)
+--       if cmp.visible() then
+--         cmp.select_next_item()
+--       elseif luasnip.expand_or_jumpable() then
+--         luasnip.expand_or_jump()
+--       else
+--         fallback()
+--       end
+--     end, { 'i', 's' }),
+--     ['<S-Tab>'] = cmp.mapping(function(fallback)
+--       if cmp.visible() then
+--         cmp.select_prev_item()
+--       elseif luasnip.jumpable(-1) then
+--         luasnip.jump(-1)
+--       else
+--         fallback()
+--       end
+--     end, { 'i', 's' }),
+--   },
+--   sources = {
+--     { name = 'nvim_lsp' },
+--     { name = 'luasnip' },
+--     -- { name = "codeium" },
+--   },
+-- }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
