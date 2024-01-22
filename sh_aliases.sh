@@ -3,7 +3,7 @@ alias eali="nvim $DOTFILES_DIR/sh_aliases.sh"
 alias ebm="nvim $DOTFILES_DIR/TxtLists/bookmarks.txt"
 alias seali="source $RCFILE"
 alias v="OPENAI_API_KEY=${OPENAI_API_KEY} nvim"
-alias wiki="nvim -u ~/.config/telekasten/entry.lua"
+alias wiki="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-writing nvim"
 
 # i3 config
 alias i3config="nvim ~/.config/i3/config"
@@ -13,9 +13,6 @@ alias i3autoxrand="nvim ~/.config/i3/autoxrandr"
 
 # Vim config
 alias vinit="nvim ~/.config/nvim/init.lua"
-alias vinitp="nvim ~/.config/nvim/plugins.vim"
-alias vinitb="nvim ~/.config/nvim/basic.vim"
-alias vinitc="nvim ~/.config/nvim/coc.vim"
 
 # tmux config
 alias tconf="nvim ~/.tmux.conf"

@@ -93,20 +93,6 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 
--- lsp signature
-local cfg = {} -- add your config here
-require "lsp_signature".setup(cfg)
-
-vim.keymap.set({ 'n' }, 'K', function()
-  require('lsp_signature').toggle_float_win()
-end, { silent = true, noremap = true, desc = 'toggle signature' })
-
--- vim.keymap.set({ 'n' }, '<Leader>k', function()
--- vim.lsp.buf.signature_help()
--- end, { silent = true, noremap = true, desc = 'toggle signature' })
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -148,9 +134,6 @@ vim.keymap.set({ 'n' }, '<C-s>', function()
   vim.cmd(':w')
 end, { silent = false, noremap = true, desc = '[S]ave' })
 
--- Enable Comment.nvim
-require('Comment').setup()
-
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 --
@@ -181,18 +164,6 @@ end)
 require('ibl').setup { indent = { highlight = highlight } }
 
 
--- Gitsigns
--- See `:help gitsigns.txt`
-require('gitsigns').setup {
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-  },
-}
-
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
@@ -216,99 +187,9 @@ vim.keymap.set('n', "<leader>fc", function()
   require("telescope").extensions.diff.diff_current({ hidden = true })
 end, { desc = "[F]ile Compare file with [c]urrent" })
 
-vim.keymap.set("n", "<leader>m", require("telescope").extensions.monorepo.monorepo(), { desc = "Add project to Monorepo" })
-vim.keymap.set("n", "<leader>n", require("monorepo").toggle_project(), { desc = "Choose project in Monorepo" })
-
-
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
-local servers = {
-  -- clangd = {},
-  bashls = {},
-  -- rust_analyzer = {},
-  tsserver = {},
-
-  lua_ls = {},
-}
-
--- Setup neovim lua configuration
--- require('neodev').setup()
---
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Setup mason so it can manage external tooling
--- require('mason').setup()
-
--- Ensure the servers above are installed
--- local mason_lspconfig = require 'mason-lspconfig'
-
--- mason_lspconfig.setup {
--- ensure_installed = vim.tbl_keys(servers),
--- }
-
--- mason_lspconfig.setup_handlers {
--- function(server_name)
--- require('lspconfig')[server_name].setup {
--- capabilities = capabilities,
--- on_attach = on_attach,
--- settings = servers[server_name],
--- }
--- end,
--- }
-
--- Turn on lsp status information
--- require('fidget').setup()
-
--- nvim-cmp setup
--- local cmp = require 'cmp'
--- local luasnip = require 'luasnip'
-
--- cmp.setup {
---   snippet = {
---     expand = function(args)
---       luasnip.lsp_expand(args.body)
---     end,
---   },
---   mapping = cmp.mapping.preset.insert {
---     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
---     ['<C-f>'] = cmp.mapping.scroll_docs(4),
---     ['<C-Space>'] = cmp.mapping.complete(),
---     ['<C-p>'] = cmp.mapping.select_prev_item(),
---     ['<C-n>'] = cmp.mapping.select_next_item(),
---     ['<CR>'] = cmp.mapping.confirm {
---       behavior = cmp.ConfirmBehavior.Replace,
---       select = true,
---     },
---     ['<Tab>'] = cmp.mapping(function(fallback)
---       if cmp.visible() then
---         cmp.select_next_item()
---       elseif luasnip.expand_or_jumpable() then
---         luasnip.expand_or_jump()
---       else
---         fallback()
---       end
---     end, { 'i', 's' }),
---     ['<S-Tab>'] = cmp.mapping(function(fallback)
---       if cmp.visible() then
---         cmp.select_prev_item()
---       elseif luasnip.jumpable(-1) then
---         luasnip.jump(-1)
---       else
---         fallback()
---       end
---     end, { 'i', 's' }),
---   },
---   sources = {
---     { name = 'nvim_lsp' },
---     { name = 'luasnip' },
---     -- { name = "codeium" },
---   },
--- }
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+vim.keymap.set("n", "<leader>m", function()
+  require("telescope").extensions.monorepo.monorepo()
+end)
+vim.keymap.set("n", "<leader>n", function()
+  require("monorepo").toggle_project()
+end)
