@@ -218,10 +218,10 @@ end, { desc = "[F]ile Compare file with [c]urrent" })
 
 vim.keymap.set("n", "<leader>m", function()
   require("telescope").extensions.monorepo.monorepo()
-end, { desc = "Add project root to [m]onorepo" }))
+end, { desc = "Add project root to [m]onorepo" })
 vim.keymap.set("n", "<leader>n", function()
   require("monorepo").toggle_project()
-end, { desc = "Toggle project in mo[n]orepo" })))
+end, { desc = "Toggle project in mo[n]orepo" })
 
 
 -- Enable the following language servers
