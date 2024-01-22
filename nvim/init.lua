@@ -216,8 +216,12 @@ vim.keymap.set('n', "<leader>fc", function()
   require("telescope").extensions.diff.diff_current({ hidden = true })
 end, { desc = "[F]ile Compare file with [c]urrent" })
 
-vim.keymap.set("n", "<leader>m", require("telescope").extensions.monorepo.monorepo(), { desc = "Add project to Monorepo" })
-vim.keymap.set("n", "<leader>n", require("monorepo").toggle_project(), { desc = "Choose project in Monorepo" })
+vim.keymap.set("n", "<leader>m", function()
+  require("telescope").extensions.monorepo.monorepo()
+end, { desc = "Add project root to [m]onorepo" }))
+vim.keymap.set("n", "<leader>n", function()
+  require("monorepo").toggle_project()
+end, { desc = "Toggle project in mo[n]orepo" })))
 
 
 -- Enable the following language servers
