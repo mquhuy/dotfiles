@@ -138,7 +138,8 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH=${PATH}:$HOME/.local/bin
 export PATH=${PATH}:$HOME/go/bin
 export PATH=${PATH}:$HOME/.krew/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.local/bin:/usr/local/go/bin
-export PATH=${PATH}:$DENO_INSTALL/bin
+export GOBIN=${GOBIN:-${HOME}/go/bin}
+export PATH=${PATH}:$DENO_INSTALL/bin:${GOBIN}
 export EDITOR=nvim
 
 export NVM_DIR="$HOME/.nvm"
