@@ -15,6 +15,8 @@ return {
     treesitter_analysis = true,
     treesitter_navigation = true,
     lsp = {
+      enable = true,
+      format_on_save = true,
     },
   },
 }
