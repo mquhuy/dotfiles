@@ -193,3 +193,5 @@ end)
 vim.keymap.set("n", "<leader>n", function()
   require("monorepo").toggle_project()
 end)
+
+vim.opt.conceallevel = 1

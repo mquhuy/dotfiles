@@ -1,0 +1,32 @@
+- name: Install yq
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: mikefarah
+        repo: yq
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download Binary
+      ansible.builtin.unarchive:
+        src: https://github.com/mikefarah/yq/releases/download/{{ release.tag }}/yq_linux_amd64.tar.gz
+        dest: /tmp
+        remote_src: true
+
+    - name: Install Binary
+      ansible.builtin.copy:
+        src: /tmp/yq_linux_amd64
+        dest: "/usr/local/bin/yq"
+        mode: a+x
+        remote_src: true
+      become: true

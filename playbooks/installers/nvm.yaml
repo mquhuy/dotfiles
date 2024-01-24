@@ -1,0 +1,28 @@
+- name: NVM and Nodejs install
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: nvm-sh
+        repo: nvm
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Install nvm
+      shell: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ release.tag }}/install.sh | bash
+        creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
+
+    - name: Install Nodejs
+      shell: >
+        /bin/bash -c "source ~/.nvm/nvm.sh && nvm install --lts && nvm use --lts"
+        creates=/home/{{ ansible_user_id }}/.nvm/alias
