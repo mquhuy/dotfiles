@@ -1,0 +1,13 @@
+- name: Install oh-my-bash
+  hosts: all
+
+  tasks:
+    - name: Install oh-my-bash
+      shell: >
+        curl -o-  https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh | bash
+        creates=/home/{{ ansible_user_id }}/.oh-my-bash
+
+    - name: Copy .bashrc
+      ansible.builtin.copy:
+        src: ../../../bash/bashrc
+        dest: /home/{{ ansible_user_id}}/.bashrc
