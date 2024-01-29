@@ -1,0 +1,25 @@
+- name: PlayerCtl Install
+  hosts: all
+
+  tasks:
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: altdesktop
+        repo: playerctl
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download deb package
+      ansible.builtin.get_url:
+        url: https://github.com/altdesktop/playerctl/releases/download/{{ release.tag }}/playerctl-{{ release.tag | regex_search('([0-9]|\.)+') }}_amd64.deb
+        dest: /tmp/playerctl.deb
+
+    - name: Install Binary
+      delegate_to: app1
+      apt:
+        deb: /tmp/playerctl.deb
+      become: true

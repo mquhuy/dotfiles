@@ -1,0 +1,27 @@
+- name: Install and config Dropbox
+  hosts: all
+
+  tasks:
+  - name: Install dropbox
+    shell: curl -L "https://www.dropbox.com/download?plat=lnx.x86_64" | tar -C $HOME -xzf -
+    args:
+      creates: ~/.dropbox-dist/dropboxd
+
+  - name: Create systemd user service
+    template: src=systemd-template.j2 dest=$HOME/.config/systemd/user/dropbox.service
+    vars:
+      name: dropbox
+      location: /home/{{ ansible_user_id }}/.dropbox-dist/dropboxd
+
+  - name: Enable service dropbox and ensure it is not masked
+    ansible.builtin.systemd_service:
+      name: dropbox
+      enabled: true
+      masked: no
+      scope: user
+
+  - name: Make sure dropbox service unit is running
+    ansible.builtin.systemd_service:
+      state: started
+      name: dropbox
+      scope: user

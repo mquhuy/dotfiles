@@ -23,6 +23,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.conceallevel = 1
 
 -- Set clipboard
 local function map(mode, lhs, rhs, opts)
