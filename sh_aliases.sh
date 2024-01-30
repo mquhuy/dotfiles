@@ -4,6 +4,7 @@ alias ebm="nvim $DOTFILES_DIR/TxtLists/bookmarks.txt"
 alias seali="source $RCFILE"
 alias v="OPENAI_API_KEY=${OPENAI_API_KEY} nvim"
 alias wiki="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-writing nvim"
+alias norg="cd ~/Nextcloud/norg && NVIM_APPNAME=nvim-norg nvim"
 
 # i3 config
 alias i3config="nvim ~/.config/i3/config"

@@ -5,6 +5,7 @@ wrongheadphone="alsa_output.usb-SteelSeries_Arctis_Pro_Wireless-00.stereo-game"
 loudspeaker="alsa_output.pci-0000_00_1f.3.analog-stereo"
 office_sink="alsa_output.usb-GN_Audio_A_S_Jabra_EVOLVE_30_II_00038BF4A11207-00.analog-stereo"
 JBL_sink="alsa_output.usb-JBL_Quantum_800-00.analog-stereo"
+SONY_sink="bluez_sink.14_3F_A6_A3_D5_19.a2dp_sink"
 
 trigger_i3blocks() {
     pkill -SIGRTMIN+2 i3blocks
@@ -15,8 +16,13 @@ get_sinks() {
 }
 
 correct_default_sink() {
-    correct_sink=$1
+    correct_sink="${headphone}"
     sinks=$(get_sinks)
+    if [[ $sinks =~ "${SONY_sink}" ]]; then
+        correct_sink="${SONY_sink}"
+    elif [[ $sinks =~ "${JBL_sink}" ]]; then
+        correct_sink="${JBL_sink}"
+    fi
     current_sink=$(pactl info | grep "Default Sink" | awk -F: '{print $2}')
     if [[ ${sinks} != *${correct_sink}* || $current_sink == *$correct_sink* || $current_sink == *$loudspeaker* ]]; then
         return
@@ -50,11 +56,10 @@ get_status() {
         info="${info}🔇"
     fi
     sink=$(pactl info | grep "Default Sink" | awk -F: '{print $2}')
-    correct_default_sink $headphone
-    correct_default_sink $JBL_sink
+    correct_default_sink
     sink=$(pactl info | grep "Default Sink" | awk -F: '{print $2}')
     volume=$(pulsemixer --get-volume | awk '{print $1}')
-    if [[ $sink == *$headphone* || $sink == *$JBL_sink* ]]; then
+    if [[ $sink == *$headphone* || $sink == *$JBL_sink* || $sink =~ "${SONY_sink}" ]]; then
         info="${info}🎧 $volume"
     else
         pactl set-default-sink $loudspeaker
@@ -78,7 +83,7 @@ toggle_mute() {
 toggle_sink() {
     sink=$(pactl info | grep "Default Sink" | awk -F: '{print $2}')
     mute_state=$(pulsemixer --get-mute)
-    if [ $sink == $headphone ]; then
+    if [[ $sink =~ ${headphone} || $sink =~ ${JBL_sink} || $sink =~ "${SONY_sink}" ]]; then
         pactl set-default-sink $loudspeaker
         notify-send -u low -i ~/icons/loud-speaker.png "Switched to loud speaker" -t 1000 -h string:x-canonical-private-synchronous:volume
     elif [ $sink == $loudspeaker ]; then
@@ -94,9 +99,10 @@ toggle_sink() {
     get_status
 }
 
+
 case $BLOCK_BUTTON in
     1)
-        toggle_sink
+        toggle_mute
         trigger_i3blocks
         ;;
     2)
@@ -104,7 +110,7 @@ case $BLOCK_BUTTON in
         trigger_i3blocks
         ;;
     3)
-        toggle_mute
+        toggle_sink
         trigger_i3blocks
         ;;
     4)
@@ -116,5 +122,18 @@ case $BLOCK_BUTTON in
         trigger_i3blocks
         ;;
     *)
-        get_status
+        case ${1:-} in
+            toggle)
+                toggle_mute
+                trigger_i3blocks
+                ;;
+            toggle_sink)
+                toggle_sink
+                trigger_i3blocks
+                ;;
+            *)
+                get_status
+                ;;
+        esac
+        ;;
 esac

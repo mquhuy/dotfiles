@@ -12,5 +12,8 @@ case $current_setup in
     ;;
 *)
     ~/.screenlayout/0-screen.sh
+    if [[ $(toggl ls | grep "running") != "" ]]; then
+        toggl stop 2>&1 > /dev/null
+        notify-send "Work time stopped at ${time}"
     ;;
 esac
