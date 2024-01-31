@@ -39,7 +39,7 @@ get_mode() {
 
 get_desired_source() {
     mode=$(get_mode)
-    if [[ "${mode}" == MODE_BLUETOOTH ]]; then
+    if [[ "${mode}" == ${MODE_BLUETOOTH} ]]; then
         echo $desired_bluetooth
     else
         echo $desired_headset
