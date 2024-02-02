@@ -48,7 +48,10 @@ return {
   ---@type TSConfig
   ---@diagnostic disable-next-line: missing-fields
   opts = {
-    highlight = { enable = true },
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = { "markdown" },
+    },
     indent = { enable = true },
     ensure_installed = {
       "diff",
@@ -56,11 +59,12 @@ return {
       "jsonc",
       "lua",
       "markdown",
-      "markdown_inline",
+      -- "markdown_inline",
       "query",
       "regex",
       "toml",
       "yaml",
+      "bash",
     },
     incremental_selection = {
       enable = true,

@@ -1,0 +1,10 @@
+- name: Minikube Install
+  hosts: all
+
+  tasks:
+    - name: Download latest minikube
+      ansible.builtin.get_url:
+        url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+        dest: /usr/bin/minikube
+        mode: a+x
+      become: true

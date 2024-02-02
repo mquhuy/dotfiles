@@ -39,8 +39,8 @@ alias glisth="glist HEAD"
 #gwta() { git worktree add ../"$1" -b "$1"; }
 alias k="kubectl"
 alias h="helm"
-alias hdl="helm delete --purge"
-alias h3="helm3"
+# alias hdl="helm delete --purge"
+# alias h3="helm3"
 
 # find
 alias fin="find -name"
@@ -53,11 +53,11 @@ alias drfi="docker run --rm -it"
 mkdcd() { mkdir "$1"; cd "$1"; }
 
 #shortcut
-alias cdmgw="access_dir.sh ~/repos/mgw-branches"
-alias cdmgwm="cd ~/repos/mgw-branches/master"
-alias cdsbg="access_dir.sh ~/repos/sbg-branches"
-alias cdsbgm="cd ~/repos/sbg-branches/master"
-alias bb="ssh -t build-host zsh"
+# alias cdmgw="access_dir.sh ~/repos/mgw-branches"
+# alias cdmgwm="cd ~/repos/mgw-branches/master"
+# alias cdsbg="access_dir.sh ~/repos/sbg-branches"
+# alias cdsbgm="cd ~/repos/sbg-branches/master"
+# alias bb="ssh -t build-host zsh"
 alias dl="cd ~/Downloads"
 
 alias getkey="xev | grep keycode"

@@ -1,18 +1,21 @@
-#!/bin/sh
+#!/bin/env bash
 
 # sleep 1
 # xset dpms force off
-current_setup=$(xrandr --listmonitors | grep "Monitors" | awk -F":" '{print $2}' | xargs)
+current_setup=$(xrandr --listactivemonitors | grep "Monitors" | awk -F":" '{print $2}' | xargs)
 
 echo $current_setup
 
 case $current_setup in
 0)
-    ~/.screenlayout/2-screen.sh
+    # ~/.screenlayout/1-screen.sh
+    store-screen-layout.py restore
     ;;
 *)
     ~/.screenlayout/0-screen.sh
-    if [[ $(toggl ls | grep "running") != "" ]]; then
+    store-screen-layout.py store
+    current_worktime=$(toggl ls | grep "running")
+    if [[ $current_worktime != "" ]]; then
         toggl stop 2>&1 > /dev/null
         notify-send "Work time stopped at ${time}"
     fi
