@@ -1,0 +1,75 @@
+- name: GitHub Cli install
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+
+    - name: Install openssl
+      ansible.builtin.apt:
+        pkg:
+        - libssl-dev
+
+    - name: Get Latest libevent Release from Github"
+      community.general.github_release:
+        user: libevent
+        repo: libevent
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download libevent
+      ansible.builtin.unarchive:
+        src: https://github.com/libevent/libevent/releases/download/{{ release.tag }}/{{ release.tag | replace("release", "libevent") }}.tar.gz
+        dest: /tmp
+        remote_src: true
+
+    - name: Configure libevent
+      shell: |
+        cd /tmp/{{ release.tag | replace("release", "libevent") }} && ./configure && make
+
+    - name: Install libevent
+      shell: |
+        cd /tmp/{{ release.tag | replace("release", "libevent") }} && make install
+      become: true
+
+    - name: Download ncurses
+      ansible.builtin.unarchive:
+        src: https://invisible-mirror.net/archives/ncurses/ncurses-6.4.tar.gz
+        dest: /tmp
+        remote_src: true
+
+    - name: Configure ncurses
+      shell: |
+        cd /tmp/ncurses-6.4 && ./configure
+
+    - name: Install ncurses
+      shell: |
+        cd /tmp/ncurses-6.4 && make install
+      become: true
+
+    - name: Get Latest tmux Release from Github"
+      community.general.github_release:
+        user: tmux
+        repo: tmux
+        action: latest_release
+      register: release
+
+    - name: Download tmux
+      ansible.builtin.unarchive:
+        src: https://github.com/tmux/tmux/releases/download/{{ release.tag }}/tmux-{{ release.tag }}.tar.gz
+        dest: /tmp
+        remote_src: true
+
+    - name: Configure tmux
+      shell: |
+        cd /tmp/tmux-{{ release.tag }} && ./configure && make
+
+    - name: Install libevent
+      shell: |
+        cd /tmp/tmux-{{ release.tag }} && make install
+      become: true

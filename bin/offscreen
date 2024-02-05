@@ -12,8 +12,8 @@ case $current_setup in
     store-screen-layout.py restore
     ;;
 *)
-    ~/.screenlayout/0-screen.sh
     store-screen-layout.py store
+    ~/.screenlayout/0-screen.sh
     current_worktime=$(toggl ls | grep "running")
     if [[ $current_worktime != "" ]]; then
         toggl stop 2>&1 > /dev/null

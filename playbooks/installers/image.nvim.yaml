@@ -1,0 +1,17 @@
+- name: Install image.nvim support packages
+  hosts: all
+
+  tasks:
+  - name: Install apt packages
+    ansible.builtin.apt:
+      pkg: 
+      - luajit
+      - libmagickwand-dev
+      - libgraphicsmagick1-dev
+      - luarocks
+    become: true
+
+  - name: Install magick
+    shell: >
+      luarocks --local install magick
+

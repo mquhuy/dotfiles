@@ -1,0 +1,38 @@
+- name: Install kitten
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: kovidgoyal
+        repo: kitty
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Create kitty directories
+      ansible.builtin.file:
+        path: /home/{{ ansible_user_id }}/Programs/kitty
+        state: directory
+        mode: '0755'
+
+    - name: Download tarball
+      ansible.builtin.unarchive:
+        src: https://github.com/kovidgoyal/kitty/releases/download/{{ release.tag }}/kitty-{{ release.tag | regex_search('([0-9]|\.)+') }}-x86_64.txz
+        dest: /home/{{ ansible_user_id }}/Programs/kitty
+        remote_src: true
+
+    - name: Install Binary
+      ansible.builtin.file:
+        src: /home/{{ ansible_user_id }}/Programs/kitty/bin/{{ item }}
+        dest: /home/{{ ansible_user_id }}/.local/bin/{{ item }}
+        state: link
+      loop: [ 'kitty', 'kitten' ]
+

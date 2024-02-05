@@ -52,15 +52,10 @@ return {
     indent = { enable = true },
     ensure_installed = {
       "diff",
-      "json",
-      "jsonc",
-      "lua",
       "markdown",
       "markdown_inline",
-      "query",
       "regex",
-      "toml",
-      "yaml",
+      "norg",
     },
     incremental_selection = {
       enable = true,
