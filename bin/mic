@@ -1,8 +1,8 @@
 #!/bin/bash
 
 desired_headset="alsa_input.usb-SteelSeries_Arctis_Pro_Wireless-00.mono-chat"
-# desired_bluetooth="alsa_input.usb-Lenovo_Lenovo_Performance_Camera_145081A8-04.analog-stereo"
-desired_bluetooth="alsa_input.usb-046d_HD_Pro_Webcam_C920_FAF7DAAF-02.analog-stereo"
+desired_bluetooth="alsa_input.usb-Lenovo_Lenovo_Performance_Camera_145081A8-04.analog-stereo"
+# desired_bluetooth="alsa_input.usb-046d_HD_Pro_Webcam_C920_FAF7DAAF-02.analog-stereo"
 #desired="alsa_input.usb-046d_HD_Pro_Webcam_C920_FAF7DAAF-02.analog-stereo"
 wrong1="alsa_input.usb-SteelSeries_Arctis_Pro_Wireless-00.analog-stereo"
 wrong2="alsa_input.usb-046d_HD_Pro_Webcam_C920_FAF7DAAF-02.analog-stereo"

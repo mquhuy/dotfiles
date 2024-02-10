@@ -18,31 +18,39 @@
         - php8.1-zip
       update_cache: yes
       cache_valid_time: 3600
+    become: true
 
-    - name: Configure mysql
-      expect:
-        command: mysql_secure_installation
-        responses:
-          'Enter current password for root': ''
-          'Set root password': 'n'
-          'Remove anonymous users': 'y'
-          'Disallow root login remotely': 'y'
-          'Remove test database': 'y'
-          'Reload privilege tables now': 'y'
-        timeout: 1
-      register: secure_mariadb
-      failed_when: "'... Failed!' in secure_mariadb.stdout_lines"
+  - name: Configure mysql
+    expect:
+      command: mysql_secure_installation
+      responses:
+        'Enter current password for root': ''
+        'Set root password': 'n'
+        'Remove anonymous users': 'y'
+        'Disallow root login remotely': 'y'
+        'Remove test database': 'y'
+        'Reload privilege tables now': 'y'
+      timeout: 1
+    register: secure_mariadb
+    failed_when: "'... Failed!' in secure_mariadb.stdout_lines"
 
-    - name: Create a new database with name 'nextcloud'
-      community.mysql.mysql_db:
-        name: nextcloud
-        state: present
-        login_unix_socket: /run/mysqld/mysqld.sock
+  - name: Create a new database with name 'nextcloud'
+    community.mysql.mysql_db:
+      name: nextcloud
+      state: present
+      login_unix_socket: /run/mysqld/mysqld.sock
 
-    - name: Create database user with name 'nextcloud' and password '12345' with all database privileges
-      community.mysql.mysql_user:
-        name: nextcloud
-        password: 12345
-        priv: '*.*:ALL'
-        state: present
+  - name: Create database user with name 'nextcloud' and password '12345' with all database privileges
+    community.mysql.mysql_user:
+      name: nextcloud
+      password: 12345
+      priv: '*.*:ALL'
+      state: present
+
+  - name: Unzip nextcloud
+    ansible.builtin.unarchive:
+      src: https://download.nextcloud.com/server/releases/latest.zip
+      dest: /var/www/
+      owner: www-data
+    become: true
 

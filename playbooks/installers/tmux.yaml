@@ -10,6 +10,7 @@
       ansible.builtin.apt:
         pkg:
         - libssl-dev
+      become: true
 
     - name: Get Latest libevent Release from Github"
       community.general.github_release:

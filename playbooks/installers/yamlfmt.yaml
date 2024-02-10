@@ -14,5 +14,5 @@
 
     - name: Install config
       ansible.builtin.copy:
-      src: ../../../config/yamlfmt/yamlfmt
-      dest: /home/{{ ansible_user_id }}/.config/yamlfmt/.yamlfmt
+        src: ../../../config/yamlfmt/yamlfmt
+        dest: /home/{{ ansible_user_id }}/.config/yamlfmt/.yamlfmt

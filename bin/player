@@ -28,8 +28,8 @@ trigger_i3blocks() {
 }
 
 status() {
-    echo "$(song_name | cut -c1-30) $(get_play)"
-    # echo "🎶Browser $(get_play)"
+    # echo "$(song_name | cut -c1-30) $(get_play)"
+    echo "🎶Browser $(get_play)"
 }
 
 play_pause() {
