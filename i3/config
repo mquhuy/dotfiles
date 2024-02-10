@@ -415,7 +415,7 @@ mode "$mode_gaps_left" {
 bindsym Control+Shift+1 exec "player toggle"
 
 # Screenshoot
-bindsym Mod4+Shift+s exec "screenshoot"
+bindsym Mod4+Shift+s exec "windowshoot.sh"
 
 # Calendar generation
 bindsym Control+Shift+z exec "generate_calendar.sh"
