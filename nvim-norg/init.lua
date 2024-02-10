@@ -168,6 +168,15 @@ vim.keymap.set("n", "<leader>n", function()
   require("monorepo").toggle_project()
 end)
 
+-- Reload config
+function reload_config(config)
+  package.loaded[config] = nil
+  require(config)
+end
+
+-- Customs
+require('customs.init')
+
 vim.opt.conceallevel = 1
 
 -- Example for configuring Neovim to load user-installed installed Lua rocks:
@@ -202,3 +211,4 @@ require("image").setup({
   tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
   hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
 })
+
