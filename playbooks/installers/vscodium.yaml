@@ -1,0 +1,29 @@
+- name: GitHub Cli install
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: VSCodium
+        repo: vscodium
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download deb package
+      ansible.builtin.get_url:
+        url: https://github.com/VSCodium/vscodium/releases/download/{{ release.tag }}/codium_{{ release.tag }}_amd64.deb
+        dest: /tmp/vscodium.deb
+
+    - name: Install Binary
+      delegate_to: app1
+      apt:
+        deb: /tmp/vscodium.deb
+      become: true

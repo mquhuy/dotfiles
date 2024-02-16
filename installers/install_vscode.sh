@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-curl "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -O code.deb
+wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -O code.deb
 
 sudo dpkg -i code.deb
 

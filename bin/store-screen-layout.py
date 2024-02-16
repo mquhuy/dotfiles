@@ -8,88 +8,90 @@ import sys
 
 MONITOR_FILE = os.path.join(os.environ["HOME"], ".screenlayout", "monitors.json")
 
+def load_layout():
+    if os.path.exists(MONITOR_FILE):
+        with open(MONITOR_FILE, "r") as f:
+            return json.load(f)
+    else:
+        return {}
+
+def save_layout(layout):
+    with open(MONITOR_FILE, "w") as f:
+        json.dump(layout, f, indent=4, sort_keys=True)
+
+class Monitor:
+    def __init__(self, connect_line, mode_line):
+        connect_content = connect_line.split()
+        self.name = connect_content[0]
+        self.mode = connect_content[2:]
+        self.identity = mode_line.strip().split()[0]
+
 def get_active_monitors():
     active_monitor_output=subprocess.check_output(["xrandr"]).decode("utf-8").split("\n")
-    active_monitors=[line for line in active_monitor_output if re.match("^\S+ connected", line)]
+    active_monitors=[]
+    for idx, line in enumerate(active_monitor_output):
+        if re.match("^\S+ connected", line):
+            active_monitors.append(Monitor(line, active_monitor_output[idx+1]))
     return active_monitors
 
-def get_setup_name(active_monitors):
-    setup_name = []
-    for line in active_monitors:
-        content = line.split()
-        monitor = content[0]
-        setup_name.append(monitor)
-    name = "-".join(setup_name)
-    print(name)
+def get_setup_name():
+    active_monitors=get_active_monitors()
+    name = "-".join([monitor.identity for monitor in active_monitors])
     return name
 
-
-def set_laptop_mode():
+def set_display_off_with_filter(filter=[]):
+    # Only keep the screens that are in the filter
     store_layout()
     command = ["xrandr", "--output", "eDP-1", "--mode", "1920x1200", "--pos", "0x0", "--primary", "--rotate", "normal"]
     subprocess.run(command)
     active_monitors = get_active_monitors()
-    for line in active_monitors:
-        content = line.split()
-        monitor = content[0]
-        if monitor == "eDP-1":
+    for monitor in active_monitors:
+        if monitor.name in filter:
             continue
-        command = ["xrandr", "--output", monitor, "--off"]
+        command = ["xrandr", "--output", monitor.name, "--off"]
         subprocess.run(command)
 
+def set_laptop_mode():
+    set_display_off_with_filter(["eDP-1"])
 
 def set_zero_mode():
-    active_monitors = get_active_monitors()
-    for line in active_monitors:
-        content = line.split()
-        monitor = content[0]
-        command = ["xrandr", "--output", monitor, "--off"]
-        subprocess.run(command)
-
+    set_display_off_with_filter([])
 
 def store_layout():
-    with open(MONITOR_FILE, "r") as f:
-        monitors = json.load(f)
+    monitors = load_layout()
 
     active_monitors = get_active_monitors()
 
     setup_info = {}
 
-    for line in active_monitors:
-        content = line.split()
-        monitor = content[0]
-        setup_info[monitor] = content[2:]
+    for monitor in active_monitors:
+        setup_info[monitor.identity] = monitor.mode
 
-    setup_name = get_setup_name(active_monitors)
+    setup_name = get_setup_name()
 
     monitors[setup_name] = setup_info
-
-    with open(MONITOR_FILE, "w") as f:
-        json.dump(monitors, f, indent=4, sort_keys=True)
+    save_layout(monitors)
 
 def restore_layout():
-    with open(MONITOR_FILE, "r") as f:
-        monitors = json.load(f)
+    monitors = load_layout()
 
-    active_monitors = get_active_monitors()
-    active_monitor_names = [line.split()[0] for line in active_monitors]
-
-    setup_name = get_setup_name(active_monitors)
+    setup_name = get_setup_name()
     if setup_name not in monitors:
         print("Setup {} not found in stored layout".format(setup_name))
         set_laptop_mode()
         return
 
     setup_info = monitors[setup_name]
+    active_monitors = get_active_monitors()
 
-    for monitor_name in active_monitor_names:
-        if monitor_name not in setup_info:
-            print("Monitor {} not found in stored layout".format(monitor_name))
+    for monitor in active_monitors:
+        if monitor.identity not in setup_info:
+            print("Monitor {} not found in stored layout".format(monitor.name))
             set_laptop_mode()
             return
         command = ["xrandr"]
-        monitor_mode = setup_info[monitor_name]
-        command += ["--output", monitor_name]
+        monitor_mode = setup_info[monitor.identity]
+        command += ["--output", monitor.name]
         idx = 0
         if monitor_mode[idx] == "primary":
             command += ["--primary"]

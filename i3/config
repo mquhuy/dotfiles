@@ -192,7 +192,7 @@ bindsym Mod1+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 # finds out, if available)
 bar {
         id bar-0
-        font pango:monospace 8, FontAwesome 8
+        font pango: FontAwesome 8, Noto Color Emoji 8
         #status_command i3status
         status_command i3blocks -c ~/.config/i3/i3blocks/primary.conf
         # Dracula theme
