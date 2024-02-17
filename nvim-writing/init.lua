@@ -131,9 +131,9 @@ vim.keymap.set({ 'n' }, 'tx', function()
   vim.cmd('tabclose')
 end, { silent = true, noremap = true, desc = '[T]ab [x]Close' })
 
-vim.keymap.set({ 'n' }, '<C-s>', function()
+vim.keymap.set({ 'n' }, '<Leader>fs', function()
   vim.cmd(':w')
-end, { silent = false, noremap = true, desc = '[S]ave' })
+end, { silent = false, noremap = true, desc = '[F]ile [S]ave' })
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`

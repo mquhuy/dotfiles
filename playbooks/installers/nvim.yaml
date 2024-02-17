@@ -1,0 +1,42 @@
+- name: GitHub Cli install
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: neovim
+        repo: neovim
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Create $HOME/Programs/nvim directory
+      ansible.builtin.file:
+        path: /home/{{ ansible_user_id }}/Programs/nvim
+        state: directory
+        mode: '0755'
+
+    - name: Download Binary
+      ansible.builtin.unarchive:
+        src: https://github.com/neovim/neovim/releases/download/{{ release.tag }}/nvim-linux64.tar.gz
+        dest: /home/{{ ansible_user_id }}/Programs/nvim
+        remote_src: true
+
+    - name: Chmod binary
+      ansible.builtin.file:
+        path: /home/{{ ansible_user_id }}/Programs/nvim/bin/nvim
+        mode: '0777'
+
+    - name: Install Binary
+      ansible.builtin.file:
+        src: /home/{{ ansible_user_id }}/Programs/nvim/bin/nvim
+        dest: "/usr/local/bin/nvim"
+        state: link
+      become: true
