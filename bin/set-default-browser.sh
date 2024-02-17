@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-REPO_ROOT=$(realpath "$(dirname $0)/..")
+REPO_ROOT=$(realpath "$(dirname $(readlink -f $0))/..")
 browser_dirs="${REPO_ROOT}/desktop/browsers"
 chosen_browser=$(ls -1 ${browser_dirs} | fzf)
 desktop_loc="${HOME}/.local/share/applications"

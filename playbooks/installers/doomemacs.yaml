@@ -1,0 +1,23 @@
+- name: Install Emacs
+  hosts: all
+
+  tasks:
+  - name: Install Emacs
+    ansible.builtin.apt:
+      pkg:
+        - emacs
+    become: true
+  
+  - name: Clone doom
+    ansible.builtin.git:
+      repo: https://github.com/hlissner/doom-emacs
+      dest: /home/{{ ansible_user_id }}/.emacs.d
+      depth: 1
+
+  - name: Run doom install
+    shell: |
+        /home/{{ ansible_user_id }}/.emacs.d/bin/doom install
+
+  - name: Run doom sync
+    shell: |
+        /home/{{ ansible_user_id }}/.emacs.d/bin/doom sync

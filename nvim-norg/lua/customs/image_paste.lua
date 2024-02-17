@@ -7,17 +7,12 @@ function count_files(regex)
 end
 
 function image_paste()
-  current_file = vim.fn.expand('%:t')
-  if current_file == '' then
+  filename = vim.fn.expand('%:t:r')
+  if filename == '' then
     print('No file name')
     return
   end
-  local directory, filename = string.match(current_file, "(.-)([^\\/]-%.?[^%.\\/]*)$")
-  filename, _ = string.match(filename, "(.+)%.(.+)$")
   local image_directory = 'images'
-  if directory ~= '' then
-    image_directory = directory .. '/' .. image_directory
-  end
   local exists = os.execute("cd " .. image_directory)
   if exists == nil or exists == false then
       os.execute("mkdir -p " .. image_directory)
