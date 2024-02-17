@@ -1,0 +1,18 @@
+- name: Install OBS-studio
+  hosts: all
+
+  tasks:
+  # One way to avoid apt_key once it is removed from your distro, armored keys should use .asc extension, binary should use .gpg
+  - name: Apt source
+    ansible.builtin.apt_repository:
+      repo: ppa:obsproject/obs-studio
+      state: present
+    become: true
+
+  - name: Install OBS Studio
+    ansible.builtin.apt:
+      pkg:
+      - ffmpeg
+      - obs-studio
+      update_cache: true
+    become: true
