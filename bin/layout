@@ -1,0 +1,24 @@
+#!/bin/bash
+
+layout=$(setxkbmap -query | awk -F ":" '/layout/ {print $2}' | tr -d " ")
+
+get_state() {
+    setxkbmap -query | awk -F ":" '/layout/ {print $2}' | tr -d " "
+}
+
+toggle() {
+    if [ "${layout}" = "us" ]; then
+        setxkbmap se
+    else
+        setxkbmap us
+    fi
+}
+
+if [[ ${BLOCK_BUTTON:-} = 1 ]]; then
+    toggle
+    pkill -SIGRTMIN+15 i3blocks
+    get_state
+else
+    get_state
+fi
+

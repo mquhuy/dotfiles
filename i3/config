@@ -32,8 +32,8 @@ set $left h
 set $right l
 # set $right semicolon
 
-# use Mouse+Mod1 to drag floating windows to their wanted position
-floating_modifier Mod1
+# use Mouse+Mod4 to drag floating windows to their wanted position
+floating_modifier Mod4
 
 # Dracula theme colors
 # class                 border  bground text    indicator child_border
@@ -47,28 +47,25 @@ client.background       #F8F8F2
 # End of Dracula theme colors
 #
 # start a terminal
-# bindsym Mod1+Return exec gnome-terminal
-# bindsym Mod4+Return exec gnome-terminal --profile SSH
-bindsym Mod1+Return exec kitty
-# bindsym Mod4+Return exec gnome-terminal --profile SSH
+bindsym Mod4+Return exec kitty
 
 # kill focused window
-bindsym Mod1+Shift+c kill
+bindsym Mod4+Shift+q kill
 
 # start rofi dmenu (a program launcher)
-bindsym Mod1+p exec rofi -show run -theme slate -show-icons
-bindsym Mod1+d exec rofi -show drun -show-icons
-bindsym Mod1+Shift+w exec rofi -show window -show-icons
+bindsym Mod4+p exec rofi -show run -theme slate -show-icons
+bindsym Mod4+d exec rofi -show drun -show-icons
+bindsym Mod4+Shift+w exec rofi -show window -show-icons
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym Mod1+$left focus left
-bindsym Mod1+$down focus down
-bindsym Mod1+$up focus up
-bindsym Mod1+$right focus right
+bindsym Mod4+$left focus left
+bindsym Mod4+$down focus down
+bindsym Mod4+$up focus up
+bindsym Mod4+$right focus right
 
 # Mouse bindings
 bindsym button9 exec 'xclip -select clipboard -o'
@@ -81,16 +78,16 @@ bindsym button8 exec 'xclip -o | xclip -select clipboard -i'
 #bindsym Mod1+Right focus right
 
 # move focused window
-bindsym Mod1+Shift+$left move left
-bindsym Mod1+Shift+$down move down
-bindsym Mod1+Shift+$up move up
-bindsym Mod1+Shift+$right move right
+bindsym Mod4+Shift+$left move left
+bindsym Mod4+Shift+$down move down
+bindsym Mod4+Shift+$up move up
+bindsym Mod4+Shift+$right move right
 
 # Resize windows
-bindsym Mod4+$left       resize shrink width 15 px or 15 ppt
-bindsym Mod4+$down       resize grow height 15 px or 15 ppt
-bindsym Mod4+$up         resize shrink height 15 px or 15 ppt
-bindsym Mod4+$right      resize grow width 15 px or 15 ppt
+bindsym Shift+Control+Mod4+$left       resize shrink width 15 px or 15 ppt
+bindsym Shift+Control+Mod4+$down       resize grow height 15 px or 15 ppt
+bindsym Shift+Control+Mod4+$up         resize shrink height 15 px or 15 ppt
+bindsym Shift+Control+Mod4+$right      resize grow width 15 px or 15 ppt
 
 # alternatively, you can use the cursor keys:
 #bindsym Mod1+Shift+Left move left
@@ -99,47 +96,37 @@ bindsym Mod4+$right      resize grow width 15 px or 15 ppt
 #bindsym Mod1+Shift+Right move right
 
 # split in horizontal orientation
-bindsym Mod1+c split h
+bindsym Mod4+c split h
 
 # split in vertical orientation
-bindsym Mod1+v split v
+bindsym Mod4+v split v
 
 # enter fullscreen mode for the focused container
-bindsym Mod1+f fullscreen toggle
+bindsym Mod4+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym Mod1+s layout stacking
-bindsym Mod1+w layout tabbed
-bindsym Mod1+e layout toggle split
+bindsym Mod4+s layout stacking
+bindsym Mod4+w layout tabbed
+bindsym Mod4+e layout toggle split
 
 # toggle tiling / floating
-bindsym Mod1+Shift+space floating toggle
+bindsym Mod4+Shift+space floating toggle
 
 # Sticky
-bindsym Mod4+Shift+space sticky toggle
-
-# change focus between tiling / floating windows
-bindsym Mod1+space focus mode_toggle
+# bindsym Mod4+Shift+space sticky toggle
 
 # focus the parent container
-bindsym Mod1+a focus parent
+bindsym Mod4+a focus parent
 
 # focus the child container
-bindsym Mod1+z focus child
-
-# move the currently focused window to the scratchpad
-bindsym Mod1+Shift+minus exec scratchpad-manager.sh add
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym Mod1+minus exec scratchpad-manager.sh query
+bindsym Mod4+z focus child
 
 # reload the configuration file
-bindsym Mod1+Shift+q exec "i3 reload && set_gap.sh"
+# bindsym Mod4+Shift+q exec "i3 reload && set_gap.sh"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym Mod1+Shift+r exec "i3 restart && set_gap.sh"
+bindsym Mod4+Shift+r exec "i3 restart && set_gap.sh"
 # exit i3 (logs you out of your X session)
-bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 include ~/.config/i3/ws.conf
 # Auto back and forth
@@ -147,7 +134,7 @@ workspace_auto_back_and_forth yes
 
 # Rename
 # bindsym Mod1+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
-bindsym Mod1+n exec renameWs
+bindsym Mod4+r exec renameWs
 
 
 # resize window (you can also use the mouse for that)
@@ -174,19 +161,19 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym Mod1+r mode "resize"
+bindsym Control+Mod4+r mode "resize"
 exec --no-startup-id set_gap.sh
 exec --no-startup-id "setxkbmap -option caps:escape"
 exec --no-startup-id blueman-applet
 
-bindsym Control+Mod4+l exec i3lock -i ~/Pictures/lock.png -t -p win -u
+# bindsym Control+Mod4+l exec i3lock -i ~/Pictures/lock.png -t -p win -u
 
 # Marks
 # read 1 character and mark the current window with this character
-bindsym Mod1+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+# bindsym Mod1+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 
 # read 1 character and go to the window with the character
-bindsym Mod1+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+# bindsym Mod1+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -251,27 +238,19 @@ no_focus [title="^Peek preview$"]
 bindsym Mod4+Control+p exec touchpad-toggler.sh
 
 # move current workspace between monitors
-bindsym Mod1+Control+h move workspace to output left
-bindsym Mod1+Control+j move workspace to output down
-bindsym Mod1+Control+k move workspace to output up
-bindsym Mod1+Control+l move workspace to output right
-
-bindsym Mod4+v exec "xclip -o"
-bindsym Control+Mod4+c exec "~/.local/bin/clipboard_manager.sh add"
+bindsym Mod4+Control+h move workspace to output left
+bindsym Mod4+Control+j move workspace to output down
+bindsym Mod4+Control+k move workspace to output up
+bindsym Mod4+Control+l move workspace to output right
 
 bindsym Mod4+b exec bookmarks.sh
-bindsym Mod4+m exec youtube_play.sh
 
-bindsym Mod4+Control+e exec dmenuemoji.sh
-bindsym Mod4+Control+r exec autoxrandr
-bindsym Mod4+w exec movewiki.sh
-bindsym Mod4+t exec move-to-window.sh "Microsoft Teams - Preview"
-exec_always init.sh
+# bindsym Mod4+Control+e exec dmenuemoji.sh
 
 exec --no-startup-id nm-applet
 exec --no-startup-id touchpad-toggler.sh
 exec --no-startup-id ibus-daemon
-exec --no-startup-id autoxrandr
+# exec --no-startup-id autoxrandr
 exec --no-startup-id ~/.fehbg
 
 # Conference Mode
@@ -284,7 +263,7 @@ mode "$mode_conference" {
     bindsym Return  mode "default"
     bindsym Escape  mode "default"
 }
-bindsym Mod1+Control+Mod4+space mode "$mode_conference"
+# bindsym Mod1+Control+Mod4+space mode "$mode_conference"
 
 # Gaps
 # Only enable gaps on a workspace when there is at least one container
@@ -418,7 +397,7 @@ bindsym Control+Shift+1 exec "player toggle"
 bindsym Mod4+Shift+s exec "windowshoot.sh"
 
 # Calendar generation
-bindsym Control+Shift+z exec "generate_calendar.sh"
+# bindsym Control+Shift+z exec "generate_calendar.sh"
 
 # Mute microphone
 bindsym Control+Mod4+m exec "mic toggle"
@@ -434,15 +413,15 @@ bindsym Control+Mod4+t exec "BLOCK_BUTTON=1 time_track.sh"
 bindsym Mod4+space exec "BLOCK_BUTTON=1 layout"
 
 # Go pkgs
-bindsym Mod4+g exec "gopkg.sh"
+# bindsym Mod4+g exec "gopkg.sh"
 
 # Delete key
 bindsym Control+Mod4+BackSpace exec "xdotool key Delete"
 
-bindsym Mod4+f exec "firefox"
+# bindsym Mod4+f exec "firefox"
 bindsym Mod4+n exec "nordix_choose.sh"
 
 bindsym Control+grave exec "dunstctl history-pop"
 bindsym Control+Shift+grave exec "dunstctl close-all"
 
-bindsym Control+Shift+f exec ~/.screenlayout/2-screen.sh
+# bindsym Control+Shift+f exec ~/.screenlayout/2-screen.sh
