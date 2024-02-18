@@ -13,6 +13,7 @@
       ansible.builtin.apt:
         pkg:
         - nasm
+        - pkg-config
         update_cache: yes
       become: true
 
@@ -23,7 +24,13 @@
 
     - name: Configure ffmpeg
       shell: |
-        cd /tmp/ffmpeg && ./configure && make
+        cd /tmp/ffmpeg && ./configure
+      become: true
+
+    - name: Compile ffmpeg
+      shell: |
+        cd /tmp/ffmpeg && make
+      become: true
 
     - name: Install ffmpeg
       shell: |
