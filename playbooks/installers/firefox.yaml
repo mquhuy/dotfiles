@@ -1,0 +1,25 @@
+- name: Install firefox
+  hosts: all
+
+  tasks:
+  - name: Add firefox channel
+    block:
+    - name: Firefox repo
+      ansible.builtin.get_url:
+        url: https://packages.mozilla.org/apt/repo-signing-key.gpg
+        dest: /etc/apt/keyrings/packages.mozilla.org.asc
+        # checksum: sha256:35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3
+      become: true
+
+    - name: Apt source
+      ansible.builtin.apt_repository:
+        repo: deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main
+        state: present
+      become: true
+
+  - name: Install Brave
+    ansible.builtin.apt:
+      pkg:
+      - firefox
+      update_cache: true
+    become: true

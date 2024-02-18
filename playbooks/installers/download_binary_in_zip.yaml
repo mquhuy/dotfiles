@@ -1,0 +1,33 @@
+- name: Find correct architecture
+  set_fact:
+    download_url: "{{ download_version | json_query(jmesquery) }}"
+  vars:
+    jmesquery: '{{binary}}[? platform==`linux64`].url'
+
+- name: Display download url
+  debug:
+    msg: "{{ download_url }}"
+
+- name: Remove directories
+  ansible.builtin.file:
+    path: /home/{{ ansible_user_id }}/Programs/{{ item }}-linux64
+    state: absent
+
+- name: Unzip binary
+  ansible.builtin.unarchive:
+    src: "{{ download_url[0] }}"
+    dest: /home/{{ ansible_user_id }}/Programs
+    remote_src: true
+
+- name: Remove symlink
+  ansible.builtin.file:
+    path: /usr/bin/{{ item }}
+    state: absent
+  become: true
+
+- name: Create symlink
+  ansible.builtin.file:
+    src: /home/{{ ansible_user_id }}/Programs/{{ item }}-linux64/{{ item }}
+    dest: /usr/bin/{{ item }}
+    state: link
+  become: true

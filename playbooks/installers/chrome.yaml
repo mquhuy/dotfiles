@@ -1,0 +1,86 @@
+# This playbook installs latest version that has both chrome and chromedriver
+- name: Install Chrome and ChromeDriver
+  hosts: all
+
+  tasks:
+    - name: Chrome key
+      ansible.builtin.apt_key:
+        url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+        state: present
+      become: true
+
+    - name: Apt source
+      ansible.builtin.apt_repository:
+        repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+        state: present
+      become: true
+
+    - name: Install chrome
+      ansible.builtin.apt:
+        pkg:
+        - google-chrome-stable
+        update_cache: true
+      become: true
+
+    - name: Get Chrome version
+      shell: google-chrome-stable --version | sed 's/Google Chrome //g'
+      register: chrome_version
+
+    - name: Remove directories
+      ansible.builtin.file:
+        path: /home/{{ ansible_user_id }}/Programs/chromedriver-linux64
+        state: absent
+
+    - name: Unzip binary
+      ansible.builtin.unarchive:
+        src: "{{ download_url[0] }}"
+        src: https://storage.googleapis.com/chrome-for-testing-public/{{ chrome_version.stdout | trim }}/linux64/chromedriver-linux64.zip
+        dest: /home/{{ ansible_user_id }}/Programs
+        remote_src: true
+
+    - name: Remove symlink
+      ansible.builtin.file:
+        path: /usr/bin/chromedriver
+        state: absent
+      become: true
+
+    - name: Create symlink
+      ansible.builtin.file:
+        src: /home/{{ ansible_user_id }}/Programs/chromedriver-linux64/chromedriver
+        dest: /usr/bin/chromedriver
+        state: link
+      become: true
+
+    # - name: Get versions data
+    #   ansible.builtin.get_url:
+    #     url: https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json
+    #     dest: /tmp/chromeversions.json
+    #
+    # - name: Display the JSON file content
+    #   shell: cat /tmp/chromeversions.json
+    #   register: result
+    #
+    # - name: Save json data to a Variable
+    #   set_fact:
+    #     jsondata: "{{ result.stdout | from_json | json_query(jmesquery)}}"
+    #   vars:
+    #     jmesquery: 'versions[? version=={{ chrome_version }}]'
+
+    # - name: Filter data
+    #   set_fact:
+    #     filtered_data: "{{ jsondata | json_query(jmesquery) }}"
+    #   vars:
+    #     jmesquery: '[? chromedriver!=null]'
+    #
+    # - name: Get download version
+    #   set_fact:
+    #     download_version: "{{ filtered_data[-1] }}"
+    #
+    # - name: Display the data
+    #   debug:
+    #     msg: "{{ jsondata }}"
+
+    # - include: download_binary_in_zip.yaml binary={{item}} download_version={{download_version}}
+    #   with_items:
+    #     - chrome
+    #     - chromedriver
