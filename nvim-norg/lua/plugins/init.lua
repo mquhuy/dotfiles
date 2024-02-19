@@ -3,7 +3,7 @@ return {
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
 
   -- Nvim tree
-  "nvim-tree/nvim-tree.lua",
+  -- "nvim-tree/nvim-tree.lua",
   -- Image preview
   "3rd/image.nvim",
 }

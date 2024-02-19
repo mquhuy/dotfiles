@@ -27,6 +27,6 @@ return {
   },
   keys = {
     -- suggested keymap
-    { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste clipboard image" },
+    { "<leader>pi", "<cmd>PasteImage<cr>", desc = "Paste clipboard image" },
   },
 }

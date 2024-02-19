@@ -227,7 +227,7 @@ bindsym XF86AudioMute exec "BLOCK_BUTTON=2 sink_info.sh"
 exec --no-startup-id $bindir/scratchpad-manager.sh init
 
 # No title bar
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 1
 
 # Teams notification floating and move to current workspace
 for_window [title=".*Teams Notification"] floating enable, move container to workspace current
