@@ -40,9 +40,9 @@ map('v', 'Y', '"+y')
 require('lazy').setup('plugins')
 
 -- empty setup nvim-tree using defaults
-require("nvim-tree").setup()
+-- require("nvim-tree").setup()
 
-vim.g.nvim_tree_respect_buf_cwd = 1,
+-- vim.g.nvim_tree_respect_buf_cwd = 1,
 
 -- Keymap
 vim.keymap.set({ 'n' }, '<Leader>ft', function()
@@ -138,33 +138,6 @@ end, { silent = false, noremap = true, desc = '[F]ile [S]ave' })
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 --
-local highlight = {
-  "RainbowRed",
-  "RainbowYellow",
-  "RainbowBlue",
-  "RainbowOrange",
-  "RainbowGreen",
-  "RainbowViolet",
-  "RainbowCyan",
-}
-
-local hooks = require "ibl.hooks"
-
--- create the highlight groups in the highlight setup hook, so they are reset
--- every time the colorscheme changes
-hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-  vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-  vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-  vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-  vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-  vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-  vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-  vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-end)
-
-require('ibl').setup { indent = { highlight = highlight } }
-
-
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
@@ -195,6 +168,5 @@ vim.keymap.set("n", "<leader>n", function()
   require("monorepo").toggle_project()
 end)
 
-vim.opt.conceallevel = 1
 vim.api.nvim_set_keymap("n", "<leader>pc", '"+p', {noremap = true})
 vim.api.nvim_set_keymap("v", "<leader>y", '"+y', {noremap = true})

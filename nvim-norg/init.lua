@@ -179,6 +179,7 @@ require('customs.init')
 
 vim.opt.conceallevel = 1
 vim.api.nvim_set_keymap("n", "<leader>pc", '"+p', {noremap = true})
+vim.api.nvim_set_keymap("v", "<leader>y", '"+y', {noremap = true})
 
 if not vim.g.neovide then
 -- Example for configuring Neovim to load user-installed installed Lua rocks:

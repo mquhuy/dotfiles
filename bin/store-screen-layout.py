@@ -109,3 +109,6 @@ if __name__ == "__main__":
         restore_layout()
     elif sys.argv[1] == "laptop":
         set_laptop_mode()
+    elif sys.argv[1] == "off":
+        store_layout()
+        set_zero_mode()

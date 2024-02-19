@@ -5,7 +5,7 @@ alias seali="source $RCFILE"
 alias v="OPENAI_API_KEY=${OPENAI_API_KEY} nvim"
 alias wiki="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-writing nvim"
 alias norg="cd ~/Nextcloud/norg && NVIM_APPNAME=nvim-norg nvim"
-alias wikio="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-norg nvim"
+alias wikio="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-md nvim"
 alias opd="cd ~/Repos/openstack"
 
 # i3 config
@@ -18,7 +18,14 @@ alias i3autoxrand="nvim ~/.config/i3/autoxrandr"
 alias vinit="nvim ~/.config/nvim/init.lua"
 
 # tmux config
+alias t="tmux"
 alias tconf="nvim ~/.tmux.conf"
+
+# Random
+alias watch="watch "
+alias r="ranger"
+alias k="kubectl"
+alias h="helm"
 
 # Git
 alias g="git"
@@ -39,10 +46,6 @@ alias gpush="git push"
 glist() { git diff-tree --no-commit-id --name-only -r "$1"; }
 alias glisth="glist HEAD"
 #gwta() { git worktree add ../"$1" -b "$1"; }
-alias k="kubectl"
-alias h="helm"
-# alias hdl="helm delete --purge"
-# alias h3="helm3"
 
 # find
 alias fin="find -name"
