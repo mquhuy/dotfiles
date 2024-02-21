@@ -47,7 +47,7 @@ client.background       #F8F8F2
 # End of Dracula theme colors
 #
 # start a terminal
-bindsym Mod4+Return exec kitty
+bindsym Mod4+Return exec kitty tmux
 
 # kill focused window
 bindsym Mod4+q kill
