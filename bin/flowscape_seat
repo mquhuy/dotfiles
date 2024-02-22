@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kolmenakkia --app=https://internal.flowscape.ericsson.net/webapp/

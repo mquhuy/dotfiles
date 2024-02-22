@@ -1,0 +1,3 @@
+#!/bin/bash
+
+microsoft-edge-stable --user-data-dir=~/.local/profiles/kolmenakkia $1

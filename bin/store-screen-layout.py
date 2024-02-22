@@ -42,8 +42,8 @@ def get_setup_name():
 def set_display_off_with_filter(filter=[]):
     # Only keep the screens that are in the filter
     store_layout()
-    command = ["xrandr", "--output", "eDP-1", "--mode", "1920x1200", "--pos", "0x0", "--primary", "--rotate", "normal"]
-    subprocess.run(command)
+    # command = ["xrandr", "--output", "eDP-1", "--mode", "1920x1200", "--pos", "0x0", "--primary", "--rotate", "normal"]
+    # subprocess.run(command)
     active_monitors = get_active_monitors()
     for monitor in active_monitors:
         if monitor.name in filter:

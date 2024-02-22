@@ -14,10 +14,12 @@ function get_noti_count() {
 
 case ${BLOCK_BUTTON:-} in
     1)
-      microsoft-edge-stable --app="https://github.com/notifications"
+      ghnotis
+      get_noti_count
       ;;
     2)
-      microsoft-edge-stable --app="https://github.com/notifications"
+      ghnotis
+      get_noti_count
       ;;
     *)
       get_noti_count

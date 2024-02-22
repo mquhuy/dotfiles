@@ -1,0 +1,2 @@
+#!/bin/bash
+microsoft-edge-stable --app="https://www.bing.com/search?toncp=0&FORM=hpcodx&q=Bing+AI&showconv=1"
