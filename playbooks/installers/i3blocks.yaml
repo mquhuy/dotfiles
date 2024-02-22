@@ -1,0 +1,30 @@
+- name: Install i3blocks from source
+  hosts: all
+
+  tasks:
+    - name: Remove apt package
+      ansible.builtin.apt:
+        pkg:
+        - i3blocks
+        state: absent
+      become: true
+
+    - name: Clone repo
+      ansible.builtin.git:
+        repo: https://github.com/vivien/i3blocks
+        dest: /tmp/i3blocks
+
+    - name: Configure i3blocks
+      shell: |
+        cd /tmp/i3blocks && ./autogen.sh && ./configure
+      become: true
+
+    - name: Compile
+      shell: |
+        cd /tmp/i3blocks && make
+      become: true
+
+    - name: Install i3blocks
+      shell: |
+        cd /tmp/i3blocks && make install
+      become: true

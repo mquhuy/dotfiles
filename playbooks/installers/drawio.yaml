@@ -1,0 +1,29 @@
+- name: GitHub Cli install
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: jgraph
+        repo: drawio-desktop
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download Binary
+      ansible.builtin.get_url:
+        url: https://github.com/jgraph/drawio-desktop/releases/download/{{ release.tag }}/drawio-amd64-{{ release.tag | regex_search('([0-9]|\.)+') }}.deb
+        dest: /tmp/drawio.deb
+
+    - name: Install Binary
+      delegate_to: app1
+      apt:
+        deb: /tmp/drawio.deb
+      become: true

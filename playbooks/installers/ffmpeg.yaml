@@ -14,7 +14,37 @@
         pkg:
         - nasm
         - pkg-config
+        - libavcodec-extra58
+        - libfdk-aac-dev 
+        - libass-dev 
+        - libopus-dev
+        - libtheora-dev 
+        - libvorbis-dev 
+        - libvpx-dev 
+        - libssl-dev
+        - libmp3lame-dev
+        - libavdevice-dev
         update_cache: yes
+      become: true
+
+    - name: Clone x264
+      ansible.builtin.git:
+        repo: https://code.videolan.org/videolan/x264.git
+        dest: /tmp/x264
+
+    - name: Configure x264
+      shell: |
+        cd /tmp/x264 && ./configure --enable-static --enable-shared
+      become: true
+
+    - name: Compile x264
+      shell: |
+        cd /tmp/x264 && make -j $(nproc)
+      become: true
+
+    - name: Install x264
+      shell: |
+        cd /tmp/x264 && make install
       become: true
 
     - name: Clone ffmpeg
@@ -24,15 +54,16 @@
 
     - name: Configure ffmpeg
       shell: |
-        cd /tmp/ffmpeg && ./configure
+        cd /tmp/ffmpeg && ./configure --enable-gpl --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-shared --enable-openssl   
       become: true
 
     - name: Compile ffmpeg
       shell: |
-        cd /tmp/ffmpeg && make
+        cd /tmp/ffmpeg && make -j $(nproc)
       become: true
 
     - name: Install ffmpeg
       shell: |
         cd /tmp/ffmpeg && make install
       become: true
+
