@@ -44,12 +44,8 @@ require('lazy').setup('plugins')
 
 -- vim.g.nvim_tree_respect_buf_cwd = 1,
 
+
 -- Keymap
-vim.keymap.set({ 'n' }, '<Leader>ft', function()
-  vim.cmd('NvimTreeToggle')
-end, { silent = true, noremap = true, desc = 'Run [G]ithub [Source]' })
-
-
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
@@ -60,7 +56,6 @@ vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.statuscolumn = "%l  %r"
-
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
