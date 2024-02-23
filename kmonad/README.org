@@ -1,6 +1,6 @@
 #+TITLE: My basic Kmonad layout
 #+AUTHOR: Huy Mai
-#+PROPERTY: header-args :tangle basic.kbd
+#+PROPERTY: header-args :tangle config.kbd
 #+auto_tangle: T
 #+STARTUP: showeverything
 
@@ -21,7 +21,7 @@ KMonad catches input events and tries to match them to various handlers. If it c
 
 If this is set to `false`, any action that runs a shell-command will simply log to `stdout` without ever running (log-level info). Don't ever enable this on a configuration that you do not trust, because:
 
-(cmd-button "rm -rf ~/*")
+(Cmd-button "rm -rf ~/*")
 
 is a thing. For more information on the `cmd-button' function, see the
 section on Command buttons below.
@@ -447,6 +447,7 @@ To use `layer-add` and `layer-rem` well, you should take a moment to think about
 * Optional: Multi-use buttons
 
 Perhaps one of the most useful features of KMonad, where a lot of work has gone into, but also an area with many buttons that are ever so slightly different. The naming and structuring of these buttons might change sometime soon, but for now, this is what there is.
+
 
 For the next section being able to talk about examples is going to be handy, so consider the following scenario and mini-language that will be the same between scenarios:
 

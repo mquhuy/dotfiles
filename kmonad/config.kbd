@@ -25,8 +25,6 @@
   lctl lmet lalt           spc            ralt menu rctl  rctl)
 
 (defalias
-  ;; num  (layer-toggle numbers) ;; Bind num to a button that switches to a layer
-  ;; kil  C-A-del                ;; Bind kil to a button that Ctrl-Alt-deletes
   fn   (tap-next esc (layer-toggle fn))      ;; Bind fn to a button that switches to fn layer
   kU KeyUp
   kD KeyDown
