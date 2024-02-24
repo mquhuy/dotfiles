@@ -52,12 +52,14 @@ There are also some optional OS specific settings that we support:
 #+end_src
 
 Here we need to have the exact id of the keyboard. I, in fact, intend to use similar layout for all of my keyboards, but currently there's no way that I know of to have a one fits all config
-#+begin_src lua
-  input  (device-file "/dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-event-kbd")
-#+end_src
 
-Other keyboards:
-  input  (device-file "/dev/input/by-id/usb-OBINS_OBINS_AnnePro2_SN0000000001-event-kbd")
+#+begin_src lua
+;;input  (device-file "/dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-event-kbd")
+;;Other keyboards:
+;;input  (device-file "/dev/input/by-id/usb-OBINS_OBINS_AnnePro2_SN0000000001-event-kbd")
+;;laptop keyboard
+input (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+#+end_src
 
 #+begin_src lua
   output (uinput-sink "Basic KMonad output"
@@ -157,12 +159,18 @@ Finally, it is important to note that the *first* `deflayer` statement in a KMon
 )
 #+end_src
 
+#+begin_src lua
+(defalias
+ ma (layer-switch fn)
+ mq (layer-switch default)
+#+end_src
+
 In `fn` mode,
 #+begin_src lua
 (deflayer fn
   grv  F1   F2   F3   F4   F5   F6   F7   F8   F9   F10  F11  F12  bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  esc  a    s    d    f    g    @kL  @kD  @kU  @kR  ;    '    ret
+  tab  @mq  w    e    r    t    y    u    i    o    p    [    ]    \
+  esc  @ma  s    d    f    g    @kL  @kD  @kU  @kR  ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    @kU
   lctl lmet lalt           spc            ralt @kL @kD @kR
 )
@@ -444,6 +452,7 @@ To use `layer-add` and `layer-rem` well, you should take a moment to think about
   rem (layer-rem multi-overlay) ;; section below this
 )
 
+
 * Optional: Multi-use buttons
 
 Perhaps one of the most useful features of KMonad, where a lot of work has gone into, but also an area with many buttons that are ever so slightly different. The naming and structuring of these buttons might change sometime soon, but for now, this is what there is.
@@ -579,9 +588,6 @@ For the next section being able to talk about examples is going to be handy, so 
   complicated, probably is the most comfortable to use. But I've put all of them
   in a testing layer down below, so give them a go and see what is nice.
 
-  -------------------------------------------------------------------------- |#
-
-
 (defalias
   xtn (tap-next x lsft)         ;; Shift that does 'x' on tap
   xth (tap-hold 400 x lsft)     ;; Long delay for easier testing
@@ -604,8 +610,7 @@ For the next section being able to talk about examples is going to be handy, so 
 )
 
 
-#| --------------------------------------------------------------------------
-                              Optional: Multi-tap
+* Optional: Multi-tap
 
   Besides the tap-hold style buttons there is another multi-use button (with.
   only 1 variant, at the moment). The `multi-tap`.
@@ -627,8 +632,7 @@ For the next section being able to talk about examples is going to be handy, so 
   mt  (multi-tap 300 a 300 b 300 c 300 d e))
 
 
-#| --------------------------------------------------------------------------
-                              Optional: Around-next
+* Optional: Around-next
 
   The `around-next` function creates a button that primes KMonad to perform the
   next button-press inside some context. This could be the context of 'having
@@ -662,8 +666,7 @@ For the next section being able to talk about examples is going to be handy, so 
   @ntm _    _              _              _    _    _    _
 )
 
-#| --------------------------------------------------------------------------
-                        Optional: Compose-key sequences
+* Optional: Compose-key sequences
 
   Compose-key sequences are series of button-presses that your operating system
   will interpret as the insertion of a special character, like accented
@@ -715,8 +718,7 @@ For the next section being able to talk about examples is going to be handy, so 
   _    _    _              _              _    _    _    _)
 
 
-#| --------------------------------------------------------------------------
-                        Optional: Command buttons
+* Optional: Command buttons
 
   Currently we also provide the ability to launch arbitrary shell-commands from
   inside KMonad. These commands are simply handed off to the command-shell
