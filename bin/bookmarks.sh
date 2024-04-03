@@ -6,10 +6,16 @@ if [[ -L $0 ]]; then
     __dir__=$(realpath $(dirname $(readlink -f $0)))
 fi
 source "${__dir__}/../bin_lib/fzf_lib.sh"
-link=$(fzf_choose $BOOKMARK_LIST "Bookmark")
-if [[ $link == "" ]]; then
+output=$(fzf_choose $BOOKMARK_LIST "Bookmark")
+if [[ $output == "" ]]; then
     exit 0
 fi
+link=$(echo $output | awk -F';' '{print $1}')
+browser=$(echo $output | awk -F';' '{print $2}')
+if [[ $browser == "" ]]; then
+    browser="microsoft-edge-stable"
+fi
 # firefox -P default-release $link
-microsoft-edge-stable $link
+# microsoft-edge-stable $link
+$browser $link
 #surf $link

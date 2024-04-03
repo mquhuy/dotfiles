@@ -1,0 +1,3 @@
+#!/bin/bash
+
+brave-browser --user-data-dir=~/.local/profiles/mquhuy $1

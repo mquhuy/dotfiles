@@ -26,5 +26,10 @@ fzf_choose() {
         return
     fi
     second_col=$(cat $LIST_FILE | head -n $chosen_idx | tail -n 1 | awk -F';' '{print $2}')
-    echo $second_col
+    third_col=$(cat $LIST_FILE | head -n $chosen_idx | tail -n 1 | awk -F';' '{print $3}')
+    if [[ ${third_col} == "" ]]; then
+        echo $second_col
+        return
+    fi
+    echo "${second_col};${third_col}"
 }

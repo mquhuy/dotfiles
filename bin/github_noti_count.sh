@@ -14,7 +14,7 @@ function get_noti_count() {
 
 case ${BLOCK_BUTTON:-} in
     1)
-      ghnotis
+      start-or-focus.sh ghnotis
       get_noti_count
       ;;
     2)

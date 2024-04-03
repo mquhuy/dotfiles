@@ -1,0 +1,35 @@
+- name: Install kitten
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: erebe
+        repo: greenclip
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download Binary
+      ansible.builtin.get_url:
+        url: https://github.com/erebe/greenclip/releases/download/{{ release.tag }}/greenclip
+        dest: /tmp/greenclip
+
+    - name: Install Binary
+      ansible.builtin.copy:
+        src: /tmp/greenclip
+        dest: /home/{{ ansible_user_id }}/.local/bin/
+        remote_src: true
+        mode: a+x
+
+    - name: Remove /tmp/greenclip
+      ansible.builtin.file:
+        path: /tmp/greenclip
+        state: absent

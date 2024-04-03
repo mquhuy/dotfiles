@@ -1,0 +1,2 @@
+#!/bin/bash
+kolmenakkia --app="https://outlook.office365.com/"

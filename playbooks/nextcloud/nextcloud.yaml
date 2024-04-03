@@ -1,14 +1,20 @@
----
 - name: install packages
-  hosts: localhost
+  hosts: all
   become: true
+  vars:
+    mysql_root_password: 'Abc123!@'
+    mysql_user: nextcloud
+    mysql_password: A1b2!@c3
+    admin_user: nextcloud_admin
+    oc_admin_user: oc_nextcloud_adm
+    admin_password: A1b2!@c3
   tasks:
   - name: Install localhost
     ansible.builtin.apt:
       pkg: 
         - software-properties-common
         - mysql-server
-        - php8.1 # Change 8.1 to whatever newest version is
+        - php8.1 # Change to whatever newest version is
         - php8.1-mysql
         - php8.1-curl
         - php8.1-gd
@@ -16,41 +22,93 @@
         - php8.1-dom 
         - php8.1-xmlwriter
         - php8.1-zip
+        - pkg-config
+        - python3-dev
+        - libmysqlclient-dev
       update_cache: yes
       cache_valid_time: 3600
     become: true
 
-  - name: Configure mysql
-    expect:
-      command: mysql_secure_installation
-      responses:
-        'Enter current password for root': ''
-        'Set root password': 'n'
-        'Remove anonymous users': 'y'
-        'Disallow root login remotely': 'y'
-        'Remove test database': 'y'
-        'Reload privilege tables now': 'y'
-      timeout: 1
-    register: secure_mariadb
-    failed_when: "'... Failed!' in secure_mariadb.stdout_lines"
+  - name: "Install mysqlclient package"
+    ansible.builtin.pip:
+      name: mysqlclient
 
-  - name: Create a new database with name 'nextcloud'
-    community.mysql.mysql_db:
-      name: nextcloud
-      state: present
-      login_unix_socket: /run/mysqld/mysqld.sock
+  - name: "Install pymysql package"
+    ansible.builtin.pip:
+      name: pymysql
 
-  - name: Create database user with name 'nextcloud' and password '12345' with all database privileges
-    community.mysql.mysql_user:
-      name: nextcloud
-      password: 12345
-      priv: '*.*:ALL'
-      state: present
-
-  - name: Unzip nextcloud
-    ansible.builtin.unarchive:
-      src: https://download.nextcloud.com/server/releases/latest.zip
-      dest: /var/www/
-      owner: www-data
-    become: true
-
+  # - name: Configure mysql
+  #   expect:
+  #     command: mysql_secure_installation
+  #     responses:
+  #       'Enter current password for root': ''
+  #       'Set root password': 'y'
+  #       'New password': "{{ mysql_root_password }}"
+  #       'Re-enter new password': "{{ mysql_root_password }}"
+  #       'Remove anonymous users': 'y'
+  #       'Do you wish to continue with the password provided?': 'y'
+  #       'Disallow root login remotely': 'n'
+  #       'Remove test database': 'y'
+  #       'Reload privilege tables now': 'y'
+  #     timeout: 1
+  #   register: secure_mariadb
+  #   failed_when: "'... Failed!' in secure_mariadb.stdout_lines"
+  # 
+  # - name: Start Mysql Service
+  #   service:
+  #     name: mysql
+  #     state: started
+  #     enabled: true
+  #
+  # - name: Create a new database with name 'nextcloud'
+  #   community.mysql.mysql_db:
+  #     name: nextcloud
+  #     state: present
+  #     login_unix_socket: /run/mysqld/mysqld.sock
+  # - name: Create database user with name and password with all database privileges
+  #   community.mysql.mysql_user:
+  #     name: "{{ mysql_user }}"
+  #     password: "{{ mysql_password }}"
+  #     priv: '*.*:ALL'
+  #     state: present
+  #     login_unix_socket: /run/mysqld/mysqld.sock
+  #   become: true
+  #
+  # - name: Create database user with name and password with all database privileges
+  #   community.mysql.mysql_user:
+  #     name: "{{ oc_admin_user }}"
+  #     password: "{{ admin_password }}"
+  #     priv: '*.*:ALL'
+  #     state: present
+  #     login_unix_socket: /run/mysqld/mysqld.sock
+  #   become: true
+  #
+  # - name: Unzip nextcloud
+  #   ansible.builtin.unarchive:
+  #     src: https://download.nextcloud.com/server/releases/latest.zip
+  #     dest: /var/www/
+  #     owner: www-data
+  #     remote_src: true
+  #     creates: /var/www/nextcloud
+  #   become: true
+  # #
+  # - name: Create nginx config
+  #   ansible.builtin.copy:
+  #     src: nextcloud.nginx
+  #     dest: /etc/nginx/sites-available/nextcloud
+  #     force: false
+  #   become: true
+  #
+  # - name: Create nginx symlink to sites-enabled
+  #   ansible.builtin.file:
+  #     src: /etc/nginx/sites-available/nextcloud
+  #     dest: /etc/nginx/sites-enabled/nextcloud
+  #     state: link
+  #
+  # - name: Install nextcloud
+  #   ansible.builtin.command:
+  #     cmd: php occ maintenance:install --database mysql --database-name nextcloud --database-user "{{ mysql_user }}" --database-pass "{{ mysql_password }}" --admin-user "{{ admin_user }}" --admin-pass "{{ admin_password }}"
+  #   args:
+  #     chdir: /var/www/nextcloud
+  #   become: true
+  #   become_user: www-data

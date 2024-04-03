@@ -1,2 +1,2 @@
 #!/bin/bash
-microsoft-edge-stable --app=http://web.telegram.org
+brave-browser-stable --app=http://web.telegram.org

@@ -29,7 +29,7 @@ metal3 1password;https://metal3-io.1password.com
 Nordix artifactory;https://artifactory.nordix.org/ui/
 Nordix gerrit;https://gerrit.nordix.org/dashboard/self
 Metal3 ESJ Sharepoint shared;https://estab.sharepoint.com/sites/ESTFinland-ESJ/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=JDykBX&cid=941fd9ae%2D0798%2D4ffc%2Da26b%2Dee42c5bffc62&RootFolder=%2Fsites%2FESTFinland%2DESJ%2FShared%20Documents%2FPresentations&FolderCTID=0x012000FEA47FE87FE1AA48A6E9220FA855789D
-SuccessFactor Learning courses ericsson degreed;https://ericsson.plateau.com/learning/user/nativelogin.do
+SuccessFactor Learning courses ericsson degreed;https://performancemanager12.successfactors.eu/sf/liveprofile;kolmenakkia
 LinuxFoundation LF learning courses;https://trainingportal.linuxfoundation.org/learn/dashboard
 Note hackmd Markdown;https://hackmd.io/?nav=collab#all
 Flowscape booking seat office jorvas;https://internal.flowscape.ericsson.net/webapp/
@@ -47,7 +47,7 @@ esj cop excel;https://estab.sharepoint.com/:x:/r/sites/ESTFinland-ESJ/_layouts/1
 esj cop recordings;https://estab.sharepoint.com/sites/ESTFinland-ESJ/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=RUc1BA&OR=Teams%2DHL&CT=1705909738744&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIxNDE1LzIzMTEzMDI2MjAyIiwiSGFzRmVkZXJhdGVkVXNlciI6ZmFsc2V9&cid=7d550dc9%2D57a0%2D4a53%2D957a%2Dc931748a5f6e&FolderCTID=0x012000FEA47FE87FE1AA48A6E9220FA855789D&id=%2Fsites%2FESTFinland%2DESJ%2FShared%20Documents%2FGeneral%2FESJ%20CoP%20Materials%2FRecordings&viewid=a11c6b7a%2D7e4a%2D4c80%2Db9ff%2Df32b347c66c2	
 DAG;https://estab-my.sharepoint.com/:p:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7B686DA79E-6B50-4EBB-9F0D-5FD157BCD0DC%7D&file=230508%20Basics%20on%20DAGs%20for%20all%20BCSS.pptx&action=edit&mobileredirect=true
 DAG summary;https://estab-my.sharepoint.com/:p:/r/personal/huy_mai_est_tech/_layouts/15/Doc.aspx?sourcedoc=%7B487634EB-564B-485A-8BE5-3AA3562DF2A5%7D&file=DAGs%20Executive%20Summaries.pptx&action=edit&mobileredirect=true
-Citrix Workspace windows virtual;https://ericsson.cloud.com/Citrix/StoreWeb/#/desktops/all
+windows virtual workspace windows365;https://windows365.microsoft.com/;kolmenakkia
 10-minute-email temporary-email email;https://10minutemail.net/error-due.html
 metal3 wiki;https://wiki.nordix.org/display/CPI/Metal3.io
 domainhotelli cpanel domain;https://hotelli07.domainhotelli.fi:2083/cpsess7551303822/frontend/jupiter/zone_editor/index.html#/manage?domain=huymai.fi
@@ -56,3 +56,5 @@ toggl time reporting tracking;https://track.toggl.com/timer
 Metal3 diagrams sharepoint;https://estab.sharepoint.com/sites/ESTFinland-ESJ/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=PuKyt5&cid=b0a0b87b%2D88f4%2D478e%2Da659%2Da29b196ec330&FolderCTID=0x012000FEA47FE87FE1AA48A6E9220FA855789D&id=%2Fsites%2FESTFinland%2DESJ%2FShared%20Documents%2FGeneral%2FDiagrams&viewid=a11c6b7a%2D7e4a%2D4c80%2Db9ff%2Df32b347c66c2
 metal3 prow;https://prow.apps.test.metal3.io/
 github notifications;https://github.com/notifications
+my github repo;https://github.com/mquhuy?tab=repositories
+ericsson allstar recognition;https://allstars.ericsson.net/;kolmenakkia

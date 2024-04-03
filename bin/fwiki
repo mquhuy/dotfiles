@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+kitty -T wiki -- sh -c 'cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-md nvim TODO.md'

@@ -1,0 +1,57 @@
+- name: install packages
+  hosts: all
+  become: true
+  vars:
+    mysql_user: nextcloud
+    mysql_password: A1b2!@c3
+    admin_user: nextcloud_admin
+    oc_admin_user: oc_nextcloud_adm
+    admin_password: A1b2!@c3
+  tasks:
+
+  - name: Stop Mysql Service
+    service:
+      name: mysql
+      state: stopped
+      enabled: false
+
+  - name: Install localhost
+    ansible.builtin.apt:
+      pkg: 
+        - software-properties-common
+        - mysql-server
+        - php8.1 # Change to whatever newest version is
+        - php8.1-mysql
+        - php8.1-curl
+        - php8.1-gd
+        - php8.1-mbstring
+        - php8.1-dom 
+        - php8.1-xmlwriter
+        - php8.1-zip
+        - pkg-config
+        - python3-dev
+        - libmysqlclient-dev
+      update_cache: yes
+      cache_valid_time: 3600
+      state: absent
+    become: true
+
+  - name: "Install mysqlclient package"
+    ansible.builtin.pip:
+      name: mysqlclient
+      state: absent
+
+  - name: "Install pymysql package"
+    ansible.builtin.pip:
+      name: pymysql
+      state: absent
+
+  - name: Delete data directory
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+      - /etc/my.cnf
+      - /etc/mysql
+      - /var/lib/mysql
+    become: true

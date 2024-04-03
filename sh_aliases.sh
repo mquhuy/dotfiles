@@ -79,3 +79,7 @@ alias gitiles="~/.local/bin/gitiles"
 alias lg="lazygit"
 alias udf="pwd=$PWD && cd $DOTFILES_DIR && git pull && cd $pwd"
 alias dfd="cd $DOTFILES_DIR"
+
+# CAPS LOCK
+alias capslock="xdotool key Caps_Lock"
+alias CAPSLOCK="xdotool key Caps_Lock"

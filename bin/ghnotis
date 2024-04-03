@@ -1,2 +1,2 @@
 #!/bin/bash
-microsoft-edge-stable --app="https://github.com/notifications" > /dev/null
+microsoft-edge-stable --user-data-dir=~/.local/profiles/gh --new-window "https://github.com/notifications" > /dev/null
