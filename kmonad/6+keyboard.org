@@ -173,7 +173,7 @@ In `fn` mode,
   ms (tap-next C-M-S s)
   mw (tap-next C-M-W w)
   mo (tap-next C-M-O o)
-  mc (tap-next C-M-C c)
+  mc (tap-next C-M-O c)
   smspace (around lsft (around lmet spc))
 )
 #+end_src

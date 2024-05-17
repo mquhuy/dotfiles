@@ -53,9 +53,9 @@ There are also some optional OS specific settings that we support:
 Here we need to have the exact id of the keyboard. I, in fact, intend to use similar layout for all of my keyboards, but currently there's no way that I know of to have a one fits all config
 #+begin_src lua
 ;;  input (device-file "/dev/input/by-id/usb-Dell_Computer_Corp_Dell_Universal_Receiver-event-kbd")
-input (device-file "/dev/input/by-id/usb-OBINS_OBINS_AnnePro2_SN0000000001-event-kbd")
-;; input (device-file "/dev/input/by-id/
+;;  input (device-file "/dev/input/by-id/usb-OBINS_OBINS_AnnePro2_SN0000000001-event-kbd")
 ;;  input (device-file "/dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-event-kbd")
+  input (device-file "/dev/input/event6")
 #+end_src
 
 #+begin_src lua
@@ -90,8 +90,8 @@ This is a typical 60% keyboard layout. As a mater of fact, none of my keyboards 
   esc  1    2    3    4    5    6    7    8    9       0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o       p    [    ]    \
   caps a    s    d    f    g    h    j    k    l       ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .       /    rsft
-  lctl lmet lalt           spc            ralt KeyCompose rctl  rctl)
+  lsft z    x    c    v    b    n    m    ,    .       /    KeyUp
+  lctl lmet lalt           spc            ralt KeyLeft KeyDown  KeyRight)
 #+end_src
 
 
@@ -179,6 +179,8 @@ In `fn` mode,
 )
 #+end_src
 
+#+RESULTS:
+
 #+begin_src lua
 (deflayer fn
   grv  F1   F2   F3   F4   F5   F6   F7   F8   F9   F10  F11  F12  bspc
@@ -217,7 +219,6 @@ In `fn` mode,
 )
 #+end_src
 
-*
 * Optional: as many layers as you please
 
 We had already defined `num` as referring to a `(layer-toggle numbers)`. We will get into layer-manipulation soon, but first, let's just create a second layer that overlays a numpad under our right-hand.
