@@ -32,7 +32,7 @@ Metal3 ESJ Sharepoint shared;https://estab.sharepoint.com/sites/ESTFinland-ESJ/S
 SuccessFactor Learning courses ericsson degreed;https://performancemanager12.successfactors.eu/sf/liveprofile;kolmenakkia
 LinuxFoundation LF learning courses;https://trainingportal.linuxfoundation.org/learn/dashboard
 Note hackmd Markdown;https://hackmd.io/?nav=collab#all
-Flowscape booking seat office jorvas;https://internal.flowscape.ericsson.net/webapp/
+Flowscape booking seat office jorvas;https://internal.flowscape.ericsson.net/webapp/;kolmenakkia
 i3wm userguide;https://i3wm.org/docs/userguide.html
 Learn at EST;https://estab.sharepoint.com/SitePages/My-Learning.aspx
 Kubernetes for Developers (LFD259);https://training.linuxfoundation.org/training/kubernetes-for-developers/
@@ -58,3 +58,4 @@ metal3 prow;https://prow.apps.test.metal3.io/
 github notifications;https://github.com/notifications
 my github repo;https://github.com/mquhuy?tab=repositories
 ericsson allstar recognition;https://allstars.ericsson.net/;kolmenakkia
+new jira eteamspace;https://eteamproject.ericsson.net/projects/CNCFOS/;kolmenakkia

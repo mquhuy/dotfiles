@@ -1,0 +1,21 @@
+#!/bin/bash
+
+name=$(free-input)
+if [ -z "$name" ]; then
+    exit 0
+fi
+sessions=$(tmux list-sessions -F "#{session_name}" 2>/dev/null)
+if [ -n "$sessions" ]; then
+    for session in $sessions; do
+        if [ "$session" = "$name" ]; then
+            if [ -n "$TMUX" ]; then
+                tmux new -s "${name}"
+            else
+                kitty --class="${name:-kitty}" tmux a -t "${name}"
+            fi
+            # kitty --class="${name:-kitty}" tmux a -t "${name}"
+            exit 0
+        fi
+    done
+fi
+kitty --class="${name:-kitty}" tmux new -s "${name:-kitty}"

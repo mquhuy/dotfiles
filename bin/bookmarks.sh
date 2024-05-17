@@ -17,5 +17,6 @@ if [[ $browser == "" ]]; then
 fi
 # firefox -P default-release $link
 # microsoft-edge-stable $link
+start-or-focus.sh $browser
 $browser $link
 #surf $link

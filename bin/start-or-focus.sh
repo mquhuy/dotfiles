@@ -2,7 +2,8 @@
 #
 command=$1
 mkdir -p $HOME/.wid
-wid_file=$HOME/.wid/$(echo $command <<< md5sum | cut -d ' ' -f 1)
+wid_filename=${2:-$command}
+wid_file=$HOME/.wid/$(echo $wid_filename <<< md5sum | cut -d ' ' -f 1)
 if [ -f $wid_file ]; then
     window_id=$(cat $wid_file)
     focus=$(i3-msg "[id=$window_id] focus")

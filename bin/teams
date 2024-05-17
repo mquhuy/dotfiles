@@ -1,2 +1,2 @@
 #!/bin/bash
-microsoft-edge-stable --app="https://teams.microsoft.com/"
+microsoft-edge --app="https://teams.microsoft.com/"
