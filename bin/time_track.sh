@@ -14,7 +14,7 @@ toggle() {
         toggl stop 2>&1 > /dev/null
         notify-send "Work time stopped at ${time}"
     else
-        toggl start -o "Work time" 2>&1 > /dev/null
+        toggl start 2>&1 > /dev/null
         notify-send "Work time started at ${time}"
     fi
 }
@@ -30,7 +30,7 @@ toggle_with_input() {
         toggl stop --stop ${time} 2>&1 > /dev/null
         notify-send "Work time stopped at ${time}"
     else
-        toggl start -o "Work time" --start ${time} 2>&1 > /dev/null
+        toggl start --start ${time} 2>&1 > /dev/null
         notify-send "Work time started at ${time}"
     fi
 }
