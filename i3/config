@@ -437,6 +437,7 @@ bindsym Shift+Control+Mod4+s exec "start-or-focus.sh slack"
 bindsym Shift+Control+Mod4+w exec "start-or-focus.sh fwiki"
 bindsym Shift+Control+Mod4+o exec "start-or-focus.sh outlook"
 bindsym Shift+Control+Mod4+c exec "start-or-focus.sh copilot"
+bindsym Shift+Control+Mod4+m exec "main-browser"
 
 # Scratch pad
 # Make the currently focused window a scratchpad

@@ -1,0 +1,2 @@
+#!/bin/bash
+start-or-focus.sh "microsoft-edge-stable --window-name=main" > /dev/null
