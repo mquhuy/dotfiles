@@ -3,5 +3,32 @@
 RUNTIME=$(which pomodoro)
 RUNTIME=${RUNTIME:-"/home/huy/gopath/bin/pomodoro"}
 
-status=$(${RUNTIME} status)
-echo "$status"
+status() {
+	status=$(${RUNTIME} status)
+	echo $status
+}
+
+start() {
+	${RUNTIME} start
+}
+
+stop() {
+	${RUNTIME} finish
+}
+
+toggle() {
+	if [[ $(status) == "" ]]; then
+		start
+	else
+		stop
+	fi
+}
+
+case $BLOCK_BUTTON in
+	1)
+		toggle
+		;;
+	*)
+		status
+		;;
+esac

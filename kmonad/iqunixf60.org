@@ -55,7 +55,7 @@ Here we need to have the exact id of the keyboard. I, in fact, intend to use sim
 ;;  input (device-file "/dev/input/by-id/usb-Dell_Computer_Corp_Dell_Universal_Receiver-event-kbd")
 ;;  input (device-file "/dev/input/by-id/usb-OBINS_OBINS_AnnePro2_SN0000000001-event-kbd")
 ;;  input (device-file "/dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-event-kbd")
-  input (device-file "/dev/input/event6")
+  input (device-file "/dev/input/event17")
 #+end_src
 
 #+begin_src lua
