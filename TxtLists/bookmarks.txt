@@ -15,7 +15,6 @@ cleura api docs;https://apidoc.cleura.cloud/
 outlook email;https://outlook.office365.com/mail/
 howto onboarding guide newcomers;https://wiki.nordix.org/pages/viewpage.action?pageId=23324061
 Nordix jenkins;https://jenkins.nordix.org/
-Nordix jira;https://jira.nordix.org/secure/RapidBoard.jspa?rapidView=9&projectKey=KB&view=detail&selectedIssue=KB-850
 outlet gigantti macbook;https://www.gigantti.fi/outlet/outlet-tietotekniikka/outlet-kannettavat-tietokoneet?filter=31027%253AmacOS%20Big%20Sur&filter=31027%253AmacOS%20Monterey
 metal3 github workflow wow;https://github.com/Nordix/metal3-dev-tools/blob/main/wow/github-workflow.md
 metal3 devenv;https://github.com/metal3-io/metal3-dev-env
@@ -58,4 +57,4 @@ metal3 prow;https://prow.apps.test.metal3.io/
 github notifications;https://github.com/notifications
 my github repo;https://github.com/mquhuy?tab=repositories
 ericsson allstar recognition;https://allstars.ericsson.net/;kolmenakkia
-new jira eteamspace;https://eteamproject.ericsson.net/projects/CNCFOS/;kolmenakkia
+new jira eteamspace;https://eteamproject.ericsson.net/secure/RapidBoard.jspa?projectKey=CNCFOS&rapidView=12571;kolmenakkia
