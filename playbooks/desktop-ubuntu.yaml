@@ -13,6 +13,7 @@
       - git
       - curl
       - python3-pip
+      - python3-tk
       - fzf
       - silversearcher-ag
       - python3-venv

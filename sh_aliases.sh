@@ -9,7 +9,7 @@ alias wikio="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-md nvim"
 alias opd="cd ~/Repos/openstack"
 
 # i3 config
-alias i3config="nvim ~/.config/i3/config"
+alias i3config="nvim ~/.config/sway/config"
 alias i3wsconf="nvim ~/.config/i3/ws.conf"
 alias i3bc="nvim ~/.config/i3/i3blocks/primary.conf"
 alias i3autoxrand="nvim ~/.config/i3/autoxrandr"
