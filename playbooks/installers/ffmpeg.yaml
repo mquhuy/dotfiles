@@ -9,12 +9,30 @@
         state: absent
       become: true
 
-    - name: Install nasm
+    - name: Install libavcodec for Ubuntu 22.04
+      apt:
+        pkg:
+        - libavcodec58
+        - libavcodec-extra58
+        update_cache: yes
+      become: true
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'
+
+    - name: Install libavcodec for Ubuntu 24.04
+      apt:
+        pkg:
+        - libavcodec60
+        - libavcodec-extra60
+        update_cache: yes
+      become: true
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
+
+    - name: Install packages
       ansible.builtin.apt:
         pkg:
         - nasm
         - pkg-config
-        - libavcodec-extra58
+        - libavcodec-extra
         - libfdk-aac-dev 
         - libass-dev 
         - libopus-dev
