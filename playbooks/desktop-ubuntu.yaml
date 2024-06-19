@@ -12,6 +12,11 @@
       update_cache: true
     become: true
 
+  - name: Create Programs directory
+    ansible.builtin.file:
+      path: /home/{{ ansible_user_id }}/Programs
+      state: directory
+
 - import_playbook: installers/brave-browser.yaml
 - import_playbook: installers/chrome.yaml
 - import_playbook: installers/clusterctl.yaml
