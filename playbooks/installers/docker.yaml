@@ -16,7 +16,7 @@
     - name: Docker gpg
       ansible.builtin.get_url:
         url: https://download.docker.com/linux/ubuntu/gpg
-        dest: /usr/share/keyrings/docker.gpg
+        dest: /etc/apt/keyrings/docker.gpg
       become: true
 
   - name: Get architecture
@@ -37,7 +37,7 @@
 
   - name: Apt source
     ansible.builtin.apt_repository:
-      repo: deb [arch={{ architecture.stdout | trim }} signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release.stdout | trim }} stable
+      repo: deb [arch={{ architecture.stdout | trim }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release.stdout | trim }} stable
       state: present
     become: true
 
