@@ -2,6 +2,18 @@
   hosts: all
 
   tasks:
+    - name: Install tmux from apt
+      apt:
+        pkg:
+        - tmux
+        update_cache: yes
+      become: true
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
+
+    - name: Exit the playbook early
+      meta: end_play
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
+
     - name: "Install github3 package"
       ansible.builtin.pip:
         name: github3.py
