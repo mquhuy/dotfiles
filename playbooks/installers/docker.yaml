@@ -1,0 +1,45 @@
+- name: Install Brave Browser
+  hosts: all
+
+  tasks:
+  # One way to avoid apt_key once it is removed from your distro, armored keys should use .asc extension, binary should use .gpg
+  - name: Install apt packages
+    ansible.builtin.apt:
+      pkg:
+      - apt-transport-https
+      - curl
+      update_cache: true
+    become: true
+
+  - name: Add docker gpg key
+    block:
+    - name: Docker gpg
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /usr/share/keyrings/docker.gpg
+      become: true
+
+  - name: Get architecture
+    ansible.builtin.shell: dpkg --print-architecture
+    register: architecture
+
+  - name: Get os release
+    ansible.builtin.shell: . /etc/os-release && echo "$VERSION_CODENAME"
+    register: os_release
+
+  - name: Apt source
+    ansible.builtin.apt_repository:
+      repo: deb [arch={{ architecture }} signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release }} stable"
+      state: present
+    become: true
+
+  - name: Install docker
+    ansible.builtin.apt:
+      pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+      update_cache: true
+    become: true
