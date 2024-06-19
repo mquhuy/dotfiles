@@ -9,6 +9,6 @@
 
     - name: Copy .bashrc
       ansible.builtin.file:
-        src: "{{ playbook_dir }}/../../../bash/bashrc"
+        src: "{{ playbook_dir }}/../../bash/bashrc"
         dest: /home/{{ ansible_user_id}}/.bashrc
         state: link
