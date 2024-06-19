@@ -29,6 +29,7 @@
       - zsh
       update_cache: true
     become: true
+    ignore_errors: true
 
   - name: Create Programs directory
     ansible.builtin.file:
