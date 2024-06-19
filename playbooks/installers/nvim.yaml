@@ -28,6 +28,7 @@
       ansible.builtin.unarchive:
         src: https://github.com/neovim/neovim/releases/download/{{ release.tag }}/nvim-linux64.tar.gz
         dest: /home/{{ ansible_user_id }}/Programs/nvim
+        extra_opts: [--strip-components=1]
         remote_src: true
 
     - name: Chmod binary
