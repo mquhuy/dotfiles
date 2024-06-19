@@ -5,6 +5,11 @@
   - name: Install packages
     ansible.builtin.apt:
       pkg:
+      - {{ item }}
+      update_cache: true
+      become: true
+      ignore_errors: true
+    loop:
       - ansible-core
       - libfuse-dev
       - libreoffice
@@ -27,9 +32,6 @@
       - ranger
       - pkg-config
       - zsh
-      update_cache: true
-    become: true
-    ignore_errors: true
 
   - name: Create Programs directory
     ansible.builtin.file:
