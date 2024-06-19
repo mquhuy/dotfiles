@@ -9,6 +9,13 @@
         state: absent
       become: true
 
+    - name: Install packages
+      ansible.builtin.apt:
+        pkg:
+        - autoconf
+        state: latest
+      become: true
+
     - name: Clone repo
       ansible.builtin.git:
         repo: https://github.com/vivien/i3blocks
