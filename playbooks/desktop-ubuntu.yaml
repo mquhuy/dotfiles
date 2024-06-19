@@ -12,29 +12,28 @@
       update_cache: true
     become: true
 
-  import_playbook: 
-    - installers/brave-browser.yaml
-    - installers/chrome.yaml
-    - installers/clusterctl.yaml
-    - installers/doomemacs.yaml
-    - installers/drawio.yaml
-    - installers/dropbox.yaml
-    - installers/ffmpeg.yaml
-    - installers/firefox.yaml
-    - installers/gh.yaml
-    - installers/greenclip.yaml
-    - installers/i3blocks.yaml
-    - installers/image.nvim.yaml
-    - installers/kitty.yaml
-    - installers/minikube.yaml
-    - installers/neovide.yaml
-    - installers/nextcloud-client.yaml
-    - installers/nvim.yaml
-    - installers/nvm.yaml
-    - installers/oh-my-bash.yaml
-    - installers/playerctl.yaml
-    - installers/tmux.yaml
-    - installers/tree_sitter.yaml
-    - installers/vscodium.yaml
-    - installers/yamlfmt.yaml
-    - installers/yq.yaml
+- import_playbook: installers/brave-browser.yaml
+- import_playbook: installers/chrome.yaml
+- import_playbook: installers/clusterctl.yaml
+- import_playbook: installers/doomemacs.yaml
+- import_playbook: installers/drawio.yaml
+- import_playbook: installers/dropbox.yaml
+- import_playbook: installers/ffmpeg.yaml
+- import_playbook: installers/firefox.yaml
+- import_playbook: installers/gh.yaml
+- import_playbook: installers/greenclip.yaml
+- import_playbook: installers/i3blocks.yaml
+- import_playbook: installers/image.nvim.yaml
+- import_playbook: installers/kitty.yaml
+- import_playbook: installers/minikube.yaml
+- import_playbook: installers/neovide.yaml
+- import_playbook: installers/nextcloud-client.yaml
+- import_playbook: installers/nvim.yaml
+- import_playbook: installers/nvm.yaml
+- import_playbook: installers/oh-my-bash.yaml
+- import_playbook: installers/playerctl.yaml
+- import_playbook: installers/tmux.yaml
+- import_playbook: installers/tree_sitter.yaml
+- import_playbook: installers/vscodium.yaml
+- import_playbook: installers/yamlfmt.yaml
+- import_playbook: installers/yq.yaml
