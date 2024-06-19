@@ -30,6 +30,7 @@
       - ranger
       - pkg-config
       - zsh
+      - rofi
     become: true
     ignore_errors: true
 
