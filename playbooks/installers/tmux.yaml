@@ -5,6 +5,7 @@
     - name: "Install github3 package"
       ansible.builtin.pip:
         name: github3.py
+        break_system_packages: true
 
     - name: Install openssl
       ansible.builtin.apt:
