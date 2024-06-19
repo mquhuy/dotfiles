@@ -51,3 +51,21 @@
       - docker-compose-plugin
       update_cache: true
     become: true
+
+  - name: Add docker group
+    ansible.builtin.group:
+      name: docker
+      state: present
+
+  - name: Add user to group
+    user:
+      name: "{{ ansible_facts['env']['SUDO_USER'] }}"
+      groups: docker
+      append: yes
+
+  - name: Make sure docker service unit is running
+    ansible.builtin.systemd_service:
+      state: started
+      name: docker
+      scope: system
+    become: true
