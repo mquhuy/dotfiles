@@ -8,6 +8,7 @@
         creates=/home/{{ ansible_user_id }}/.oh-my-bash
 
     - name: Copy .bashrc
-      ansible.builtin.copy:
+      ansible.builtin.file:
         src: ../../../bash/bashrc
         dest: /home/{{ ansible_user_id}}/.bashrc
+        state: link

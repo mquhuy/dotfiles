@@ -1,0 +1,42 @@
+- name: Install new Ubuntu work machine
+  hosts: all
+
+  tasks:
+  - name: Install packages
+    ansible.builtin.apt:
+      pkg:
+      - ansible-core
+      - libfuse-dev
+      - libreoffice
+      - git
+      update_cache: true
+    become: true
+
+  - name: Install other playbooks
+    import_playbook: 
+      - installers/brave-browser.yaml
+      - installers/chrome.yaml
+      - installers/clusterctl.yaml
+      - installers/doomemacs.yaml
+      - installers/drawio.yaml
+      - installers/dropbox.yaml
+      - installers/ffmpeg.yaml
+      - installers/firefox.yaml
+      - installers/gh.yaml
+      - installers/greenclip.yaml
+      - installers/i3blocks.yaml
+      - installers/image.nvim.yaml
+      - installers/kitty.yaml
+      - installers/minikube.yaml
+      - installers/neovide.yaml
+      - installers/nextcloud-client.yaml
+      - installers/nvim.yaml
+      - installers/nvm.yaml
+      - installers/oh-my-bash.yaml
+      - installers/playerctl.yaml
+      - installers/tmux.yaml
+      - installers/tree_sitter.yaml
+      - installers/vscodium.yaml
+      - installers/yamlfmt.yaml
+      - installers/yq.yaml
+    become: true
