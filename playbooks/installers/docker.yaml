@@ -23,13 +23,21 @@
     ansible.builtin.shell: dpkg --print-architecture
     register: architecture
 
+  - name: Print architecture
+    ansible.builtin.debug:
+      var: architecture
+
   - name: Get os release
     ansible.builtin.shell: . /etc/os-release && echo "$VERSION_CODENAME"
     register: os_release
 
+  - name: Print os_release
+    ansible.builtin.debug:
+      var: os_release
+
   - name: Apt source
     ansible.builtin.apt_repository:
-      repo: deb [arch={{ architecture }} signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release }} stable"
+      repo: deb [arch={{ architecture }} signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release }} stable main
       state: present
     become: true
 

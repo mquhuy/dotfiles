@@ -50,6 +50,8 @@
   ignore_errors: true
 - import_playbook: installers/dropbox.yaml
   ignore_errors: true
+- import_playbook: installers/docker.yaml
+  ignore_errors: true
 - import_playbook: installers/ffmpeg.yaml
   ignore_errors: true
 - import_playbook: installers/firefox.yaml
