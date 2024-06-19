@@ -1,0 +1,30 @@
+- name: Install Ibus-bamboo
+  hosts: all
+
+  tasks:
+  # One way to avoid apt_key once it is removed from your distro, armored keys should use .asc extension, binary should use .gpg
+  - name: Apt source
+    ansible.builtin.apt_repository:
+      repo: ppa:bamboo-engine/ibus-bamboo
+      state: present
+    become: true
+
+  - name: Install ibus-bamboo
+    ansible.builtin.apt:
+      pkg:
+      - ibus
+      - ibus-bamboo
+      update_cache: true
+      install_recommends: true
+    become: true
+
+  - name: Start ibus daemon
+    shell: ibus-daemon -d
+
+  - name: Restart bamboo
+    shell: ibus restart
+
+  - name: Set ibus-bamboo as default
+    shell: dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
+    environment: 
+      DCONF_PROFILE: ibus

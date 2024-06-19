@@ -8,6 +8,7 @@
       - "{{ item }}"
       update_cache: true
     loop:
+      - acpi
       - libfuse-dev
       - libreoffice
       - git
