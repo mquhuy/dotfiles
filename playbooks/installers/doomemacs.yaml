@@ -16,7 +16,7 @@
 
   - name: Copy doom config
     ansible.builtin.file:
-      src: ../../doom
+      src: "{{ playbook_dir }}/../../doom"
       dest: /home/{{ ansible_user_id }}/.config/doom
       state: link
 
