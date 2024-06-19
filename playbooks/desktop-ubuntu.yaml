@@ -8,7 +8,6 @@
       - "{{ item }}"
       update_cache: true
     loop:
-      - ansible-core
       - libfuse-dev
       - libreoffice
       - git
@@ -17,6 +16,7 @@
       - fzf
       - silversearcher-ag
       - python3-venv
+      - pipx
       - libc6-dev
       - jq
       - ripgrep
