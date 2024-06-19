@@ -44,8 +44,6 @@
   ignore_errors: true
 - import_playbook: installers/clusterctl.yaml
   ignore_errors: true
-- import_playbook: installers/doomemacs.yaml
-  ignore_errors: true
 - import_playbook: installers/drawio.yaml
   ignore_errors: true
 - import_playbook: installers/dropbox.yaml
