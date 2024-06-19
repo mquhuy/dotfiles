@@ -37,7 +37,7 @@
 
   - name: Apt source
     ansible.builtin.apt_repository:
-      repo: deb [arch={{ architecture.stdout | trim }} signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release.stdout | trim }} stable main
+      repo: deb [arch={{ architecture.stdout | trim }} signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release.stdout | trim }} stable
       state: present
     become: true
 
