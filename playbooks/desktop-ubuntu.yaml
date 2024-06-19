@@ -9,6 +9,24 @@
       - libfuse-dev
       - libreoffice
       - git
+      - curl
+      - python3-pip
+      - fzf
+      - silversearcher-ag
+      - python3.10-venv
+      - libc6-dev
+      - jq
+      - ripgrep
+      - qemu
+      - qemu-kvm
+      - libvirt-dev
+      - libvirt-clients
+      - libvirt-daemon-system
+      - virtinst
+      - bridge-utils
+      - ranger
+      - pkg-config
+      - zsh
       update_cache: true
     become: true
 
