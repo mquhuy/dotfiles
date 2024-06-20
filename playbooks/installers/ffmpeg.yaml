@@ -23,7 +23,7 @@
         pkg:
         - libavcodec60
         - libavcodec-extra60
-        update_cache: yes
+        update_cache: no
       become: true
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
 
@@ -42,7 +42,7 @@
         - libssl-dev
         - libmp3lame-dev
         - libavdevice-dev
-        update_cache: yes
+        update_cache: no
       become: true
 
     - name: Clone x264
@@ -72,7 +72,7 @@
 
     - name: Configure ffmpeg
       shell: |
-        cd /tmp/ffmpeg && ./configure --enable-gpl --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-shared --enable-openssl   
+        cd /tmp/ffmpeg && ./configure --enable-gpl --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-shared --enable-openssl --enable-libharfbuzz --enable-libfontconfig --enable-libfribidi
       become: true
 
     - name: Compile ffmpeg

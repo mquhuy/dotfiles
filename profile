@@ -9,6 +9,8 @@
 #umask 022
 
 # if running bash
+export DOTFILES_DIR=$(realpath "$(dirname $(readlink $HOME/.profile))")
+
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
@@ -32,4 +34,8 @@ fi
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$DOTFILES_DIR//bin" ] ; then
+    PATH="$DOTFILES_DIR/bin:$PATH"
 fi
