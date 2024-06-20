@@ -9,32 +9,33 @@
       update_cache: true
     loop:
       - acpi
+      - bridge-utils
+      - curl
+      - fzf
+      - git
+      - jq
+      - libc6-dev
       - libfuse-dev
       - libreoffice
-      - git
-      - curl
-      - python3-pip
-      - python3-tk
-      - fzf
-      - silversearcher-ag
-      - python3-venv
-      - pipx
-      - libc6-dev
-      - jq
-      - ripgrep
-      - qemu
-      - qemu-kvm
       - libvirt-dev
       - libvirt-clients
       - libvirt-daemon-system
-      - virtinst
-      - bridge-utils
-      - ranger
+      - pipx
       - pkg-config
       - pulseaudio-utils
       - pulsemixer
-      - zsh
+      - python3-pip
+      - python3-tk
+      - python3-venv
+      - qemu
+      - qemu-kvm
+      - ranger
+      - ripgrep
       - rofi
+      - silversearcher-ag
+      - sway
+      - virtinst
+      - zsh
     become: true
     ignore_errors: true
 
