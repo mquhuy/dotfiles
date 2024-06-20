@@ -38,10 +38,15 @@
     become: true
     ignore_errors: true
 
-  - name: Install pipx packages
-    pipx:
-      pkg:
-    - git+https://github.com/ytdl-org/youtube-dl.git
+  - name: Install youtube-dl from git repository
+    community.general.pipx:
+      name: youtube-dl
+      source: git+https://github.com/ytdl-org/youtube-dl.git
+
+  - name: Install stable-ts from git repository
+    community.general.pipx:
+      name: stable-ts
+      source: git+https://github.com/jianfch/stable-ts.git
 
   - name: Create Programs directory
     ansible.builtin.file:
