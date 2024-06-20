@@ -26,9 +26,10 @@
     - name: Install Binary
       ansible.builtin.copy:
         src: /tmp/greenclip
-        dest: /home/{{ ansible_user_id }}/.local/bin/
+        dest: /usr/bin/
         remote_src: true
         mode: a+x
+      become: true
 
     - name: Remove /tmp/greenclip
       ansible.builtin.file:
