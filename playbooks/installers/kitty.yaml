@@ -33,7 +33,8 @@
     - name: Install Binary
       ansible.builtin.file:
         src: /home/{{ ansible_user_id }}/Programs/kitty/bin/{{ item }}
-        dest: /home/{{ ansible_user_id }}/.local/bin/{{ item }}
+        dest: /usr/bin/{{ item }}
         state: link
       loop: [ 'kitty', 'kitten' ]
+      become: true
 
