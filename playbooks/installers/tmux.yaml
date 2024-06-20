@@ -87,3 +87,28 @@
       shell: |
         cd /tmp/tmux-{{ release.tag }} && make install
       become: true
+
+    - name: Create tmux conf
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/../../tmux/tmux.conf"
+        dest: /home/{{ ansible_user_id}}/.tmux.conf
+        state: link
+
+    - name: Create .tmux dir
+      ansible.builtin.file:
+        path: /home/{{ ansible_user_id}}/.tmux/plugins
+        state: directory
+
+    - name: Create themes dir
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/../../tmux/themes"
+        dest: /home/{{ ansible_user_id}}/.tmux/themes
+        state: link
+
+    - name: Clone tpm
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: /home/{{ ansible_user_id}}/.tmux/plugins/tpm
+
+    - name: Run tpm install
+      shell: /home/{{ ansible_user_id}}/.tmux/plugins/tpm/scripts/install_plugins.sh
