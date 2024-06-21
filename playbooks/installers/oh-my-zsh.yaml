@@ -1,0 +1,56 @@
+- name: Install oh-my-zsh
+  hosts: all
+
+  tasks:
+    - name: Install packages
+      ansible.builtin.apt:
+        pkg: 
+        - zsh
+        - zsh-syntax-highlighting
+        update_cache: true
+      become: true
+
+    - name: Set default shell to zsh
+      shell: chsh {{ ansible_user_id }} -s $(which zsh)
+      become: true
+
+    - name: Install oh-my-zsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      ignore_errors: true
+
+    - name: Remove .zshrc
+      ansible.builtin.file:
+        path: /home/{{ ansible_user_id}}/.zshrc
+        state: absent
+
+    - name: Copy .zshrc
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/../../zsh/zshrc"
+        dest: /home/{{ ansible_user_id}}/.zshrc
+        state: link
+
+    - name: Install p10k
+      ansible.builtin.git:
+        repo: https://github.com/romkatv/powerlevel10k.git
+        dest: /home/{{ ansible_user_id}}/.oh-my-zsh/themes/powerlevel10k
+        depth: 1
+      ignore_errors: true
+
+    - name: Install zsh-syntax-highlighting
+      ansible.builtin.git:
+        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+        dest: /home/{{ ansible_user_id}}/.oh-my-zsh/plugins/zsh-syntax-highlighting
+        depth: 1
+      ignore_errors: true
+
+    - name: Remove .p10k.zsh
+      ansible.builtin.file:
+        path: /home/{{ ansible_user_id}}/.p10k.zsh
+        state: absent
+
+    - name: Copy .p10k.zsh
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/../../zsh/p10k.zsh"
+        dest: /home/{{ ansible_user_id}}/.p10k.zsh
+        state: link
+

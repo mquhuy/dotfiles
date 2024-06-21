@@ -90,7 +90,7 @@
   ignore_errors: true
 - import_playbook: installers/nvm.yaml
   ignore_errors: true
-- import_playbook: installers/oh-my-bash.yaml
+- import_playbook: installers/oh-my-zsh.yaml
   ignore_errors: true
 - import_playbook: installers/playerctl.yaml
   ignore_errors: true
