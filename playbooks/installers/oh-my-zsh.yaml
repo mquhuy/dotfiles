@@ -29,6 +29,14 @@
         dest: /home/{{ ansible_user_id}}/.zshrc
         state: link
 
+    - name: Install MesloLGS fonts
+      ansible.builtin.get_url:
+        url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20{{ item }}.ttf
+        dest: /usr/share/fonts/MesloLGS%20NF%20{{ item }}.ttf
+      loop: ["Regular", "Bold", "Italic", "Bold%20Italic"]
+      become: true
+      ignore_errors: true
+
     - name: Install p10k
       ansible.builtin.git:
         repo: https://github.com/romkatv/powerlevel10k.git
