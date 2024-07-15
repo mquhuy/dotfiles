@@ -6,5 +6,14 @@ if [[ ${source} == "" ]]; then
 fi
 __dir__=$(realpath $(dirname $source))
 cd $__dir__
-bin_file=$(ls | fzf)
-ln -s $__dir__/$bin_file $HOME/.local/bin/
+bin_file=${1:-}
+if [[ "${bin_file}" == "" ]]; then
+	bin_file=$(ls | fzf)
+fi
+dest=$HOME/.local/bin/$bin_file
+
+if [[ -n "${dest}" ]]; then
+	rm "${dest}"
+fi
+
+ln -s $__dir__/$bin_file "${dest}"

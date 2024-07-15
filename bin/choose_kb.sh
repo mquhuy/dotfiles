@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-KMONAD_CONFIG_DIR=${DOTFILES_DIR}/kmonad
+KMONAD_CONFIG_DIR=${DOTFILES_DIR}/config/kmonad
 chosen_keyboard=$(ls ${KMONAD_CONFIG_DIR}/*.org | fzf)
 emacs --batch --eval "(require 'org)" --eval "(org-babel-tangle-file \"${chosen_keyboard}\")"
 device_name="$(grep -oP '(?<=input \(device-file \").*(?=\")' ~/.config/kmonad/config.kbd)"

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+battery_file="/sys/class/power_supply/hid-07:19:06:16:10:4c-battery/capacity"
+if [[ -f "${battery_file}" ]]; then
+    bat_level=$(cat "${battery_file}")
+    if [ "${bat_level}" -le 15 ]; then
+        echo ${bat_level}
+    fi
+fi
