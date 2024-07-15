@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+status() {
+	MODE=$(ibus engine)
+	if [[ "${MODE}" == "Bamboo" ]]; then
+	  echo "VN"
+	elif [[ "${MODE}" == "BambooUs" ]]; then
+	  echo "US"
+	fi
+}
+
+toggle() {
+	if [[ "$(status)" == "US" ]]; then
+		ibus engine Bamboo
+	else
+		ibus engine BambooUs
+	fi
+	status
+}
+
+trigger_i3blocks() {
+    pkill -SIGRTMIN+20 i3blocks
+}
+
+case $BLOCK_BUTTON in
+	1)
+		toggle
+		trigger_i3blocks
+	;;
+	*)
+		if [[ ${1:-} == "toggle" ]]; then
+			toggle
+		else
+			status
+		fi
+	;;
+esac

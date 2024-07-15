@@ -135,6 +135,7 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+TEX_BIN="/usr/local/texlive/2024/bin/x86_64-linux"
 PATH="/home/huy/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/huy/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/huy/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
@@ -142,4 +143,6 @@ PERL_MB_OPT="--install_base \"/home/huy/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/huy/perl5"; export PERL_MM_OPT;
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:${DOTFILES_DIR}/bin:$PATH"
+export PATH="${TEX_BIN}:$HOME/gems/bin:${DOTFILES_DIR}/bin:$PATH"
+
+export QT_QPA_PLATFORMTHEME="qt6ct"

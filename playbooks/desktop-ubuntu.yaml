@@ -9,17 +9,26 @@
       update_cache: true
     loop:
       - acpi
+      - blueman
+      - breeze-icon-theme
       - bridge-utils
       - curl
+      - dolphin
       - fzf
+      - gimp
       - git
+      - grim
+      - htop
       - jq
+      - kscreen
       - libc6-dev
       - libfuse-dev
+      - libqt6waylandclient6
       - libreoffice
       - libvirt-dev
       - libvirt-clients
       - libvirt-daemon-system
+      - pandoc
       - pipx
       - pkg-config
       - pulseaudio-utils
@@ -29,12 +38,15 @@
       - python3-venv
       - qemu
       - qemu-kvm
+      - qt6ct
       - ranger
       - ripgrep
       - rofi
       - silversearcher-ag
       - sway
+      - unrar
       - virtinst
+      - wlr-randr
       - zsh
     become: true
     ignore_errors: true

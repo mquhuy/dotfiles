@@ -15,6 +15,10 @@ alias i3wsconf="nvim ~/.config/i3/ws.conf"
 alias i3bc="nvim ~/.config/i3blocks/primary.conf"
 alias i3autoxrand="nvim ~/.config/i3/autoxrandr"
 
+# Sway config
+alias swayconfig="nvim ~/.config/sway/config"
+alias waybarconfig="nvim ~/.config/waybar/config.jsonc"
+
 # Vim config
 alias vinit="nvim ~/.config/nvim/init.lua"
 

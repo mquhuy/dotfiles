@@ -8,8 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+DOTFILES_DIR=$(realpath "$(dirname $(readlink $HOME/.profile))")
 # if running bash
-export DOTFILES_DIR=$(realpath "$(dirname $(readlink $HOME/.profile))")
 
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -39,3 +39,5 @@ fi
 if [ -d "$DOTFILES_DIR//bin" ] ; then
     PATH="$DOTFILES_DIR/bin:$PATH"
 fi
+
+export QT_QPA_PLATFORMTHEME="qt6ct"

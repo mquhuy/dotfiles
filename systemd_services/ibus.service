@@ -1,0 +1,9 @@
+[Unit]
+Description=Ibus
+
+[Service]
+ExecStart=ibus-daemon
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

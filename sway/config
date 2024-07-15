@@ -79,6 +79,8 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Print exec $screenshot
 bindsym $mod+Shift+Print exec $screenclip
 bindsym $mod+p exec $menu
+bindsym $mod+Space exec typemode toggle
+bindsym $mod+Shift+o exec wlr-randr --output eDP-1 --on
 
 bindsym $mod+q kill
 bindsym $mod+Shift+c reload
@@ -189,7 +191,7 @@ bindsym $mod+f fullscreen
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
 # Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # move focus to the parent container
 bindsym $mod+a focus parent
@@ -234,7 +236,7 @@ mode "$mode_system" {
 bar {
         id bar-0
         font pango: monospace 10
-        status_command i3blocks -c ~/.config/i3blocks/primary.conf
+        status_command waybar
         colors {
           background #282A36
           statusline #F8F8F2
