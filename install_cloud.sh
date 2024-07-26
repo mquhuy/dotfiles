@@ -17,3 +17,4 @@ $installer_dir/install_nvm.sh
 
 ln -s $__dir__/bin/clone $HOME/.local/bin/
 ln -s $__dir__/bin/recheckout_gh.sh $HOME/.local/bin/recheckout_pr
+ln -s $__dir__/config $HOME/.config
