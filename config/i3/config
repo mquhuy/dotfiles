@@ -114,7 +114,7 @@ bindsym Mod4+t layout tabbed
 bindsym Mod4+e layout toggle split
 
 # toggle tiling / floating
-bindsym Mod4+Shift+space floating toggle
+# bindsym Mod4+Shift+space floating toggle
 
 # Sticky
 # bindsym Mod4+Shift+space sticky toggle

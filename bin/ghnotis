@@ -1,2 +1,3 @@
 #!/bin/bash
-microsoft-edge-stable --user-data-dir=~/.local/profiles/gh --window-name=github "https://github.com/notifications" > /dev/null
+
+default-browser.sh gh "https://github.com/notifications"

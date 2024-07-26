@@ -28,4 +28,4 @@ if [[ ${repo} == "" ]]; then
     exit 0
 fi
 
-microsoft-edge-stable --user-data-dir=~/.local/profiles/gh $repo
+default-browser.sh gh "${repo}"
