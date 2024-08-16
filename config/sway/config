@@ -63,6 +63,7 @@ exec spotify
 exec riot
 exec --no-startup-id nextcloud
 exec --no-startup-id libinput-gestures
+exec --no-startup-id fcitx5
 
 # Default workspaces for common programs
 assign [class="^Chromium$"] $ws1
@@ -81,6 +82,7 @@ bindsym $mod+Shift+Print exec $screenclip
 bindsym $mod+p exec $menu
 bindsym $mod+Space exec typemode toggle
 bindsym $mod+Shift+o exec wlr-randr --output eDP-1 --on
+bindsym $mod+Control+o exec wlr-randr --output eDP-1 --off
 
 bindsym $mod+q kill
 bindsym $mod+Shift+c reload
@@ -93,8 +95,8 @@ bindsym $mod+Escape exec $power
 bindsym $mod+End exec $wifi
 
 # Notifications
-bindsym Control+Space exec makoctl dismiss
-bindsym Control+Shift+Space exec makoctl dismiss --all
+# bindsym Control+Space exec makoctl dismiss
+# bindsym Control+Shift+Space exec makoctl dismiss --all
 
 # Multimedia
 bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
@@ -125,10 +127,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # _move_ the focused window with the same, but add Shift
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # switch to workspace
 bindsym $mod+1   workspace $ws1
@@ -236,7 +238,7 @@ mode "$mode_system" {
 bar {
         id bar-0
         font pango: monospace 10
-        status_command waybar
+        swaybar_command waybar
         colors {
           background #282A36
           statusline #F8F8F2

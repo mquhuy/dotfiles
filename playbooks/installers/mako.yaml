@@ -1,0 +1,26 @@
+- name: Install waybar
+  hosts: all
+
+  tasks:
+  - name: Install packages
+    ansible.builtin.apt:
+      pkg:
+      - "{{ item }}"
+      update_cache: true
+    loop:
+      - cmake
+      - gdk-pixbuf
+      - meson
+      - scdoc
+    become: true
+    ignore_errors: true
+
+  - name: Clone repo
+    ansible.builtin.git:
+      repo: https://github.com/emersion/mako
+      dest: /tmp/mako
+
+  - name: Configure
+    shell: |
+      cd /tmp/mako && meson build && ninja -C build install
+    become: true
