@@ -12,8 +12,5 @@ if [[ "${bin_file}" == "" ]]; then
 fi
 dest=$HOME/.local/bin/$bin_file
 
-if [[ -n "${dest}" ]]; then
-	rm "${dest}"
-fi
-
+rm -f "${dest}"
 ln -s $__dir__/$bin_file "${dest}"

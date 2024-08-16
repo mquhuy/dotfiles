@@ -1,0 +1,33 @@
+#!/bin/bash
+
+URL=${1:-}
+if [[ ${URL} == "" ]]; then
+	exit 1
+fi
+
+if [[ $(which nativefier) == "" ]]; then
+	npm install -g nativefier > /dev/null
+fi
+
+mkdir -p $HOME/Programs
+cd $HOME/Programs || exit 1
+
+BEFORE=$(ls)
+
+nativefier $1 > /dev/null
+
+AFTER=$(ls)
+
+new=$(diff <(echo "$BEFORE") <(echo "$AFTER") | grep '^>' | cut -c 3-)
+echo $new
+
+dir=$(realpath "$new")
+binary_name="${new%-linux-x64}"
+
+app_name=${2:-binary_name}
+
+rm -f "$HOME/.local/bin/${app_name}"
+
+if [[ -f "${dir}/${binary_name}" ]]; then
+	ln -s "${dir}/${binary_name}" $HOME/.local/bin/${app_name}
+fi

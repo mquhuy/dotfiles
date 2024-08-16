@@ -3,9 +3,9 @@ alias eali="nvim $DOTFILES_DIR/sh_aliases.sh"
 alias ebm="nvim $DOTFILES_DIR/TxtLists/bookmarks.txt"
 alias seali="source $RCFILE"
 alias v="OPENAI_API_KEY=${OPENAI_API_KEY} nvim"
-alias wiki="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-writing nvim"
+alias wikio="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-writing nvim"
 alias norg="cd ~/Nextcloud/norg && NVIM_APPNAME=nvim-norg nvim"
-alias wikio="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-md nvim"
+alias wiki="cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-md nvim"
 alias opd="cd ~/Repos/openstack"
 
 # i3 config

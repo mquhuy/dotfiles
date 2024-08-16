@@ -1,0 +1,11 @@
+#! /bin/bash
+#
+# Get the URL of the remote repository
+remote_url=$(git config --get remote.origin.url)
+
+# Extract the organization and repository name
+org_repo=$(echo "$remote_url" | sed -n 's/.*github.com[/:]\(.*\)\.git/\1/p')
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+github https://github.com/${org_repo}/pull/new/${branch}

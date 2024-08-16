@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+NoDisplay=true
+Exec=/home/huy/dotfiles/bin/browser.sh %U
+Name=MyBrowser
+Comment=Custom definition for MyBrowser
+MimeType=x-scheme-handler/http;x-scheme-handler/https;

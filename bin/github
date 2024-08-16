@@ -1,0 +1,3 @@
+#!/bin/bash
+
+default-browser.sh gh $@

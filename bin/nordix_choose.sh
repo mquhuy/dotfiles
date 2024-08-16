@@ -28,4 +28,5 @@ if [[ ${repo} == "" ]]; then
     exit 0
 fi
 
-default-browser.sh gh "${repo}"
+start-or-focus.sh github
+github "${repo}"

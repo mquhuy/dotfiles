@@ -165,3 +165,5 @@ end)
 
 vim.api.nvim_set_keymap("n", "<leader>pc", '"+p', {noremap = true})
 vim.api.nvim_set_keymap("v", "<leader>y", '"+y', {noremap = true})
+require("oil").setup()
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

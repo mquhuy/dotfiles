@@ -12,3 +12,5 @@ fi
 #
 xdg-settings set default-web-browser "${chosen_browser}"
 echo xdg-settings set default-web-browser "${chosen_browser}"
+xdg-settings set default-url-scheme-handler http "${chosen_browser}"
+xdg-settings set default-url-scheme-handler https "${chosen_browser}"
