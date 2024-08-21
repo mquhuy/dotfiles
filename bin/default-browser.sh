@@ -3,7 +3,7 @@
 DEFAULT_BROWSER="${BROWSER:-"brave-browser-stable"}"
 PROFILE_NAME="${1:-main}"
 SITE=${2:-}
-PROFILE_DIR="~/.local/profiles/${PROFILE_NAME}"
+PROFILE_DIR="${HOME}/.local/profiles/${PROFILE_NAME}"
 
 mkdir -p "${PROFILE_DIR}"
 

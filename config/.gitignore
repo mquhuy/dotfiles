@@ -1,15 +1,26 @@
 BraveSoftware/
+enchant/
 GitHub Desktop/
+GIMP/
 dconf/
+fcitx/
 github-copilot/
 gitignore
 go/
 google-chrome/
+gtk-*/
 ibus-bamboo/
 ibus/
+kde.org/
 lazygit/state.yml
+libreoffice/
 microsoft-edge/
 mimeapps.list
 nordvpn/
+Nextcloud/
 openstack/
+session/
+QtProject.conf
+pavucontrol.ini
 pulse/
+trashrc
