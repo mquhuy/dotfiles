@@ -1,2 +1,2 @@
 #!/bin/bash
-microsoft-edge --app="https://teams.microsoft.com/"
+brave-browser --ozone-platform=wayland --app="https://teams.microsoft.com/"

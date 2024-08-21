@@ -1,0 +1,3 @@
+#!/bin/bash
+
+brave-browser --ozone-platform=wayland --user-data-dir=~/.local/profiles/est --window-name=est $1

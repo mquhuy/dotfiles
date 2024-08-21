@@ -14,7 +14,7 @@ cleura city cloud;https://cleura.cloud/dashboard
 cleura api docs;https://apidoc.cleura.cloud/
 outlook email;https://outlook.office365.com/mail/
 howto onboarding guide newcomers;https://wiki.nordix.org/pages/viewpage.action?pageId=23324061
-Nordix jenkins;https://jenkins.nordix.org/
+Nordix jenkins;https://jenkins.nordix.org/;est-browser
 outlet gigantti macbook;https://www.gigantti.fi/outlet/outlet-tietotekniikka/outlet-kannettavat-tietokoneet?filter=31027%253AmacOS%20Big%20Sur&filter=31027%253AmacOS%20Monterey
 metal3 github workflow wow;https://github.com/Nordix/metal3-dev-tools/blob/main/wow/github-workflow.md
 metal3 devenv;https://github.com/metal3-io/metal3-dev-env

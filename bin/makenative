@@ -22,12 +22,16 @@ new=$(diff <(echo "$BEFORE") <(echo "$AFTER") | grep '^>' | cut -c 3-)
 echo $new
 
 dir=$(realpath "$new")
+
+sudo chown root:root "${dir}/chrome-sandbox"
+sudo chmod 4755 "${dir}/chrome-sandbox"
+
 binary_name="${new%-linux-x64}"
 
 app_name=${2:-binary_name}
 
-rm -f "$HOME/.local/bin/${app_name}"
 
 if [[ -f "${dir}/${binary_name}" ]]; then
-	ln -s "${dir}/${binary_name}" $HOME/.local/bin/${app_name}
+	sudo rm -f /usr/local/bin/${app_name}
+	sudo ln -s "${dir}/${binary_name}" /usr/local/bin/${app_name}
 fi

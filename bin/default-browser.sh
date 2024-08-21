@@ -7,4 +7,4 @@ PROFILE_DIR="~/.local/profiles/${PROFILE_NAME}"
 
 mkdir -p "${PROFILE_DIR}"
 
-"${DEFAULT_BROWSER}" --user-data-dir="${PROFILE_DIR}" --window-name="${PROFILE_NAME}" "${SITE}" > /dev/null
+"${DEFAULT_BROWSER}" --ozone-platform=wayland --user-data-dir="${PROFILE_DIR}" --window-name="${PROFILE_NAME}" "${SITE}" > /dev/null

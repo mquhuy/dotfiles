@@ -156,13 +156,6 @@ vim.keymap.set('n', "<leader>fc", function()
   require("telescope").extensions.diff.diff_current({ hidden = true })
 end, { desc = "[F]ile Compare file with [c]urrent" })
 
-vim.keymap.set("n", "<leader>m", function()
-  require("telescope").extensions.monorepo.monorepo()
-end)
-vim.keymap.set("n", "<leader>n", function()
-  require("monorepo").toggle_project()
-end)
-
 vim.api.nvim_set_keymap("n", "<leader>pc", '"+p', {noremap = true})
 vim.api.nvim_set_keymap("v", "<leader>y", '"+y', {noremap = true})
 require("oil").setup()

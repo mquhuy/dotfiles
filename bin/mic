@@ -39,12 +39,13 @@ get_mode() {
 }
 
 get_desired_source() {
-    mode=$(get_mode)
-    if [[ "${mode}" == ${MODE_BLUETOOTH} ]]; then
-        echo $desired_bluetooth
-    else
-        echo $desired_headset
-    fi
+    echo $desired_bluetooth
+    # mode=$(get_mode)
+    # if [[ "${mode}" == ${MODE_BLUETOOTH} ]]; then
+    #     echo $desired_bluetooth
+    # else
+    #     echo $desired_headset
+    # fi
 }
 
 undisplay_nagbar() {

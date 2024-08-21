@@ -1,0 +1,35 @@
+- name: Install rofi with wayland support
+  hosts: all
+
+  tasks:
+  - name: Install packages
+    ansible.builtin.apt:
+      pkg:
+      - "{{ item }}"
+      update_cache: true
+    loop:
+      - bison
+      - cmake
+      - flex
+      - libstartup-notification0-dev
+      - libxcbcommon-x11-dev
+      - libxcb-cursor-dev
+      - libxcb-ewmh-dev
+      - libxcb-icccm4-dev
+      - libxcb-randr0-dev
+      - libxcb-util-dev
+      - libxcb-xinerama0-dev
+      - libxcb-xkb-dev
+      - meson
+    become: true
+    ignore_errors: true
+
+  - name: Clone repo
+    ansible.builtin.git:
+      repo: https://github.com/lbonn/rofi
+      dest: /tmp/rofi
+
+  - name: Configure
+    shell: |
+      cd /tmp/rofi && meson build && ninja -C build install
+    become: true

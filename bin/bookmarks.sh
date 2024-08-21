@@ -14,7 +14,7 @@ fi
 link=$(echo $output | awk -F';' '{print $1}')
 browser=$(echo $output | awk -F';' '{print $2}')
 if [[ $browser == "" ]]; then
-    browser="${DEFAULT_BROWSER:-"brave-browser-stable"}"
+    browser="${DEFAULT_BROWSER:-"brave-browser"}"
 fi
-start-or-focus.sh $browser
+start-or-focus-sway.sh $browser
 $browser $link

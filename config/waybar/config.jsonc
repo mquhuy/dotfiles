@@ -8,8 +8,8 @@
     // Choose the order of the modules
     "modules-left": [
         "sway/workspaces",
-        "sway/mode"
-        // "sway/scratchpad",
+        "sway/mode",
+        "sway/scratchpad"
         // "custom/media"
     ],
     "modules-center": [
@@ -36,7 +36,7 @@
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
+        "all-outputs": false,
         "warp-on-scroll": false,
         "format": "{name}: {icon}",
         "format-icons": {

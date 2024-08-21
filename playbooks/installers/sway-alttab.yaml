@@ -1,0 +1,32 @@
+- name: Sway Alttab install
+  hosts: all
+
+  tasks:
+    - name: "Install github3 package"
+      ansible.builtin.pip:
+        name: github3.py
+        break_system_packages: true
+
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: autolyticus
+        repo: sway-alttab
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download Binary
+      ansible.builtin.get_url:
+        url: https://github.com/autolyticus/sway-alttab/releases/download/{{ release.tag }}/sway-alttab
+        dest: /tmp/sway-alttab
+
+    - name: Install Binary
+      ansible.builtin.copy:
+        src: /tmp/sway-alttab
+        dest: "/usr/local/bin"
+        mode: a+x
+        remote_src: true
+      become: true

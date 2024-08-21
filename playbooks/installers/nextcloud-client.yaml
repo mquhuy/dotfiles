@@ -2,31 +2,17 @@
   hosts: all
 
   tasks:
-    - name: "Install github3 package"
-      ansible.builtin.pip:
-        name: github3.py
-        break_system_packages: true
-
-    - name: "Get Latest Release from Github"
-      community.general.github_release:
-        user: nextcloud-releases
-        repo: desktop
-        action: latest_release
-      register: release
-
-    - name: Print Latest release
-      ansible.builtin.debug:
-        var: release
-
-    - name: Download App image
-      ansible.builtin.get_url:
-        url: https://github.com/nextcloud-releases/desktop/releases/download/{{ release.tag }}/Nextcloud-{{ release.tag | regex_search('([0-9]|\.)+') }}-x86_64.AppImage
-        dest: /tmp/nextcloud
-
-    - name: Install
-      ansible.builtin.copy:
-        src: /tmp/nextcloud
-        dest: "/usr/local/bin"
-        mode: a+x
-        remote_src: true
+  - name: Add nextcloud-devs ppa
+    block:
+    - name: Apt source
+      ansible.builtin.apt_repository:
+        repo: ppa:nextcloud-devs/client
+        state: present
       become: true
+
+  - name: Install Nextcloud-client
+    ansible.builtin.apt:
+      pkg:
+      - nextcloud-client
+      update_cache: true
+    become: true

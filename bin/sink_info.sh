@@ -5,7 +5,7 @@ wrongheadphone="alsa_output.usb-SteelSeries_Arctis_Pro_Wireless-00.stereo-game"
 loudspeaker="alsa_output.pci-0000_00_1f.3.analog-stereo"
 office_sink="alsa_output.usb-GN_Audio_A_S_Jabra_EVOLVE_30_II_00038BF4A11207-00.analog-stereo"
 JBL_sink="alsa_output.usb-JBL_Quantum_800-00.analog-stereo"
-SONY_sink="bluez_sink.14_3F_A6_A3_D5_19.a2dp_sink"
+SONY_sink="bluez_output.14_3F_A6_A3_D5_19.1"
 
 trigger_i3blocks() {
     pkill -SIGRTMIN+2 i3blocks
@@ -16,7 +16,7 @@ get_sinks() {
 }
 
 correct_default_sink() {
-    correct_sink="${headphone}"
+    correct_sink="${SONY_sink}"
     sinks=$(get_sinks)
     if [[ $sinks =~ "${SONY_sink}" ]]; then
         correct_sink="${SONY_sink}"

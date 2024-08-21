@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Nextcloud
 GenericName=File Synchronizer
-Exec="/usr/local/bin/nextcloud" --background
+Exec="/usr/bin/nextcloud" --background
 Terminal=false
 Icon=Nextcloud
 Categories=Network

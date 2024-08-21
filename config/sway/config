@@ -21,8 +21,8 @@ client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
 client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 
 # workspaces
-set $ws1   1:
-set $ws2   2:
+set $ws1   1:1
+set $ws2   2:2
 set $ws3   3:3
 set $ws4   4:4
 set $ws5   5:5
@@ -31,18 +31,18 @@ set $ws7   7:7
 set $ws8   8:8
 set $ws9   9:9
 set $ws0   10:10
-set $wsF1  11:
-set $wsF2  12:
+set $wsF1  11:11
+set $wsF2  12:12
 set $wsF3  13:13
 set $wsF4  14:14
 set $wsF5  15:15
 set $wsF6  16:16
 set $wsF7  17:17
-set $wsF8  18:
+set $wsF8  18:18
 set $wsF9  19:19
 set $wsF10 20:20
-set $wsF11 21:
-set $wsF12 22:
+set $wsF11 21:21
+set $wsF12 22:22
 
 # Font
 font pango:Sans 12
@@ -65,24 +65,22 @@ exec --no-startup-id nextcloud
 exec --no-startup-id libinput-gestures
 exec --no-startup-id fcitx5
 
-# Default workspaces for common programs
-assign [class="^Chromium$"] $ws1
-# assign [class="^code-oss$"] $ws2
-assign [class="^Signal$"] $wsF1
-assign [class="^Riot$"] $wsF1
-assign [class="^Mailspring$"] $wsF2
-assign [app_id="virt-manager"] $wsF8
-assign [class="^KeePass2$"] $wsF11
-assign [class="^Spotify$"] $wsF12
-
 # Shortcuts
 bindsym $mod+Return exec kitty
 bindsym $mod+Print exec $screenshot
 bindsym $mod+Shift+Print exec $screenclip
 bindsym $mod+p exec $menu
 bindsym $mod+Space exec typemode toggle
-bindsym $mod+Shift+o exec wlr-randr --output eDP-1 --on
-bindsym $mod+Control+o exec wlr-randr --output eDP-1 --off
+bindsym $mod+Shift+o exec on.sh
+bindsym $mod+Control+o exec off.sh
+bindsym Shift+Control+$mod+t exec "start-or-focus-sway.sh msteams"
+bindsym Shift+Control+$mod+s exec "start-or-focus-sway.sh slack"
+bindsym Shift+Control+$mod+o exec "start-or-focus-sway.sh outlook"
+bindsym Shift+Control+$mod+c exec "start-or-focus-sway.sh copilot"
+bindsym Shift+Control+$mod+g exec "start-or-focus-sway.sh github"
+
+bindsym Control+$mod+n exec nordix_choose.sh
+bindsym Control+$mod+b exec bookmarks.sh
 
 bindsym $mod+q kill
 bindsym $mod+Shift+c reload
@@ -184,14 +182,16 @@ bindsym $mod+Shift+F12  move container to workspace $wsF12
 
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
+
+bindsym $mod+w exec rofi -show window
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
 
 # Toggle the current focus between tiling and floating mode
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating disable
 # Swap focus between the tiling area and the floating area
 # bindsym $mod+space focus mode_toggle
 

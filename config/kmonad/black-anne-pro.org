@@ -167,11 +167,12 @@ In `fn` mode,
 (defalias
   mq (layer-switch default)
   ma (tap-next (layer-delay 1000 met) a)
-  mt (tap-next C-M-T t)
-  ms (tap-next C-M-S s)
-  mw (tap-next C-M-W w)
-  mo (tap-next C-M-O o)
   mc (tap-next C-M-C c)
+  mg (tap-next C-M-G g)
+  mo (tap-next C-M-O o)
+  ms (tap-next C-M-S s)
+  mt (tap-next C-M-T t)
+  mw (tap-next C-M-W w)
   mm (tap-next C-M-C m)
   smspace (around lsft (around lmet spc))
 )
@@ -181,7 +182,7 @@ In `fn` mode,
 (deflayer fn
   grv  F1   F2   F3   F4   F5   F6   F7   F8   F9   F10  F11  F12  bspc
   tab  q    @mw  e    r    @mt  y    u    i    @mo  p    [    ]    \
-  lmet @ma  @ms  d    f    g    @kL  @kD  @kU  @kR  ;    '    ret
+  lmet @ma  @ms  d    f    @mg  @kL  @kD  @kU  @kR  ;    '    ret
   lsft z    x    @mc  v    b    n    @mm    ,    .    /    @kU
   lctl lmet lalt           @smspace       ralt @kL @kD @kR
 )
