@@ -6,6 +6,7 @@
   - name: Install apt packages
     ansible.builtin.apt:
       pkg:
+      - ca-certificates
       - apt-transport-https
       - curl
       update_cache: true
@@ -16,7 +17,7 @@
     - name: Docker gpg
       ansible.builtin.get_url:
         url: https://download.docker.com/linux/ubuntu/gpg
-        dest: /etc/apt/keyrings/docker.gpg
+        dest: /etc/apt/keyrings/docker.asc
       become: true
 
   - name: Get architecture
@@ -37,7 +38,7 @@
 
   - name: Apt source
     ansible.builtin.apt_repository:
-      repo: deb [arch={{ architecture.stdout | trim }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release.stdout | trim }} stable
+      repo: deb [arch={{ architecture.stdout | trim }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ os_release.stdout | trim }} stable
       state: present
     become: true
 
@@ -59,9 +60,10 @@
 
   - name: Add user to group
     user:
-      name: "{{ ansible_facts['env']['SUDO_USER'] }}"
+      name: "{{ ansible_env['USER'] }}"
       groups: docker
       append: yes
+    become: yes
 
   - name: Make sure docker service unit is running
     ansible.builtin.systemd_service:
