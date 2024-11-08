@@ -32,7 +32,7 @@ This README is a WIP based on [[https://github.com/kmonad/kmonad/blob/master/key
 #+end_src
 Here we need to have the exact id of the keyboard. I, in fact, intend to use similar layout for all of my keyboards, but currently there's no way that I know of to have a one fits all config
 #+begin_src lua
-  input (device-file /dev/input/by-id/usb-Dell_Computer_Corp_Dell_Universal_Receiver-event-kbd)
+  input (device-file "Dell Keybd")
 #+end_src
 
 #+begin_src lua
