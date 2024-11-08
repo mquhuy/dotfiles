@@ -1,4 +1,7 @@
 // -*- mode: jsonc -*-
+// wiki: https://github.com/Alexays/Waybar/wiki
+// Configuration: https://github.com/Alexays/Waybar/wiki/Configuration
+// Styling: https://github.com/Alexays/Waybar/wiki/Styling
 {
     "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
@@ -18,6 +21,7 @@
     "modules-right": [
         // "mpd",
         // "idle_inhibitor",
+        "custom/time_track",
         "pulseaudio",
         // "network",
         // "power-profiles-daemon",
@@ -38,17 +42,17 @@
         "disable-scroll": true,
         "all-outputs": false,
         "warp-on-scroll": false,
-        "format": "{name}: {icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
+        "format": "{icon}",
+        // "format-icons": {
+        //     "1": "",
+        //     "2": "",
+        //     "3": "",
+        //     "4": "",
+        //     "5": "",
+        //     "urgent": "",
+        //     "focused": "",
+        //     "default": ""
+        // }
     },
     "keyboard-state": {
         "numlock": true,
@@ -173,20 +177,22 @@
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-bluetooth-muted": "🔇 {icon} {format_source}",
+        "format-muted": "🔇 {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
-            "headset": "",
+            "headset": "🎧",
             "phone": "",
             "portable": "",
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "mic toggle",
+        "on-click-right": "BLOCK_BUTTON=1 sink_info.sh",
+        "on-click-middle": "pavucontrol"
     },
     "custom/media": {
         "format": "{icon} {}",
@@ -211,5 +217,13 @@
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate"
 		}
+    },
+    "custom/time_track": {
+        "exec": "time_track.sh",
+        "interval": 60,
+        "on-click": "time_track.sh toggle",
+        "on-right-click": "time_track.sh toggle_with_input"
+    },
+    "custom/headset_mode": {
     }
 }
