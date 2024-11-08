@@ -1,3 +1,4 @@
 #!/bin/env bash
 
-cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-writing WINIT_X11_SCALE_FACTOR=1 neovide
+# cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-writing WINIT_X11_SCALE_FACTOR=1 neovide
+kitty --class=wiki -T wiki -- sh -c 'cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-md nvim'
