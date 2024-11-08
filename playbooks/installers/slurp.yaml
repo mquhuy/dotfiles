@@ -8,26 +8,19 @@
       - "{{ item }}"
       update_cache: true
     loop:
-      - cmake
-      - gdk-pixbuf
       - meson
+      - cairo
+      - libxkbcommon-dev
       - scdoc
     become: true
     ignore_errors: true
 
   - name: Clone repo
     ansible.builtin.git:
-      repo: https://github.com/emersion/mako
-      dest: /tmp/mako
+      repo: https://github.com/emersion/slurp
+      dest: /tmp/slurp
 
   - name: Configure
     shell: |
-      cd /tmp/mako && meson build && ninja -C build install
-    become: true
-
-  - name: Add makoctl
-    copy:
-      src: /tmp/mako/makoctl
-      dest: /usr/bin/makoctl
-      mode: a+x
+      cd /tmp/slurp && meson setup build && ninja -C build install
     become: true

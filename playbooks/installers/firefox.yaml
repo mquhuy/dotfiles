@@ -7,8 +7,24 @@
     - name: Firefox repo
       ansible.builtin.get_url:
         url: https://packages.mozilla.org/apt/repo-signing-key.gpg
+        dest: /tmp/firefox.org.asc
+      become: true
+
+    - name: Retrieve the fingerprint of the downloaded key
+      ansible.builtin.set_fact:
+        downloaded_key_fingerprint: "{{ lookup('community.crypto.gpg_fingerprint', '/tmp/firefox.org.asc') }}"
+
+    - name: Verify the fingerprint
+      ansible.builtin.assert:
+        that:
+          - downloaded_key_fingerprint == '35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3'
+        msg: "The GPG key fingerprint does not match the expected value."
+
+    - name: Move signing key to correct place
+      ansible.builtin.copy:
+        src: /tmp/firefox.org.asc
         dest: /etc/apt/keyrings/packages.mozilla.org.asc
-        # checksum: sha256:35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3
+        remote_src: true
       become: true
 
     - name: Apt source
@@ -17,7 +33,7 @@
         state: present
       become: true
 
-  - name: Install Brave
+  - name: Install Firefox
     ansible.builtin.apt:
       pkg:
       - firefox

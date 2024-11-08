@@ -1,0 +1,25 @@
+- name: Install waybar
+  hosts: all
+
+  tasks:
+  - name: Install packages
+    ansible.builtin.apt:
+      pkg:
+      - "{{ item }}"
+      update_cache: true
+    loop:
+      - libpipewire-0.3-dev
+      - libinih-dev
+      - libgbm-dev
+    become: true
+    ignore_errors: true
+
+  - name: Clone repo
+    ansible.builtin.git:
+      repo: https://github.com/emersion/xdg-desktop-portal-wlr.git
+      dest: /tmp/xdg-desktop-portal-wlr
+
+  - name: Configure
+    shell: |
+      cd /tmp/xdg-desktop-portal-wlr && meson setup build && ninja -C build install
+    become: true
