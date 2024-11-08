@@ -1,3 +1,1 @@
-metal3-dev-env;git@github.com:Nordix/metal3-dev-env.git
-cluster-api-provider-metal3 camp3;git@github.com:Nordix/cluster-api-provider-metal3.git
 sushy-tools;https://opendev.org/openstack/sushy-tools.git

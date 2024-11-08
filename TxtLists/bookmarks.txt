@@ -35,9 +35,9 @@ Flowscape booking seat office jorvas;https://internal.flowscape.ericsson.net/web
 i3wm userguide;https://i3wm.org/docs/userguide.html
 Learn at EST;https://estab.sharepoint.com/SitePages/My-Learning.aspx
 Kubernetes for Developers (LFD259);https://training.linuxfoundation.org/training/kubernetes-for-developers/
-metal3 community meeting note;https://docs.google.com/document/d/1IkEIh-ffWY3DaNX3aFcAxGbttdEY_symo7WAGmzkWhU/edit#
+metal3 community meeting note;https://docs.google.com/document/d/1IkEIh-ffWY3DaNX3aFcAxGbttdEY_symo7WAGmzkWhU/edit#;est-browser
 metal3 team meetup note;https://docs.google.com/document/d/1Exm5k6JB2JlD9_FOaM68R2ASHi7ZsryF_xEqLG1j4zA/edit#heading=h.noz6wdbo32qs
-metal3 community meeting;https://zoom.us/j/97255696401?pwd=ZlJMckNFLzdxMDNZN2xvTW5oa2lCZz09
+metal3 community meeting;https://zoom.us/j/97255696401?pwd=ZlJMckNFLzdxMDNZN2xvTW5oa2lCZz09;est-browser
 metal3 docs repo;https://github.com/Nordix/metal3-clusterapi-docs
 huymai.fi zoneeditor;https://hotelli07.domainhotelli.fi:2083/cpsess9476831163/frontend/paper_lantern/zone_editor/index.html#/manage?domain=huymai.fi
 ansible doc;https://docs.ansible.com/ansible/latest/
@@ -58,3 +58,4 @@ github notifications;https://github.com/notifications
 my github repo;https://github.com/mquhuy?tab=repositories
 ericsson allstar recognition;https://allstars.ericsson.net/;kolmenakkia
 new jira eteamspace;https://eteamproject.ericsson.net/secure/RapidBoard.jspa?projectKey=CNCFOS&rapidView=12571;kolmenakkia
+xerces;https://xerces.ericsson.net/project/;kolmenakkia
