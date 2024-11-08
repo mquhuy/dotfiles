@@ -28,5 +28,5 @@ if [[ ${repo} == "" ]]; then
     exit 0
 fi
 
-start-or-focus-sway.sh github
+KEEP_FOCUS=true start-or-focus-sway.sh github
 github "${repo}"
