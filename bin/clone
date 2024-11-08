@@ -2,6 +2,33 @@
 
 repoName=${1:-}
 
+clone_repo() {
+    local repoUrl=${REPO_URL:-}
+    local userName=${REPO_USERNAME:-}
+    local repoName=${REPO_NAME:-}
+    local use_git=${USE_GIT:-"true"}
+    if [[ ${repoUrl} != "" ]]; then
+        git clone ${repoUrl}
+    elif [[ ${use_git} != "true" ]]; then
+        url = "https://github.com/${userName}/${repoName}"
+        git clone ${url} ${repoName}
+    else
+        gh repo clone ${userName}/${repoName}
+    fi
+    cd ${repoName} || return
+    parent=$(curl -s "https://api.github.com/repos/${userName}/${repoName}" | jq -r .parent.clone_url)
+    echo $parent
+    if [[ ${parent} == "null" ]]; then
+        return
+    fi
+    if [[ $(git remote -v | grep "upstream") != "" ]]; then
+        return
+    fi
+    username=$(echo $url | sed -n 's|.*github.com/\([^/]*\)/.*|\1|p')
+    repo=$(echo $url | sed -n 's|.*/\([^/]*\)\.git|\1|p')
+    git remote add upstream "git@github.com:${username}/${reponame}.git"
+}
+
 if [[ $repoName == "" ]]; then
     get_repo_list() {
         org=${1:-metal3-io}
@@ -25,8 +52,7 @@ if [[ $repoName == "" ]]; then
     repos=$(get_repo_list "nordix")
     repo=$(echo "${repos}" | sed 's/ /\n/g' | fzf)
 
-
-    git clone $repo
+    REPO_URL=$repo clone
     exit 0
 fi
 
@@ -35,7 +61,7 @@ source "${DOTFILES_DIR}/bin_lib/fzf_lib.sh"
 repoLink=$(choose $REPO_LIST $repoName)
 echo $repoLink
 if [[ $repoLink != "" ]]; then
-    git clone $repoLink
+    REPO_URL=$repoLink clone
     exit 0
 fi
-git clone "git@github.com:Nordix/${repoName}.git"
+REPO_USERNAME="Nordix" REPO_NAME=${repoName} clone_repo
