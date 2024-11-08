@@ -1,6 +1,13 @@
 #!/bin/bash
 #
-command=$1
+command=${1:-}
+
+if [[ ${command} == "" ]]; then
+    command=$(echo "" | rofi -dmenu -p "Command to run: ")
+fi
+
+echo $command
+
 mkdir -p /tmp/.wid
 logfile="/tmp/start-or-focus-sway.log"
 wid_filename=${2:-$command}
@@ -27,7 +34,9 @@ if [ -f $wid_file ]; then
     window_id=$(cat $wid_file)
     echo "Window id: ${window_id}" >> ${logfile}
     if [[ $(get_focused_window_id)  == $window_id ]]; then
-        swaymsg "[con_id=${window_id}] move scratchpad"
+        if [[ ${KEEP_FOCUS:-} != "true" ]]; then
+            swaymsg "[con_id=${window_id}] move scratchpad"
+        fi
         exit 0
     fi
     focus $window_id
