@@ -1,0 +1,4 @@
+#!/bin/env bash
+
+# cd ~/Nextcloud/zettelkasten && NVIM_APPNAME=nvim-writing WINIT_X11_SCALE_FACTOR=1 neovide
+kitty --class=nordix -T nordix -- sh -c 'cd ~/Nordix && tmux new -s nordix'
