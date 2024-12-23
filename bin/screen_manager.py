@@ -1,0 +1,1 @@
+/home/huy/dotfiles/screen_manager/screen_manager.py

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-desired_headset="alsa_input.usb-SteelSeries_Arctis_Pro_Wireless-00.mono-chat"
+desired_headset="alsa_input.usb-MediaTek_Inc_Dell_HR024_Audio_Receiver_0000000000000000-00.mono-fallback"
+# desired_headset="alsa_input.usb-SteelSeries_Arctis_Pro_Wireless-00.mono-chat"
 desired_bluetooth="alsa_input.usb-Lenovo_Lenovo_Performance_Camera_145081A8-04.analog-stereo"
 # desired_bluetooth="alsa_input.usb-046d_HD_Pro_Webcam_C920_FAF7DAAF-02.analog-stereo"
 #desired="alsa_input.usb-046d_HD_Pro_Webcam_C920_FAF7DAAF-02.analog-stereo"
@@ -39,7 +40,8 @@ get_mode() {
 }
 
 get_desired_source() {
-    echo $desired_bluetooth
+    # echo $desired_bluetooth
+    echo $desired_headset
     # mode=$(get_mode)
     # if [[ "${mode}" == ${MODE_BLUETOOTH} ]]; then
     #     echo $desired_bluetooth

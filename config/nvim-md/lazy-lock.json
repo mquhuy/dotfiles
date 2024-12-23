@@ -4,7 +4,7 @@
   "headlines.nvim": { "branch": "master", "commit": "618ef1b2502c565c82254ef7d5b04402194d9ce3" },
   "image.nvim": { "branch": "master", "commit": "4007cddc4cfc1b5ddd49744a38362e7b0432b3a0" },
   "img-clip.nvim": { "branch": "main", "commit": "0e047d80bb08753e8899b5101e88624e54c5d4ad" },
-  "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
+  "lazy.nvim": { "branch": "main", "commit": "1159bdccd8910a0fd0914b24d6c3d186689023d9" },
   "markdown.nvim": { "branch": "master", "commit": "dfa0d2def6dbf77e9206b16dc90cad4dd23d55d2" },
   "mkdnflow.nvim": { "branch": "main", "commit": "4b8df635b0386d76544af2cbb0848d3d8a9cca8a" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "29f7c215332ba95e470811c380ddbce2cebe2af4" },

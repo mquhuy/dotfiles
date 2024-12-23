@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
-headphone="alsa_output.usb-SteelSeries_Arctis_Pro_Wireless-00.mono-chat"
-wrongheadphone="alsa_output.usb-SteelSeries_Arctis_Pro_Wireless-00.stereo-game"
+headphone="alsa_output.usb-MediaTek_Inc_Dell_HR024_Audio_Receiver_0000000000000000-00.analog-stereo"
 loudspeaker="alsa_output.pci-0000_00_1f.3.analog-stereo"
 office_sink="alsa_output.usb-GN_Audio_A_S_Jabra_EVOLVE_30_II_00038BF4A11207-00.analog-stereo"
 JBL_sink="alsa_output.usb-JBL_Quantum_800-00.analog-stereo"
@@ -18,7 +17,9 @@ get_sinks() {
 correct_default_sink() {
     correct_sink="${SONY_sink}"
     sinks=$(get_sinks)
-    if [[ $sinks =~ "${SONY_sink}" ]]; then
+    if [[ $sinks =~ "${headphone}" ]]; then
+        correct_sink="${headphone}"
+    elif [[ $sinks =~ "${SONY_sink}" ]]; then
         correct_sink="${SONY_sink}"
     elif [[ $sinks =~ "${JBL_sink}" ]]; then
         correct_sink="${JBL_sink}"

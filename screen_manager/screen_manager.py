@@ -8,13 +8,25 @@ import sys
 from rofi import Rofi
 
 LAYOUT_FILE = os.path.join(os.environ["HOME"], ".config", ".screenlayout")
+ON_WAYLAND = False
+COMMAND = "wlr-randr"
+SIZE_REGEX = r"(?P<width>\d+)x(?P<height>\d+) px, .* Hz \("
+if not "WAYLAND_DISPLAY" in os.environ:
+    ON_WAYLAND = False
+    COMMAND = "xrandr"
+    SIZE_REGEX = r"(?P<width>\d+)x(?P<height>\d+) "
 
 def get_screens():
-    out = subprocess.check_output(["wlr-randr"])
+    if not ON_WAYLAND:
+        out = subprocess.check_output([COMMAND, "--verbose"])
+    else:
+        out = subprocess.check_output([COMMAND])
     # screens = re.split("Adaptive Sync: \w+\n", out.decode())
     screens = re.split(r'(?m)^(?!\s)', out.decode())
     all_screens = {}
     for screen in screens:
+        if (not ON_WAYLAND) and ('disconnected' in screen or 'Screen' in screen):
+            continue
         screen_dict = {}
         screen = screen.strip()
         if screen == "":
@@ -32,21 +44,36 @@ def get_screens():
             if len(items) == 2:
                 screen_dict[items[0]] = items[1]
                 continue
-            match = re.search(r"(?P<width>\d+)x(?P<height>\d+) px, .* Hz \(", line)
-            if match is None:
+            match = re.search(SIZE_REGEX, line)
+            if match is None or "width" in screen_dict:
                 continue
             screen_dict["width"] = int(match.group("width"))
             screen_dict["height"] = int(match.group("height"))
-        all_screens[f'{screen_dict["Make"]}-{screen_dict["Model"]}'] = screen_dict
+            print(line)
+        if "Make" in screen_dict:
+            screen_name = f'{screen_dict["Make"]}-{screen_dict["Model"]}'
+        else:
+            screen_name = screen_dict["name"]
+        all_screens[screen_name] = screen_dict
     return all_screens
 
-def set_screen_position(screen_name, location):
-    command = ["wlr-randr", "--output", screen_name]
-    for params in [["--on"], ["--pos", location]]:
-        subprocess.run(command + params)
+def run_command(command):
+    print(f"Running: {' '.join(command)}")
+    subprocess.run(command)
+
+def set_screen_position(screen, location):
+    screen_name = screen["name"]
+    command = [COMMAND, "--output", screen_name]
+    loc_str = f"{location[0]}x{location[1]}"
+    if ON_WAYLAND:
+        r = run_command(command + ["--on"])
+        loc_str = f"{location[0]},{location[1]}"
+    else:
+        run_command(command + ["--mode", f"{screen['width']}x{screen['height']}"])
+    r = run_command(command + ["--pos", loc_str])
 
 def turn_screen_off(screen_name):
-    command = ["wlr-randr", "--output", screen_name, "--off"]
+    command = [COMMAND, "--output", screen_name, "--off"]
     subprocess.run(command)
 
 def organize_screens(layout):
@@ -55,7 +82,7 @@ def organize_screens(layout):
     screens = get_screens()
     for name in screen_names:
         screen = screens[name]
-        set_screen_position(screen["name"], f"{x}, 0")
+        set_screen_position(screen, (x, 0))
         x += screen["width"]
     store_layout(layout)
 

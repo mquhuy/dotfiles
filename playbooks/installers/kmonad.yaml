@@ -1,0 +1,27 @@
+- name: GitHub Cli install
+  hosts: all
+
+  tasks:
+    - name: "Get Latest Release from Github"
+      community.general.github_release:
+        user: kmonad
+        repo: kmonad
+        action: latest_release
+      register: release
+
+    - name: Print Latest release
+      ansible.builtin.debug:
+        var: release
+
+    - name: Download Binary
+      ansible.builtin.get_url:
+        url: https://github.com/kmonad/kmonad/releases/download/{{ release.tag }}/kmonad
+        dest: /home/{{ ansible_user_id }}/Programs/kmonad
+        mode: '0777'
+
+    - name: Install Binary
+      ansible.builtin.file:
+        src: /home/{{ ansible_user_id }}/Programs/kmonad
+        dest: "/usr/local/bin/kmonad"
+        state: link
+      become: true

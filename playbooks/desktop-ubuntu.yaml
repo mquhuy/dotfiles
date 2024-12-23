@@ -54,14 +54,6 @@
     become: true
     ignore_errors: true
 
-  - name: Remove unwanted packages
-    ansible.builtin.apt:
-      name: "{{ item }}"
-      state: absent
-    loop:
-    - xdg-desktop-portal-gnome
-    - xdg-desktop-portal-gtk
-
   - name: Install youtube-dl from git repository
     community.general.pipx:
       name: youtube-dl

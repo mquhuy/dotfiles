@@ -88,7 +88,7 @@ This is a typical 60% keyboard layout. As a mater of fact, none of my keyboards 
   tab  q    w    e    r    t    y    u    i    o       p    [    ]    \
   caps a    s    d    f    g    h    j    k    l       ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .       /    rsft
-  lctl lmet lalt           spc            ralt KeyCompose rctl  rctl)
+  lctl lmet lalt           spc            ralt KeyCompose rctl  )
 #+end_src
 
 
@@ -157,7 +157,7 @@ Finally, it is important to note that the *first* `deflayer` statement in a KMon
   @mtab q     w    e    r    t    y    u    i    o    p    [    ]    \
   @fn   a     s    d    f    g    h    j    k    l    ;    '    ret
   lsft  z     x    c    v    b    n    m    ,    .    /    @kU
-  lctl  met   lalt          spc            @kL @kD  @kR   rctrl
+  lctl  met   lalt          spc            @kL @kD  @kR   
 )
 #+end_src
 
@@ -185,7 +185,7 @@ In `fn` mode,
   tab  q    @mw  @me    r    @mt  y    u    i    @mo  p    [    ]    \
   lmet @ma  @ms  d    f    @mg  @kL  @kD  @kU  @kR  ;    '    ret
   lsft z    x    @mc  v    b    n    @mm    ,    .    /    @kU
-  lctl lmet lalt           @smspace       ralt @kL @kD @kR
+  lctl lmet lalt           @smspace       @kL @kD @kR
 )
 #+end_src
 
@@ -213,7 +213,7 @@ In `fn` mode,
   tab  @mq  _    _    _    @mt  _    _    _    _    _    [    ]    \
   _    _    @ms  _    _    _    @mh  @mj  @mk  @ml  ;    '    ret
   lsft _    _    _    _    _    _    _    ,    .    /    @kU
-  lctl lmet lalt           spc            ralt @kL @kD @kR
+  lctl lmet lalt           spc            @kL @kD @kR
 )
 #+end_src
 

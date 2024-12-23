@@ -2,11 +2,6 @@
   hosts: all
 
   tasks:
-    - name: "Install github3 package"
-      ansible.builtin.pip:
-        name: github3.py
-        break_system_packages: true
-
     - name: "Get Latest Release from Github"
       community.general.github_release:
         user: kovidgoyal

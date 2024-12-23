@@ -2,6 +2,31 @@
   hosts: all
 
   tasks:
+    - name: Create tmux conf
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/../../tmux/tmux.conf"
+        dest: /home/{{ ansible_user_id}}/.tmux.conf
+        state: link
+
+    - name: Create .tmux dir
+      ansible.builtin.file:
+        path: /home/{{ ansible_user_id}}/.tmux/plugins
+        state: directory
+
+    - name: Create themes dir
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/../../tmux/themes"
+        dest: /home/{{ ansible_user_id}}/.tmux/themes
+        state: link
+
+    - name: Clone tpm
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: /home/{{ ansible_user_id}}/.tmux/plugins/tpm
+
+    - name: Run tpm install
+      shell: /home/{{ ansible_user_id}}/.tmux/plugins/tpm/scripts/install_plugins.sh
+
     - name: Install tmux from apt
       apt:
         pkg:
@@ -13,11 +38,6 @@
     - name: Exit the playbook early
       meta: end_play
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
-
-    - name: "Install github3 package"
-      ansible.builtin.pip:
-        name: github3.py
-        break_system_packages: true
 
     - name: Install openssl
       ansible.builtin.apt:
@@ -88,27 +108,3 @@
         cd /tmp/tmux-{{ release.tag }} && make install
       become: true
 
-    - name: Create tmux conf
-      ansible.builtin.file:
-        src: "{{ playbook_dir }}/../../tmux/tmux.conf"
-        dest: /home/{{ ansible_user_id}}/.tmux.conf
-        state: link
-
-    - name: Create .tmux dir
-      ansible.builtin.file:
-        path: /home/{{ ansible_user_id}}/.tmux/plugins
-        state: directory
-
-    - name: Create themes dir
-      ansible.builtin.file:
-        src: "{{ playbook_dir }}/../../tmux/themes"
-        dest: /home/{{ ansible_user_id}}/.tmux/themes
-        state: link
-
-    - name: Clone tpm
-      ansible.builtin.git:
-        repo: https://github.com/tmux-plugins/tpm
-        dest: /home/{{ ansible_user_id}}/.tmux/plugins/tpm
-
-    - name: Run tpm install
-      shell: /home/{{ ansible_user_id}}/.tmux/plugins/tpm/scripts/install_plugins.sh

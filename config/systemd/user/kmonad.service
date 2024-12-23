@@ -2,7 +2,7 @@
 Description=Kmonad
 
 [Service]
-ExecStart=/home/huy/.local/bin/kmonad /home/huy/.config/kmonad/config.kbd
+ExecStart=kmonad /home/huy/.config/kmonad/config.kbd
 Restart=on-failure
 
 [Install]
