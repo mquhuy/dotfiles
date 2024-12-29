@@ -2,70 +2,71 @@
   hosts: all
 
   tasks:
-  # One way to avoid apt_key once it is removed from your distro, armored keys should use .asc extension, binary should use .gpg
-  - name: Install apt packages
-    ansible.builtin.apt:
-      pkg:
-      - apt-transport-https
-      - curl
-      update_cache: true
-    become: true
-
-  - name: Add docker gpg key
-    block:
-    - name: Docker gpg
-      ansible.builtin.get_url:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        dest: /etc/apt/keyrings/docker.gpg
+    # One way to avoid apt_key once it is removed from your distro, armored keys should use .asc extension, binary should use .gpg
+    - name: Install apt packages
+      ansible.builtin.apt:
+        pkg:
+          - apt-transport-https
+          - curl
+        update_cache: true
       become: true
 
-  - name: Get architecture
-    shell: dpkg --print-architecture
-    register: architecture
+    - name: Add docker gpg key
+      block:
+        - name: Docker gpg
+          ansible.builtin.get_url:
+            url: https://download.docker.com/linux/ubuntu/gpg
+            dest: /etc/apt/keyrings/docker.asc
+          become: true
 
-  - name: Print architecture
-    ansible.builtin.debug:
-      var: architecture
+    - name: Get architecture
+      shell: dpkg --print-architecture
+      register: architecture
 
-  - name: Get os release
-    shell: . /etc/os-release && echo "$VERSION_CODENAME"
-    register: os_release
+    - name: Print architecture
+      ansible.builtin.debug:
+        var: architecture
 
-  - name: Print os_release
-    ansible.builtin.debug:
-      var: os_release
+    - name: Get os release
+      shell: . /etc/os-release && echo "$VERSION_CODENAME"
+      register: os_release
 
-  - name: Apt source
-    ansible.builtin.apt_repository:
-      repo: deb [arch={{ architecture.stdout | trim }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ os_release.stdout | trim }} stable
-      state: present
-    become: true
+    - name: Print os_release
+      ansible.builtin.debug:
+        var: os_release
 
-  - name: Install docker
-    ansible.builtin.apt:
-      pkg:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-buildx-plugin
-      - docker-compose-plugin
-      update_cache: true
-    become: true
+    - name: Apt source
+      ansible.builtin.apt_repository:
+        repo: deb [arch={{ architecture.stdout | trim }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ os_release.stdout | trim }} stable
+        state: present
+      become: true
 
-  - name: Add docker group
-    ansible.builtin.group:
-      name: docker
-      state: present
+    - name: Install docker
+      ansible.builtin.apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        update_cache: true
+      become: true
 
-  - name: Add user to group
-    user:
-      name: "{{ ansible_facts['env']['SUDO_USER'] }}"
-      groups: docker
-      append: yes
+    - name: Add docker group
+      ansible.builtin.group:
+        name: docker
+        state: present
 
-  - name: Make sure docker service unit is running
-    ansible.builtin.systemd_service:
-      state: started
-      name: docker
-      scope: system
-    become: true
+    - name: Add user to group
+      user:
+        name: "{{ ansible_user_id }}"
+        groups: docker
+        append: yes
+      become: true
+
+    - name: Make sure docker service unit is running
+      ansible.builtin.systemd_service:
+        state: started
+        name: docker
+        scope: system
+      become: true

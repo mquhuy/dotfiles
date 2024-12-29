@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  db:
+    image: mariadb:latest
+    container_name: nextcloud-db
+    restart: always
+    networks:
+      - nextcloud_network
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_PASSWORD: nextcloud_password
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud_user
+    volumes:
+      - ./db_data:/var/lib/mysql
+
+  app:
+    image: nextcloud:latest
+    container_name: nextcloud-app
+    restart: always
+    networks:
+      - nextcloud_network
+    environment:
+      MYSQL_PASSWORD: nextcloud_password
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud_user
+      MYSQL_HOST: db
+    volumes:
+      - ./nextcloud_data:/var/www/html
+    ports:
+      - 9000:80 # Exposing internal port 80 to external port 9000
+
+volumes:
+  db_data:
+  nextcloud_data:
+
+networks:
+  nextcloud_network:
+    external: true

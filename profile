@@ -41,3 +41,4 @@ if [ -d "$DOTFILES_DIR//bin" ] ; then
 fi
 
 export QT_QPA_PLATFORMTHEME="qt6ct"
+. "$HOME/.cargo/env"

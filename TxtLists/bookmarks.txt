@@ -39,7 +39,7 @@ metal3 community meeting note;https://docs.google.com/document/d/1IkEIh-ffWY3DaN
 metal3 team meetup note;https://docs.google.com/document/d/1Exm5k6JB2JlD9_FOaM68R2ASHi7ZsryF_xEqLG1j4zA/edit#heading=h.noz6wdbo32qs
 metal3 community meeting;https://zoom.us/j/97255696401?pwd=ZlJMckNFLzdxMDNZN2xvTW5oa2lCZz09;est-browser
 metal3 docs repo;https://github.com/Nordix/metal3-clusterapi-docs
-huymai.fi zoneeditor;https://hotelli07.domainhotelli.fi:2083/cpsess9476831163/frontend/paper_lantern/zone_editor/index.html#/manage?domain=huymai.fi
+huymai.fi zoneeditor;https://hotelli07.domainhotelli.fi:2083/cpsess9476831163/frontend/paper_lantern/zone_editor/index.html#/manage?domain=huymai.fi;mquhuy
 ansible doc;https://docs.ansible.com/ansible/latest/
 gomega;https://onsi.github.io/gomega/#adjusting-output
 esj cop excel;https://estab.sharepoint.com/:x:/r/sites/ESTFinland-ESJ/_layouts/15/Doc.aspx?sourcedoc=%7BEAD6AD01-6711-4C19-A0A2-1E224C0C9483%7D&file=ESJ%20Community%20of%20Practice.xlsx&action=default&mobileredirect=true
@@ -49,7 +49,6 @@ DAG summary;https://estab-my.sharepoint.com/:p:/r/personal/huy_mai_est_tech/_lay
 windows virtual workspace windows365;https://windows365.microsoft.com/;kolmenakkia
 10-minute-email temporary-email email;https://10minutemail.net/error-due.html
 metal3 wiki;https://wiki.nordix.org/display/CPI/Metal3.io
-domainhotelli cpanel domain;https://hotelli07.domainhotelli.fi:2083/cpsess7551303822/frontend/jupiter/zone_editor/index.html#/manage?domain=huymai.fi
 obsidian format secondbrain;https://help.obsidian.md/Editing+and+formatting/Callouts
 toggl time reporting tracking;https://track.toggl.com/timer
 Metal3 diagrams sharepoint;https://estab.sharepoint.com/sites/ESTFinland-ESJ/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=PuKyt5&cid=b0a0b87b%2D88f4%2D478e%2Da659%2Da29b196ec330&FolderCTID=0x012000FEA47FE87FE1AA48A6E9220FA855789D&id=%2Fsites%2FESTFinland%2DESJ%2FShared%20Documents%2FGeneral%2FDiagrams&viewid=a11c6b7a%2D7e4a%2D4c80%2Db9ff%2Df32b347c66c2;est-browser

@@ -1,0 +1,10 @@
+server {
+	root /var/www/blog/;
+	index index.html index.htm index.nginx-debian.html;
+	server_name huymai.fi www.huymai.fi;
+    access_log /var/blog_access.log;
+    error_log /var/blog_error.log;
+	location / {
+		try_files $uri $uri/ =404;
+    }
+}

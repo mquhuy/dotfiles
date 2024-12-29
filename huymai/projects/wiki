@@ -1,0 +1,12 @@
+server {
+	root /var/www/wiki/;
+	index index.html index.htm index.nginx-debian.html;
+	server_name wiki.huymai.fi;
+    access_log /var/wiki_access.log;
+    error_log /var/wiki_error.log;
+	location / {
+		auth_basic "Password Required";
+		auth_basic_user_file /etc/nginx/.htpasswd;
+		try_files $uri $uri/ =404;
+    }
+}
