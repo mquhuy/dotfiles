@@ -19,14 +19,6 @@
         dest: /home/{{ ansible_user_id}}/.tmux/themes
         state: link
 
-    - name: Clone tpm
-      ansible.builtin.git:
-        repo: https://github.com/tmux-plugins/tpm
-        dest: /home/{{ ansible_user_id}}/.tmux/plugins/tpm
-
-    - name: Run tpm install
-      shell: /home/{{ ansible_user_id}}/.tmux/plugins/tpm/scripts/install_plugins.sh
-
     - name: Install tmux from apt
       apt:
         pkg:
@@ -34,6 +26,14 @@
         update_cache: yes
       become: true
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
+
+    - name: Clone tpm
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: /home/{{ ansible_user_id}}/.tmux/plugins/tpm
+
+    - name: Run tpm install
+      shell: /home/{{ ansible_user_id}}/.tmux/plugins/tpm/scripts/install_plugins.sh
 
     - name: Exit the playbook early
       meta: end_play
