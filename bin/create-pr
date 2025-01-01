@@ -8,4 +8,4 @@ org_repo=$(echo "$remote_url" | sed -n 's/.*github.com[/:]\(.*\)\.git/\1/p')
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 
-github https://github.com/${org_repo}/pull/new/${branch}
+est-browser https://github.com/${org_repo}/pull/new/${branch}
