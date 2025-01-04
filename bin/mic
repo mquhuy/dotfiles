@@ -77,8 +77,8 @@ correct_default_source() {
 
 check_status() {
   mode=$(get_mode)
-  correct_default_source
-  current_source=$(pactl info | awk -F ":" '/Default Source/ {print $2}' | tr -d ' ')
+  # correct_default_source
+  # current_source=$(pactl info | awk -F ":" '/Default Source/ {print $2}' | tr -d ' ')
   state=$(pactl list sources | sed -ze "s/.*Name: ${current_source}//;s/Volume: .*$//;" | awk -F ":" '/Mute/ {print $2}' | tr -d ' ')
   if [ "${state}" = "yes" ]; then
     icon="🔇 Mic off"

@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 #
 KMONAD_CONFIG_DIR=${DOTFILES_DIR}/config/kmonad
-chosen_keyboard=$(ls ${KMONAD_CONFIG_DIR}/*.org | rofi -dmenu)
-emacs --batch --eval "(require 'org)" --eval "(org-babel-tangle-file \"${chosen_keyboard}\")"
+chosen_keyboard=$(ls ${KMONAD_CONFIG_DIR}/* | rofi -dmenu)
+if [[ "${chosen_keyboard##*.}" == "org" ]]; then
+  emacs --batch --eval "(require 'org)" --eval "(org-babel-tangle-file \"${chosen_keyboard}\")"
+else
+  rm -f "${KMONAD_CONFIG_DIR}/config.kbd"
+  cp "${chosen_keyboard}" "${KMONAD_CONFIG_DIR}/config.kbd"
+fi
 device_name="$(grep -oP '(?<=input \(device-file \").*(?=\")' ~/.config/kmonad/config.kbd)"
 if [[ "$device_name" != "/dev/*" ]]; then
-    export device_name
-    python3 << 'END_PYTHON'
+  export device_name
+  python3 <<'END_PYTHON'
 import os
 import re
 
@@ -27,4 +32,8 @@ with open('/proc/bus/input/devices') as f:
 END_PYTHON
 fi
 systemctl --user restart kmonad
-notify-send "Successfully switched to keyboard $(basename ${chosen_keyboard})"
+if systemctl --user is-active --quiet kmonad; then
+  notify-send "Successfully switched to keyboard $(basename ${chosen_keyboard})"
+else
+  notify-send "Kmonad isn't running as expected, check the status"
+fi
