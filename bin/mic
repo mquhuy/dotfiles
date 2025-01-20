@@ -109,6 +109,9 @@ toggle() {
 if [[ ${BLOCK_BUTTON:-} == 1 || ${1:-} = "toggle" ]]; then
   toggle
   pkill -SIGRTMIN+13 i3blocks
+elif [[ ${BLOCK_BUTTON:-} == 2 ]]; then
+  pavucontrol
+  check_status
 elif [[ ${BLOCK_BUTTON:-} == 3 || ${1:-} = "change_mode" ]]; then
   change_mode
   pkill -SIGRTMIN+13 i3blocks

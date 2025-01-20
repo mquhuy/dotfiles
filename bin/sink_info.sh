@@ -98,8 +98,8 @@ case $BLOCK_BUTTON in
   trigger_i3blocks
   ;;
 2)
-  toggle_mute
-  trigger_i3blocks
+  pavucontrol
+  get_status
   ;;
 3)
   toggle_sink
