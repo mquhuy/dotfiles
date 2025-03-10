@@ -3,8 +3,10 @@
 mkdir -p $HOME/Programs
 
 rm -rf $HOME/.local/bin/nvim $HOME/Programs/nvim
+__dir__=$(realpath $(dirname $0))
+source $__dir__/common_lib.sh
 
-version="stable"
+version=$(get_latest_release "neovim" "neovim")
 
 filename="nvim-linux64"
 
