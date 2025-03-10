@@ -2,7 +2,8 @@
 
 __dir__=$(realpath $(dirname $0))
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  result=$(sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
+  echo "ohmyzsh installation exits with code ${result}"
 fi
 rm -f "${HOME}/.zshrc" "${HOME}/.zshrc.pre-oh-my-zsh"
 ln -s "${__dir__}/../zsh/zshrc" "${HOME}/.zshrc"
