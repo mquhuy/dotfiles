@@ -8,7 +8,7 @@ source $__dir__/common_lib.sh
 
 version=$(get_latest_release "neovim" "neovim")
 
-filename="nvim-linux64"
+filename="nvim-linux-x86_64"
 
 wget -O $HOME/Programs/$filename.tar.gz "https://github.com/neovim/neovim/releases/download/${version}/${filename}.tar.gz"
 
