@@ -6,7 +6,7 @@ mkdir -p $HOME/Programs
 __dir__=$(realpath $(dirname $0))
 installer_dir=$__dir__/installers
 
-$installer_dir/install_om.sh
+$installer_dir/install_omz.sh
 $installer_dir/install_tmux.sh
 $installer_dir/install_nvim.sh
 $installer_dir/install_go.sh
