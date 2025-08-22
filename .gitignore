@@ -1,2 +1,14 @@
 telekasten/
 ~/*
+playbook/venv
+config/Code
+config/evolution
+config/gaupol
+config/kdeglobals
+config/kdenlive-appimagerc config/kdenlive-layoutsrc
+config/kdenlive-appimagerc
+config/kdenlive-layoutsrc
+config/user-dirs.dirs
+config/user-dirs.locale
+playbooks/venv/
+config.bk
