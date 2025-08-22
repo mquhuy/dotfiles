@@ -1,0 +1,3 @@
+configuration {
+	path: "$HOME/.local/bin:$PATH";
+}

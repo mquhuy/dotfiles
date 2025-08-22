@@ -89,3 +89,4 @@ alias dfd="cd $DOTFILES_DIR"
 # CAPS LOCK
 alias capslock="xdotool key Caps_Lock"
 alias CAPSLOCK="xdotool key Caps_Lock"
+alias r="runpodctl"

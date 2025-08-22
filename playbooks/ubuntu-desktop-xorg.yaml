@@ -1,0 +1,87 @@
+- name: Install new Ubuntu desktop machine
+  hosts: all
+
+  tasks:
+  - name: Install packages
+    ansible.builtin.apt:
+      pkg:
+      - "{{ item }}"
+      update_cache: true
+    loop:
+      - acpi
+      - blueman
+      - bridge-utils
+      - curl
+      - fcitx5
+      - fcitx5-unikey
+      - fzf
+      - gimp
+      - git
+      - grim
+      - htop
+      - jq
+      - kscreen
+      - pandoc
+      - pavucontrol
+      - pipx
+      - pkg-config
+      - pulseaudio-utils
+      - pulsemixer
+      - python3-pip
+      - python3-tk
+      - python3-venv
+      - ranger
+      - ripgrep
+      - rofi
+      - silversearcher-ag
+      - unrar
+      - virtinst
+      - zsh
+    become: true
+    ignore_errors: true
+
+  - name: Install youtube-dl from git repository
+    community.general.pipx:
+      name: youtube-dl
+      source: git+https://github.com/ytdl-org/youtube-dl.git
+
+  - name: Install stable-ts from git repository
+    community.general.pipx:
+      name: stable-ts
+      source: git+https://github.com/jianfch/stable-ts.git
+
+  - name: Create Programs directory
+    ansible.builtin.file:
+      path: /home/{{ ansible_user_id }}/Programs
+      state: directory
+
+- import_playbook: installers/brave-browser.yaml
+  ignore_errors: true
+- import_playbook: installers/chrome.yaml
+  ignore_errors: true
+- import_playbook: installers/docker.yaml
+  ignore_errors: true
+- import_playbook: installers/ffmpeg.yaml
+  ignore_errors: true
+- import_playbook: installers/firefox.yaml
+  ignore_errors: true
+- import_playbook: installers/gh.yaml
+  ignore_errors: true
+- import_playbook: installers/image.nvim.yaml
+  ignore_errors: true
+- import_playbook: installers/kitty.yaml
+  ignore_errors: true
+- import_playbook: installers/nextcloud-client.yaml 
+  ignore_errors: true
+- import_playbook: installers/nvim.yaml
+  ignore_errors: true
+- import_playbook: installers/nvm.yaml
+  ignore_errors: true
+- import_playbook: installers/oh-my-zsh.yaml
+  ignore_errors: true
+- import_playbook: installers/tmux.yaml
+  ignore_errors: true
+- import_playbook: installers/yamlfmt.yaml
+  ignore_errors: true
+- import_playbook: installers/yq.yaml
+  ignore_errors: true

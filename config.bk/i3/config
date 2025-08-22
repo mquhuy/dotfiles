@@ -1,0 +1,445 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 8
+# font pango: Ubuntu Mono derivative Powerline 12
+# font pango: System San Francisco Display 10, pango:FontAwesome 10
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.  use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up k
+set $down j
+set $left h
+set $right l
+# set $right semicolon
+
+# use Mouse+Mod4 to drag floating windows to their wanted position
+floating_modifier Mod4
+
+# Dracula theme colors
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
+# End of Dracula theme colors
+#
+# start a terminal
+bindsym Mod1+Return exec kitty
+bindsym Mod4+Return exec kitty_with_name
+
+# kill focused window
+bindsym Mod4+q kill
+
+# start rofi dmenu (a program launcher)
+bindsym Mod4+p exec rofi -show run -theme slate -show-icons
+bindsym Mod4+d exec rofi -show drun -show-icons
+bindsym Mod4+w exec rofi -show window -show-icons
+
+# Clipboard
+bindsym Mod4+o exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym Mod4+$left focus left
+bindsym Mod4+$down focus down
+bindsym Mod4+$up focus up
+bindsym Mod4+$right focus right
+
+# Mouse bindings
+bindsym button9 exec 'xclip -select clipboard -o'
+bindsym button8 exec 'xclip -o | xclip -select clipboard -i'
+
+# alternatively, you can use the cursor keys:l
+#bindsym Mod1+Left focus left
+#bindsym Mod1+Down focus down
+#bindsym Mod1+Up focus up
+#bindsym Mod1+Right focus right
+
+# move focused window
+bindsym Mod4+Shift+$left move left
+bindsym Mod4+Shift+$down move down
+bindsym Mod4+Shift+$up move up
+bindsym Mod4+Shift+$right move right
+
+# Resize windows
+bindsym Shift+Control+Mod4+$left       resize shrink width 15 px or 15 ppt
+bindsym Shift+Control+Mod4+$down       resize grow height 15 px or 15 ppt
+bindsym Shift+Control+Mod4+$up         resize shrink height 15 px or 15 ppt
+bindsym Shift+Control+Mod4+$right      resize grow width 15 px or 15 ppt
+
+# alternatively, you can use the cursor keys:
+#bindsym Mod1+Shift+Left move left
+#bindsym Mod1+Shift+Down move down
+#bindsym Mod1+Shift+Up move up
+#bindsym Mod1+Shift+Right move right
+
+# split in horizontal orientation
+bindsym Mod4+c split h
+
+# split in vertical orientation
+bindsym Mod4+v split v
+
+# enter fullscreen mode for the focused container
+bindsym Mod4+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym Mod4+s layout stacking
+bindsym Mod4+t layout tabbed
+bindsym Mod4+e layout toggle split
+
+# toggle tiling / floating
+# bindsym Mod4+Shift+space floating toggle
+
+# Sticky
+# bindsym Mod4+Shift+space sticky toggle
+
+# focus the parent container
+bindsym Mod4+a focus parent
+
+# focus the child container
+bindsym Mod4+z focus child
+
+# reload the configuration file
+# bindsym Mod4+Shift+q exec "i3 reload && set_gap.sh"
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Mod4+Shift+r exec "i3 restart && set_gap.sh"
+# exit i3 (logs you out of your X session)
+bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+include ~/.config/i3/ws.conf
+# Auto back and forth
+workspace_auto_back_and_forth yes
+
+# Rename
+# bindsym Mod1+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+bindsym Mod4+r exec renameWs
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 30 px or 30 ppt
+        bindsym $down       resize grow height 30 px or 30 ppt
+        bindsym $up         resize shrink height 30 px or 30 ppt
+        bindsym $right      resize grow width 30 px or 30 ppt
+
+        # same bindings, but for the arrow keys
+        #bindsym Left        resize shrink width 10 px or 10 ppt
+        #bindsym Down        resize grow height 10 px or 10 ppt
+        #bindsym Up          resize shrink height 10 px or 10 ppt
+        #bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym Control+Mod4+r mode "resize"
+exec --no-startup-id set_gap.sh
+exec --no-startup-id "setxkbmap -option caps:escape"
+exec --no-startup-id blueman-applet
+
+# bindsym Control+Mod4+l exec i3lock -i ~/Pictures/lock.png -t -p win -u
+
+# Marks
+# read 1 character and mark the current window with this character
+bindsym Mod4+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym Mod4+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        id bar-0
+        font pango: monospace 10
+        #status_command i3status
+        status_command i3blocks -c ~/.config/i3blocks/primary.conf
+        # Dracula theme
+        colors {
+          background #282A36
+          statusline #F8F8F2
+          separator  #44475A
+
+          # focused_workspace  #44475A #44475A #F8F8F2
+          #
+          #focused_workspace #6272A4 #6272A4 #F8F8F2
+          focused_workspace #0088CC #0088CC #ffffff
+          #active_workspace   #282A36 #44475A #F8F8F2
+          active_workspace  #44475A #44475A #F8F8F2
+          inactive_workspace #282A36 #282A36 #BFBFBF
+          urgent_workspace   #FF5555 #FF5555 #F8F8F2
+          binding_mode       #FF5555 #FF5555 #F8F8F2
+        }
+        # End of Dracula theme
+        #colors {
+            #separator #666666
+            #background #222222
+            #statusline #dddddd
+            #focused_workspace #0088CC #0088CC #ffffff
+            #active_workspace #333333 #333333 #ffffff
+            #inactive_workspace #333333 #333333 #888888
+            #urgent_workspace #2f343a #900000 #ffffff
+        #}
+        tray_output primary
+        # mode hide
+        #hidden_state hide
+        #modifier Mod4
+}
+# Function keys
+bindsym XF86AudioLowerVolume exec "BLOCK_BUTTON=5 sink_info.sh"
+bindsym XF86AudioRaiseVolume exec "BLOCK_BUTTON=4 sink_info.sh"
+bindsym XF86AudioMute exec "BLOCK_BUTTON=2 sink_info.sh"
+
+#exec pactl set-sink-mute 'alsa_output.pci-0000_00_1f.3.analog-stereo' on
+#######################################################################
+#######################################################################
+# Auto figure the screen layout
+
+# Open apps
+# exec --no-startup-id $bindir/scratchpad-manager.sh init
+
+# No title bar
+for_window [class=".*"] border pixel 1
+
+# Teams notification floating and move to current workspace
+for_window [title=".*Teams Notification"] floating enable, move container to workspace current
+no_focus [title=".*Teams Notification"]
+no_focus [title="^Peek preview$"]
+
+# Toggle the touch pad
+bindsym Mod4+Control+p exec touchpad-toggler.sh
+
+# move current workspace between monitors
+bindsym Mod4+Control+h move workspace to output left
+bindsym Mod4+Control+j move workspace to output down
+bindsym Mod4+Control+k move workspace to output up
+bindsym Mod4+Control+l move workspace to output right
+
+bindsym Mod4+b exec bookmarks.sh
+
+# bindsym Mod4+Control+e exec dmenuemoji.sh
+
+exec --no-startup-id nm-applet
+exec --no-startup-id touchpad-toggler.sh
+exec --no-startup-id ibus-daemon
+# exec --no-startup-id autoxrandr
+exec --no-startup-id ~/.fehbg
+
+# Conference Mode
+#
+#
+set $mode_conference Conference: <Space>: Mic Toggle, <Enter> Quit, (m)ute
+mode "$mode_conference" {
+    bindsym space   exec "mic toggle"
+    bindsym m exec "BLOCK_BUTTON=2 sink_info.sh"
+    bindsym Return  mode "default"
+    bindsym Escape  mode "default"
+}
+# bindsym Mod1+Control+Mod4+space mode "$mode_conference"
+
+# Gaps
+# Only enable gaps on a workspace when there is at least one container
+#smart_gaps on
+
+set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym Mod4+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym h      mode "$mode_gaps_horiz"
+        bindsym v      mode "$mode_gaps_verti"
+        bindsym t      mode "$mode_gaps_top"
+        bindsym r      mode "$mode_gaps_right"
+        bindsym b      mode "$mode_gaps_bottom"
+        bindsym l      mode "$mode_gaps_left"
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_horiz" {
+        bindsym plus  gaps horizontal current plus 5
+        bindsym minus gaps horizontal current minus 5
+        bindsym 0     gaps horizontal current set 0
+
+        bindsym Shift+plus  gaps horizontal all plus 5
+        bindsym Shift+minus gaps horizontal all minus 5
+        bindsym Shift+0     gaps horizontal all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_verti" {
+        bindsym plus  gaps vertical current plus 5
+        bindsym minus gaps vertical current minus 5
+        bindsym 0     gaps vertical current set 0
+
+        bindsym Shift+plus  gaps vertical all plus 5
+        bindsym Shift+minus gaps vertical all minus 5
+        bindsym Shift+0     gaps vertical all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_top" {
+        bindsym plus  gaps top current plus 5
+        bindsym minus gaps top current minus 5
+        bindsym 0     gaps top current set 0
+
+        bindsym Shift+plus  gaps top all plus 5
+        bindsym Shift+minus gaps top all minus 5
+        bindsym Shift+0     gaps top all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_right" {
+        bindsym plus  gaps right current plus 5
+        bindsym minus gaps right current minus 5
+        bindsym 0     gaps right current set 0
+
+        bindsym Shift+plus  gaps right all plus 5
+        bindsym Shift+minus gaps right all minus 5
+        bindsym Shift+0     gaps right all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_bottom" {
+        bindsym plus  gaps bottom current plus 5
+        bindsym minus gaps bottom current minus 5
+        bindsym 0     gaps bottom current set 0
+
+        bindsym Shift+plus  gaps bottom all plus 5
+        bindsym Shift+minus gaps bottom all minus 5
+        bindsym Shift+0     gaps bottom all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_left" {
+        bindsym plus  gaps left current plus 5
+        bindsym minus gaps left current minus 5
+        bindsym 0     gaps left current set 0
+
+        bindsym Shift+plus  gaps left all plus 5
+        bindsym Shift+minus gaps left all minus 5
+        bindsym Shift+0     gaps left all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+# Playerctl
+bindsym Control+Shift+1 exec "player toggle"
+
+# Screenshoot
+bindsym Mod4+Shift+s exec "windowshoot.sh"
+
+# Calendar generation
+# bindsym Control+Shift+z exec "generate_calendar.sh"
+
+# Mute microphone
+bindsym Control+Mod4+m exec "mic toggle"
+
+# Off screen
+# bindsym Control+Mod4+o exec ~/.screenlayout/0-screen.sh
+bindsym Control+Mod4+o exec offscreen
+
+# Time track
+bindsym Control+Mod4+t exec "BLOCK_BUTTON=1 time_track.sh"
+
+# Layout switcher
+bindsym Mod4+space exec "BLOCK_BUTTON=1 layout"
+
+# Go pkgs
+# bindsym Mod4+g exec "gopkg.sh"
+
+# Delete key
+bindsym Control+Mod4+BackSpace exec "xdotool key Delete"
+
+# bindsym Mod4+f exec "firefox"
+bindsym Mod4+n exec "nordix_choose.sh"
+
+bindsym Control+grave exec "dunstctl history-pop"
+bindsym Control+Shift+grave exec "dunstctl close-all"
+
+# bindsym Control+Shift+f exec ~/.screenlayout/2-screen.sh
+# bindsym Control+Mod4+c exec copilot
+
+# Focus to
+bindsym Shift+Control+Mod4+t exec "start-or-focus.sh teams"
+bindsym Shift+Control+Mod4+s exec "start-or-focus.sh slack"
+bindsym Shift+Control+Mod4+w exec "start-or-focus.sh fwiki"
+bindsym Shift+Control+Mod4+o exec "start-or-focus.sh outlook"
+bindsym Shift+Control+Mod4+c exec "start-or-focus.sh copilot"
+bindsym Shift+Control+Mod4+m exec "main-browser"
+
+# Scratch pad
+# Make the currently focused window a scratchpad
+bindsym Mod4+Shift+minus move scratchpad
+bindsym Mod4+minus scratchpad show

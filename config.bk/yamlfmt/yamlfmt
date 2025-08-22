@@ -1,0 +1,5 @@
+command:
+  continue_on_error: true
+formatter:
+  type: basic
+  indentless_arrays: true
