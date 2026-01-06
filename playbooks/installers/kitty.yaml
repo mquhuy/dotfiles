@@ -1,5 +1,7 @@
 - name: Install kitten
   hosts: all
+  vars:
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
 
   tasks:
     - name: "Get Latest Release from Github"
