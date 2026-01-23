@@ -120,6 +120,7 @@ plugins=(git zsh-syntax-highlighting)
 [ -f $DOTFILES_DIR/sh_vi ] && source $DOTFILES_DIR/sh_vi
 [ -f $HOME/.openai ] && source $HOME/.openai
 [ -f $HOME/.gh_token ] && source $HOME/.gh_token
+[ -f $HOME/.cargo/venv ] && source $HOME/.cargo/venv
 # for f in $HOME/.fonts/*.sh; do
   # source $f
 # done
@@ -187,3 +188,21 @@ export GPG_TTY=$(tty)
 export CONTAINER_RUNTIME=docker
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+# opencode
+export PATH=/Users/huy/.opencode/bin:$PATH
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/huy/.antigravity/antigravity/bin:$PATH"
+
+# bun completions
+[ -s "/Users/huy/.bun/_bun" ] && source "/Users/huy/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
