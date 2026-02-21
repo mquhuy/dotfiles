@@ -186,23 +186,14 @@ export PATH="${TEX_BIN}:$HOME/gems/bin:${DOTFILES_DIR}/bin:$PATH"
 export QT_QPA_PLATFORMTHEME="qt6ct"
 export GPG_TTY=$(tty)
 export CONTAINER_RUNTIME=docker
-export PATH=/usr/local/cuda/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+<
+# pnpm
+export PNPM_HOME="/home/huy/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # opencode
-export PATH=/Users/huy/.opencode/bin:$PATH
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-
-# Added by Antigravity
-export PATH="/Users/huy/.antigravity/antigravity/bin:$PATH"
-
-# bun completions
-[ -s "/Users/huy/.bun/_bun" ] && source "/Users/huy/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH=/home/huy/.opencode/bin:$PATH
